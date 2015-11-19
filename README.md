@@ -15,14 +15,14 @@ It is based on Node.js, express.js, Polymer and Dust.js.
 * `serve-favicon`
 
 ####Bugs
-##Read LICENSE
+##LICENSE
 
-##Read INSTALL
+##INSTALL
 1. `npm install`
 2. `bower install --save`
 3. `npm start`
 
-##Read AUTHORS
+##AUTHORS
 * Luigi Frunzio
 * Samuele Decarli
 * Federico Pfahler
