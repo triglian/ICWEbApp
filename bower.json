@@ -17,8 +17,10 @@
     "paper-scroll-header-panel": "PolymerElements/paper-scroll-header-panel#^1.0.0",
     "paper-spinner": "PolymerElements/paper-spinner#^1.0.0",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.0.0",
     "paper-toast": "PolymerElements/paper-toast#^1.0.0",
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
     "platinum-https-redirect": "PolymerElements/platinum-https-redirect#^1.0.0"
   }
 }
