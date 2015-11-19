@@ -47,6 +47,7 @@
         .ending {
             flex-grow: 1;
         }
+
     </style>
 </head>
 <body>
