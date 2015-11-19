@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { message: 'Express' });
+  res.render('index', { message: 'ICWE2016' });
 });
 
 module.exports = router;

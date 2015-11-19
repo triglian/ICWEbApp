@@ -11,6 +11,7 @@
         window.Polymer.dom = 'shadow';
     </script>
 
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/style.css">
 
     <link rel="import" href="components/paper-scroll-header-panel/paper-scroll-header-panel.html">
@@ -23,13 +24,26 @@
     <link rel="import" href="components/paper-toolbar/paper-toolbar.html">
     <link rel="import" href="components/paper-tabs/paper-tabs.html">
     <link rel="import" href="components/paper-tabs/paper-tab.html">
+    <link rel="import" href="components/iron-icons/communication-icons.html">
+    <link rel="import" href="components/paper-drawer-panel/paper-drawer-panel.html">
+    <link rel="import" href="components/paper-menu/paper-menu.html">
+    <link rel="import" href="components/paper-menu-button/paper-menu-button.html">
+    <link rel="import" href="components/paper-item/paper-item.html">
+    <link rel="import" href="elements/dropdown-panel/dropdown-panel.html">
     {!<link rel="import" href="components/">!}
     {!<link rel="import" href="components/">!}
     {!<link rel="import" href="components/">!}
     {!<link rel="import" href="components/">!}
 
+
+
     <link rel="stylesheet" href="components/paper-styles/demo.css">
     <style is="custom-style">
+
+        * {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
         paper-scroll-header-panel {
             position: absolute;
             top: 0;
@@ -38,42 +52,164 @@
             left: 0;
             background-color: var(--paper-grey-200, #eee);;
         }
+
         .menu {
             flex-grow: 2;
         }
-        .title {
-            flex-grow: 1;
-        }
-        .ending {
-            flex-grow: 1;
+
+        #mobileMenu {
+            display: none;
         }
 
+        @media (max-width: 900px) {
+            .menu {
+                display: none;
+            }
+
+            #mobileMenu {
+                display: inline-flex;
+            }
+        }
+
+        #logo {
+            font-size: large;
+        }
+
+        .ending {
+            flex-grow: 0.5;
+        }
+
+        iron-icon {
+            --iron-icon-height: 16px;
+            --iron-icon-width: 16px;
+            padding-right: 5px !important;
+        }
+
+        paper-icon-button {
+            --iron-icon-height: 16px;
+            --iron-icon-width: 16px;
+        }
+
+        paper-toolbar {
+            --paper-toolbar-background: #008bff;
+        }
+
+        paper-tabs {
+            --paper-tabs-selection-bar-color: #FFF;
+        }
+
+        paper-tab {
+            --paper-tab-ink: #FFF;
+        }
+
+        #paperDrawerPanel[right-drawer] [drawer] {
+            border-left: 1px solid var(--google-grey-300);
+        }
+
+        #paperDrawerPanel [main] {
+            background-color: var(--google-grey-100);
+        }
+
+        #paperDrawerPanel [drawer] {
+            background-color: #FFF;
+        }
+
+        [paper-drawer-toggle] {
+            position: absolute;
+            top: 12px;
+            right: 10px !important;
+        }
+        paper-menu {
+            display: block;
+        }
+        paper-menu-button {
+            --paper-menu-button-dropdown: {
+                top: 68px !important;
+                width: 150%;
+            }
+        }
+
+        paper-item {
+            color: #000 !important;
+        }
     </style>
 </head>
 <body>
-<paper-scroll-header-panel fixed>
-    <paper-toolbar>
-        <div class="title"> {message} </div>
-        <paper-tabs class="menu">
-            <paper-tab>
-                Home
-            </paper-tab>
-            <paper-tab>
-                Social
-            </paper-tab>
-            <paper-tab>
-                Sponsors
-            </paper-tab>
-            <paper-tab>
-                Speakers
-            </paper-tab>
-            <paper-tab>
-                Talks
-            </paper-tab>
-        </paper-tabs>
-        <div class="ending"></div>
-    </paper-toolbar>
-</paper-scroll-header-panel>
+<paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="900px">
+    <paper-scroll-header-panel fixed main>
+        <paper-toolbar>
+            <paper-menu-button id="mobileMenu">
+                <paper-icon-button icon="icons:menu" class="dropdown-trigger"></paper-icon-button>
+                <dropdown-panel class="dropdown-content">
+                    <paper-item>
+                        <iron-icon icon="icons:home"></iron-icon>
+                        HOME
+                    </paper-item>
+                    <paper-item>
+                        <iron-icon src="imgs/icons/twitter-blk.png"></iron-icon>
+                        SOCIAL
+                    </paper-item>
+                    <paper-item>
+                        <iron-icon icon="icons:supervisor-account"></iron-icon>
+                        SPONSORS
+                    </paper-item>
+                    <paper-item>
+                        <iron-icon icon="icons:account-circle"></iron-icon>
+                        SPEAKERS
+                    </paper-item>
+                    <paper-item>
+                        <iron-icon icon="communication:chat-bubble"></iron-icon>
+                        TALKS
+                    </paper-item>
+                </dropdown-panel>
+            </paper-menu-button>
+            <div id="logo"> {message} </div>
+            <paper-tabs class="menu" selected="0">
+                <paper-tab>
+                    <iron-icon icon="icons:home"></iron-icon>
+                    HOME
+                </paper-tab>
+                <paper-tab>
+                    <iron-icon src="imgs/icons/twitter.png"></iron-icon>
+                    SOCIAL
+                </paper-tab>
+                <paper-tab>
+                    <iron-icon icon="icons:supervisor-account"></iron-icon>
+                    SPONSORS
+                </paper-tab>
+                <paper-tab>
+                    <iron-icon icon="icons:account-circle"></iron-icon>
+                    SPEAKERS
+                </paper-tab>
+                <paper-tab>
+                    <iron-icon icon="communication:chat-bubble"></iron-icon>
+                    TALKS
+                </paper-tab>
+            </paper-tabs>
+            <div class="ending">
+                <paper-icon-button icon="icons:feedback" paper-drawer-toggle></paper-icon-button>
+            </div>
+        </paper-toolbar>
+        MAIN
+        {!<section>!}
+
+        {!<div drawer >!}
+        {!DRAWER!}
+        {!</div>!}
+        {!<div main>!}
+
+        {!MAIN!}
+        {!</div>!}
+
+        {!</section>!}
+    </paper-scroll-header-panel>
+    <paper-scroll-header-panel fixed drawer>
+        <paper-toolbar>
+            <div>NEWS</div>
+        </paper-toolbar>
+        NEWS
+    </paper-scroll-header-panel>
+</paper-drawer-panel>
 
 
 </body>
