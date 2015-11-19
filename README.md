@@ -1,8 +1,9 @@
 # International Conference for Web Engineering 2016 Mobile Web App
 ##Read ME
-The purpose of this app is creating a mobile-friendly web application for meetings and conventions. 
+The purpose of this app is creating a mobile-friendly web application for meetings and conventions. <br />
 It is based on Node.js, express.js, Polymer and Dust.js. 
 ####Features 
+* Twitter 
 ####Modules
 * `body-parser`
 * `cookie-parser`
@@ -23,6 +24,6 @@ It is based on Node.js, express.js, Polymer and Dust.js.
 3. `npm start`
 
 ##AUTHORS
-* Luigi Frunzio
 * Samuele Decarli
+* Luigi Frunzio
 * Federico Pfahler
