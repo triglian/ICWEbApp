@@ -191,17 +191,6 @@
             </div>
         </paper-toolbar>
         MAIN
-        {!<section>!}
-
-        {!<div drawer >!}
-        {!DRAWER!}
-        {!</div>!}
-        {!<div main>!}
-
-        {!MAIN!}
-        {!</div>!}
-
-        {!</section>!}
     </paper-scroll-header-panel>
     <paper-scroll-header-panel fixed drawer>
         <paper-toolbar>
