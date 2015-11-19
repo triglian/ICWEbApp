@@ -3,6 +3,7 @@
 The purpose of this app is creating a web application for meetings and conventions. 
 It is based on Node.js, express.js, Polymer and Dust.js. 
 ####Features 
+####Modules
 ####Bugs
 ##Read LICENSE
 
