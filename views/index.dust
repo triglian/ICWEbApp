@@ -96,7 +96,9 @@
 
         paper-tabs {
             --paper-tabs-selection-bar-color: #FFF;
+            margin-left: 15px !important;
         }
+
 
         paper-tab {
             --paper-tab-ink: #FFF;
