@@ -30,7 +30,7 @@
     <link rel="import" href="components/paper-menu-button/paper-menu-button.html">
     <link rel="import" href="components/paper-item/paper-item.html">
     <link rel="import" href="elements/dropdown-panel/dropdown-panel.html">
-    {!<link rel="import" href="components/">!}
+    <link rel="import" href="elements/mdi-iconset/mdi.html">
     {!<link rel="import" href="components/">!}
     {!<link rel="import" href="components/">!}
     {!<link rel="import" href="components/">!}
@@ -148,7 +148,7 @@
                         HOME
                     </paper-item>
                     <paper-item>
-                        <iron-icon src="imgs/icons/twitter-blk.png"></iron-icon>
+                        <iron-icon icon="mdi:twitter"></iron-icon>
                         SOCIAL
                     </paper-item>
                     <paper-item>
@@ -172,7 +172,7 @@
                     HOME
                 </paper-tab>
                 <paper-tab>
-                    <iron-icon src="imgs/icons/twitter.png"></iron-icon>
+                    <iron-icon icon="mdi:twitter"></iron-icon>
                     SOCIAL
                 </paper-tab>
                 <paper-tab>
