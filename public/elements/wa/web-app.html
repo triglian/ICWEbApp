@@ -58,7 +58,7 @@
             display: none;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 880px) {
             .menu {
                 display: none;
             }
@@ -67,13 +67,19 @@
                 display: inline-flex;
             }
         }
+        @media (max-width: 990px){
+            .ending {
+                display: inline-flex !important;
+                flex-grow: 0.5;
+            }
+        }
 
         #logo {
             font-size: large;
         }
 
         .ending {
-            flex-grow: 0.5;
+            display: none;
         }
 
         iron-icon {
@@ -96,7 +102,6 @@
             margin-left: 15px !important;
         }
 
-
         paper-tab {
             --paper-tab-ink: #FFF;
         }
@@ -118,9 +123,11 @@
             top: 12px;
             right: 10px !important;
         }
+
         paper-menu {
             display: block;
         }
+
         paper-menu-button {
             --paper-menu-button-dropdown: {
                 top: 68px !important;
@@ -133,7 +140,7 @@
         }
     </style>
     <template>
-        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="900px">
+        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="990px">
             <paper-scroll-header-panel fixed main>
                 <paper-toolbar>
                     <paper-menu-button id="mobileMenu">
@@ -165,7 +172,7 @@
                             </paper-item>
                         </dropdown-panel>
                     </paper-menu-button>
-                    <div id="logo"> [[title]] </div>
+                    <div id="logo"> [[title]]</div>
                     <paper-tabs class="menu" selected="{{selected}}">
                         <paper-tab>
                             <iron-icon icon="icons:home"></iron-icon>
@@ -192,7 +199,9 @@
                             CONTACTS
                         </paper-tab>
                     </paper-tabs>
-                    <paper-icon-button icon="icons:feedback" paper-drawer-toggle></paper-icon-button>
+                    <div class="ending">
+                        <paper-icon-button icon="icons:feedback" paper-drawer-toggle></paper-icon-button>
+                    </div>
                 </paper-toolbar>
                 <iron-pages selected="{{selected}}">
                     <section>
