@@ -1,0 +1,32 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<dom-module id="web-speakers">
+    <style>
+
+    </style>
+    <template>
+        <a on-click="onClick" href="#speaker">speakers</a>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-speakers',
+                properties: {
+                    selected:{
+                        notify:true,
+                        type: Number
+                    }
+                },
+                onClick : function(){
+                    this.selected = 6;
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>
