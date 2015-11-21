@@ -1,11 +1,38 @@
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-image/iron-image.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
 
 <dom-module id="web-sponsors">
     <style>
-
+        .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-wrap);
+            @apply(--flex-auto);
+            align-items: center;
+            justify-content: center;
+            padding-top: 50px;
+        }
+        .container > div{
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
     </style>
     <template>
-        sponsors
+        <div class="container">
+            <div><iron-image style="width:350px; height:200px; background-color: lightgray;"
+                    sizing="contain" preload src="../../imgs/sponsors/express.png"></iron-image></div>
+            <div><iron-image style="width:350px; height:200px; background-color: lightgray;"
+                    sizing="contain" preload src="../../imgs/sponsors/facebook-logo.png"></iron-image></div>
+            <div><iron-image style="width:350px; height:200px; background-color: lightgray;"
+                    sizing="contain" preload src="../../imgs/sponsors/node-js-logo.png"></iron-image></div>
+            <div><iron-image style="width:350px; height:200px; background-color: lightgray;"
+                    sizing="contain" preload src="../../imgs/sponsors/unnamed.png"></iron-image></div>
+            <div><iron-image style="width:350px; height:200px; background-color: lightgray;"
+                             sizing="contain" preload src="../../imgs/sponsors/p-logo.png"></iron-image></div>
+        </div>
+
     </template>
 
     <script>
@@ -14,11 +41,9 @@
 
             Polymer({
                 is: 'web-sponsors'
-
             });
-
-
         })();
     </script>
 
 </dom-module>
+
