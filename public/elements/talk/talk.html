@@ -2,10 +2,108 @@
 
 <dom-module id="web-talk">
     <style>
-
+        .talk-content {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-self: flex-start;
+            padding: 10px;
+        }
+        .talk-name {
+            flex: 1 1 auto;
+            padding: 10px;
+        }
+        .talk-type {
+            flex: 0 1 auto;
+        }
+        .talk-short-info {
+            flex: 1 1 auto;
+            flex-direction: column;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-self: flex-start;
+            padding: 10px;
+        }
+        .talk-time {
+            flex: 1 1 auto;
+        }
+        .talk-place {
+            flex: 1 1 auto;
+        }
+        .talk-description {
+            flex: 1 1 auto;
+            padding: 10px;
+        }
+        .talk-speaker {
+            border-top: 1px solid #aaaaaa;
+            flex: 1 1 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-self: flex-start;
+            padding: 10px;
+        }
+        .talk-speaker-img {
+            flex: 0 1 auto;
+            height: 150px;
+        }
+        .talk-speaker-info {
+            flex: 0 1 auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-self: flex-start;
+            padding: 10px;
+        }
+        .talk-speaker-name {
+            flex: 1 1 auto;
+        }
+        .talk-speaker-org {
+            flex: 1 1 auto;
+            color: #7b7b7b; /* TODO: Should become a variable later on */
+        }
+        .talk-feedback {
+            padding: 10px;
+            /*TODO*/
+        }
     </style>
     <template>
-        talk
+        <div class="talk-content">
+            <h2 class="talk-name">On the Importance of Being Babbage</h2>
+            <div class="talk-type"></div>
+            <div class="talk-short-info">
+                <div class="talk-time">Tue 2015/12/25 10:00 AM - 11:30 AM</div>
+                <div class="talk-place">Room A-007</div>
+            </div>
+            <div class="talk-description">
+                <p>Prof. Babbage will give a talk about his awesome achievements.</p>
+                <p>After the attempt at making the first difference engine fell through, Babbage worked to design a more
+                    complex machine called the Analytical Engine. He hired C. G. Jarvis, who had previously worked for
+                    Clement as a draughtsman. The Analytical Engine marks the transition from mechanised arithmetic
+                    to fully-fledged general purpose computation. It is largely on it that Babbage's standing as computer
+                    pioneer rests.</p>
+                <p>The major innovation was that the Analytical Engine was to be programmed using punched cards: the
+                    Engine was intended to use loops of Jacquard's punched cards to control a mechanical calculator,
+                    which could use as input the results of preceding computations. The machine was also intended
+                    to employ several features subsequently used in modern computers, including sequential control,
+                    branching and looping. It would have been the first mechanical device to be, in principle,
+                    Turing-complete. The Engine was not a single physical machine, but rather a succession of designs
+                    that Babbage tinkered with until his death in 1871.</p>
+            </div>
+            <div class="talk-speaker">
+                <img class="talk-speaker-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Charles_Babbage_1860.jpg/202px-Charles_Babbage_1860.jpg">
+                <div class="talk-speaker-info">
+                    <div class="talk-speaker-name">Prof. Charles Babbage</div>
+                    <div class="talk-speaker-org">University of Awesome</div>
+                </div>
+            </div>
+            <div class="talk-feedback">
+                Feedback
+            </div>
+        </div>
     </template>
 
     <script>
@@ -13,7 +111,13 @@
             'use strict';
 
             Polymer({
-                is: 'web-talk'
+                is: 'web-talk',
+                properties: {
+                    talk: {
+                        type: Object,
+                        notify: true
+                    }
+                }
 
             });
 
