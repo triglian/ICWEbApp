@@ -4,13 +4,12 @@
 <dom-module id="web-social">
     <style>
         .container {
-            /*@apply(--layout-horizontal);*/
-            /*@apply(--layout-wrap);*/
-            /*@apply(--flex-auto);*/
-            justify-content: center;
-            margin-top: 16px;
+            @apply(--layout-horizontal);
+            @apply(--layout-wrap);
+            @apply(--flex-auto);
             align-items: center;
             justify-content: center;
+            margin-top: 16px;
         }
         #cards {
             @apply(--layout-vertical);
@@ -18,17 +17,14 @@
             max-width: 280px;
             margin-left: auto;
             margin-right: auto;
+            justify-items: left;
         }
         paper-card {
-            @apply(--layout-horizontal);
-            @apply(--layout-wrap);
-            @apply(--flex-auto);
-            width: 300px;
+            width: 350px;
             margin-bottom: 16px;
             margin-left: 16px;
             margin-right: 16px;
-            align-items: center;
-            justify-content: center;
+
         }
         .avatar {
             display: inline-block;
@@ -64,21 +60,14 @@
         .grid{
             /*width:160px;*/
             clear:both;
-            align-items: center;
-            justify-content: center;
         }
         .block {
             /*margin:10px;*/
-            float:left;
-        }
-        .center {
-            margin: auto;
-            margin-top: 21px;
-            width: 60%;
+            /*float:left;*/
         }
     </style>
     <template>
-        <div class="center self-start">
+        <div class="container">
             <paper-card class='block fancy'>
                 <div class="card-content">
                     <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
@@ -91,7 +80,6 @@
                     <div>Usu eu novum <b>#ICWE</b>, vel quodsi aliquip ea.</div>
                     <div>Ut labores minimum atomorum pro. Laudem tibique ut has.</div>
                     <div>Usu eu novum principes, vel quodsi aliquip ea.</div>
-                    <div>CiaoCiaoCIaociaociaoBoiaCiao</div><div>CiaoCiaoCIaociaociaocoiaCiao</div>
                 </div>
             </paper-card>
             <paper-card class='block fancy'>
@@ -128,20 +116,6 @@
                 </div>
                 <div class="card-text">
                     ...
-                </div>
-            </paper-card>
-            <paper-card class='block fancy'>
-                <div class="card-content">
-                    <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
-                    <div class="title">
-                        <div class="name">Elton John</div>
-                        <div class="tag">@EltonJohn</div>
-                    </div>
-                </div>
-                <div class="card-text">
-                    <div>Ut labores minimum atomorum pro. Laudem tibique ut has.</div>
-                    <div>Usu eu novum principes, vel quodsi aliquip ea.</div>
-                    <div>CiaoCiaoCIaociaociaoBoiaCiao</div><div>CiaoCiaoCIaociaociaocoiaCiao</div>
                 </div>
             </paper-card>
         </div>
