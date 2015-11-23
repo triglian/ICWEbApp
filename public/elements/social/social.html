@@ -14,9 +14,10 @@
         #cards {
             @apply(--layout-vertical);
             @apply(--center-justified);
-            max-width: 300px;
+            max-width: 280px;
             margin-left: auto;
             margin-right: auto;
+            justify-items: left;
         }
         paper-card {
             width: 350px;
@@ -56,10 +57,18 @@
         b{
             color: #0b97c4;
         }
+        .grid{
+            /*width:160px;*/
+            clear:both;
+        }
+        .block {
+            /*margin:10px;*/
+            /*float:left;*/
+        }
     </style>
     <template>
         <div class="container">
-            <paper-card class='fancy'>
+            <paper-card class='block fancy'>
                 <div class="card-content">
                     <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
                     <div class="title">
@@ -73,7 +82,7 @@
                     <div>Usu eu novum principes, vel quodsi aliquip ea.</div>
                 </div>
             </paper-card>
-            <paper-card class='fancy'>
+            <paper-card class='block fancy'>
                 <div class="card-content">
                     <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
                     <div class="title">
@@ -85,7 +94,7 @@
                     <b>#ICWE16</b>...
                 </div>
             </paper-card>
-            <paper-card class='fancy'>
+            <paper-card class='block fancy'>
                 <div class="card-content">
                     <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
                     <div class="title">
@@ -97,7 +106,7 @@
                     ...
                 </div>
             </paper-card>
-            <paper-card class='fancy'>
+            <paper-card class='block fancy'>
                 <div class="card-content">
                     <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
                     <div class="title">
