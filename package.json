@@ -13,9 +13,11 @@
     "dustjs-helpers": "latest",
     "dustjs-linkedin": "latest",
     "express": "~4.13.1",
+    "method-override": "^2.3.5",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "mongoose": "latest"
+
   },
   "devDependencies": {
     "grunt": "*",
