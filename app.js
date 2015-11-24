@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dustjs = require('adaro');
+var methodOverride = require('method-override');
 //var routes = require('./routes/');
 //var users = require('./routes/users');
 
