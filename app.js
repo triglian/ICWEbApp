@@ -64,6 +64,6 @@ app.use(function (err, req, res, next) {
 });
 
 var routers = require('./routes/routers');
-app.use('/events', routers.events);
+app.use('/events', routers.Events);
 
 module.exports = app;
