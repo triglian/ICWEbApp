@@ -19,7 +19,7 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 router.get("/", function(req, res, next) {
     Speaker.find({}, {}, function(err, speakers) {
         if (err) return next(err);
-
+        console.log(speakers)
         res.json(speakers);
     });
 });
@@ -27,7 +27,6 @@ router.get("/", function(req, res, next) {
 router.get("/:speakerid", function(req, res, next) {
     Speaker.findById(req.params.speakerid, function(err, speaker) {
         if (err) return next(err);
-
         if (!speaker) {
             res.status(404);
             res.json({
