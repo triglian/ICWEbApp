@@ -5,10 +5,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var dustjs = require('adaro');
+//var dustjs = require('adaro');
 var methodOverride = require('method-override');
-//var routes = require('./routes/');
-//var users = require('./routes/users');
+
 
 var app = express();
 
@@ -18,9 +17,9 @@ mongoose.connect(config.mongoUrl + config.mongoDbName);
 require("./models");
 
 // view engine setup
-app.engine('dust', dustjs.dust());
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'dust');
+//app.engine('dust', dustjs.dust());
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'dust');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
