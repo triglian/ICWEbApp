@@ -1,3 +1,4 @@
+var config = require('./config');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,6 +10,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+//mongoose setup
+var mongoose   = require('mongoose');
+mongoose.connect(config.mongoUrl + config.mongoDbName);
 
 // view engine setup
 app.engine('dust', dustjs.dust());
