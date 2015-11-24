@@ -13,8 +13,6 @@ var mongoose = require('mongoose');
 var SpeakerSchema = require('./Speaker');
 var CommentSchema = require('./Comment');
 
-
-
 var eventSchema = new mongoose.Schema({
     name     : { type : String },
     date     : { type : Date },
