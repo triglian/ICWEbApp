@@ -1,18 +1,16 @@
 'use strict';
 
 var mongoose = require('mongoose');
-//var SpeakerSchema = require('./Speaker');
-//var CommentSchema = require('./Comment');
 
-var speakSchema = new mongoose.Schema({
-    name     : { type : String },
-    date     : { type : Date },
-    place    : { type : String },
-    speaker  : { type : String },
-    abstract : { type : String },
-    kind     : { type : String },
-    pdf      : { type : String },
-    feedback : { type : Array }
+var speakerSchema = new mongoose.Schema({
+    name     : { type : String, default: "" },
+    organisation     : { type : String, default: "" },
+    bio    : { type : String, default: "" },
+    picture  : { type : String, default: "" },
+    website : { type : String, default: "" },
+    email     : { type : String, default: "" },
+    twitter      : { type : String, default: "" },
+    events : { type : Array, default : [] }
 });
 
-mongoose.model('Speaker', speakSchema);
+mongoose.model('Speaker', speakerSchema);
