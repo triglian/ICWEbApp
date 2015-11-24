@@ -24,7 +24,7 @@
 <link rel="import" href="../../elements/speakers/speakers.html">
 <link rel="import" href="../../elements/sponsors/sponsors.html">
 <link rel="import" href="../../elements/talk/talk.html">
-<!--<link rel="import" href="components/">-->
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
@@ -172,7 +172,7 @@
                             </paper-item>
                         </dropdown-panel>
                     </paper-menu-button>
-                    <div id="logo"> [[title]]</div>
+                    <div id="logo"> [[info.title]]</div>
                     <paper-tabs class="menu" selected="{{selected}}">
                         <paper-tab>
                             <iron-icon icon="icons:home"></iron-icon>
@@ -237,6 +237,11 @@
                 NEWS
             </paper-scroll-header-panel>
         </paper-drawer-panel>
+        <iron-ajax
+        auto
+        url="/info/"
+        handle-as="json"
+        last-response="{{info}}"></iron-ajax>
     </template>
 
     <script>
@@ -250,7 +255,7 @@
                         type: Number,
                         notify: true
                     },
-                    title: {
+                    info: {
                         type: String
                     }
                 }
