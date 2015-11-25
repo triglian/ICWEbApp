@@ -1,8 +1,8 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 
-<dom-module id="web-talk">
+<dom-module id="web-event">
     <style>
-        .talk-content {
+        .event-content {
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
@@ -10,14 +10,14 @@
             align-self: flex-start;
             padding: 10px;
         }
-        .talk-name {
+        .event-name {
             flex: 1 1 auto;
             padding: 10px;
         }
-        .talk-type {
+        .event-type {
             flex: 0 1 auto;
         }
-        .talk-short-info {
+        .event-short-info {
             flex: 1 1 auto;
             flex-direction: column;
             display: flex;
@@ -26,17 +26,17 @@
             align-self: flex-start;
             padding: 10px;
         }
-        .talk-time {
+        .event-time {
             flex: 1 1 auto;
         }
-        .talk-place {
+        .event-place {
             flex: 1 1 auto;
         }
-        .talk-description {
+        .event-description {
             flex: 1 1 auto;
             padding: 10px;
         }
-        .talk-speaker {
+        .event-speaker {
             border-top: 1px solid #aaaaaa;
             flex: 1 1 auto;
             display: flex;
@@ -45,11 +45,11 @@
             align-self: flex-start;
             padding: 10px;
         }
-        .talk-speaker-img {
+        .event-speaker-img {
             flex: 0 1 auto;
             height: 150px;
         }
-        .talk-speaker-info {
+        .event-speaker-info {
             flex: 0 1 auto;
             display: flex;
             flex-wrap: wrap;
@@ -58,28 +58,28 @@
             align-self: flex-start;
             padding: 10px;
         }
-        .talk-speaker-name {
+        .event-speaker-name {
             flex: 1 1 auto;
         }
-        .talk-speaker-org {
+        .event-speaker-org {
             flex: 1 1 auto;
             color: #7b7b7b; /* TODO: Should become a variable later on */
         }
-        .talk-feedback {
+        .event-feedback {
             padding: 10px;
             /*TODO*/
         }
     </style>
     <template>
-        <div class="talk-content">
-            <h2 class="talk-name">On the Importance of Being Babbage</h2>
-            <div class="talk-type"></div>
-            <div class="talk-short-info">
-                <div class="talk-time">Tue 2015/12/25 10:00 AM - 11:30 AM</div>
-                <div class="talk-place">Room A-007</div>
+        <div class="event-content">
+            <h2 class="event-name">On the Importance of Being Babbage</h2>
+            <div class="event-type"></div>
+            <div class="event-short-info">
+                <div class="event-time">Tue 2015/12/25 10:00 AM - 11:30 AM</div>
+                <div class="event-place">Room A-007</div>
             </div>
-            <div class="talk-description">
-                <p>Prof. Babbage will give a talk about his awesome achievements.</p>
+            <div class="event-description">
+                <p>Prof. Babbage will give a event about his awesome achievements.</p>
                 <p>After the attempt at making the first difference engine fell through, Babbage worked to design a more
                     complex machine called the Analytical Engine. He hired C. G. Jarvis, who had previously worked for
                     Clement as a draughtsman. The Analytical Engine marks the transition from mechanised arithmetic
@@ -93,17 +93,25 @@
                     Turing-complete. The Engine was not a single physical machine, but rather a succession of designs
                     that Babbage tinkered with until his death in 1871.</p>
             </div>
-            <div class="talk-speaker">
-                <img class="talk-speaker-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Charles_Babbage_1860.jpg/202px-Charles_Babbage_1860.jpg">
-                <div class="talk-speaker-info">
-                    <div class="talk-speaker-name">Prof. Charles Babbage</div>
-                    <div class="talk-speaker-org">University of Awesome</div>
+            <div class="event-speaker">
+                <img class="event-speaker-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Charles_Babbage_1860.jpg/202px-Charles_Babbage_1860.jpg">
+                <div class="event-speaker-info">
+                    <div class="event-speaker-name">Prof. Charles Babbage</div>
+                    <div class="event-speaker-org">University of Awesome</div>
                 </div>
             </div>
-            <div class="talk-feedback">
+            <div class="event-feedback">
                 Feedback
             </div>
         </div>
+
+
+        <iron-ajax
+                auto
+                url="/events/{{_id}}"
+                handle-as="json"
+                last-response="{{event}}">
+        ></iron-ajax>
     </template>
 
     <script>
@@ -111,9 +119,16 @@
             'use strict';
 
             Polymer({
-                is: 'web-talk',
+                is: 'web-event',
+//                ready: function() {
+//                    window.singleEvent = this;
+//                },
                 properties: {
-                    talk: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    },
+                    event: {
                         type: Object,
                         notify: true
                     }

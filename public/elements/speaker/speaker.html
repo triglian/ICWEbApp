@@ -63,6 +63,13 @@
                 </ul>
             </div>
         </div>
+
+        <iron-ajax
+                auto
+                url="/speakers/{{_id}}"
+                handle-as="json"
+                last-response="{{speaker}}">
+        ></iron-ajax>
     </template>
 
     <script>
@@ -71,7 +78,15 @@
 
             Polymer({
                 is: 'web-speaker',
+//                ready: function() {
+//                    window.singleSpeaker = this;
+//                },
                 properties: {
+                    _id: {
+                        type: String,
+                        default: '33',
+                        notify: true
+                    },
                     speaker: {
                         type: Object,
                         notify: true
