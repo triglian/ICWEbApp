@@ -67,7 +67,8 @@
                 display: inline-flex;
             }
         }
-        @media (max-width: 990px){
+
+        @media (max-width: 990px) {
             .ending {
                 display: inline-flex !important;
                 flex-grow: 0.5;
@@ -138,6 +139,7 @@
         paper-item {
             color: #000 !important;
         }
+
     </style>
     <template>
         <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="990px">
@@ -238,10 +240,11 @@
             </paper-scroll-header-panel>
         </paper-drawer-panel>
         <iron-ajax
-        auto
-        url="/info/"
-        handle-as="json"
-        last-response="{{info}}"></iron-ajax>
+                auto
+                url="/info/"
+                handle-as="json"
+                last-response="{{info}}">
+        </iron-ajax>
     </template>
 
     <script>
