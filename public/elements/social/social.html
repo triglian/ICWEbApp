@@ -1,9 +1,11 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
+
 <dom-module id="web-social">
     <style>
-        .container {
+        :host{
             @apply(--layout-horizontal);
             @apply(--layout-wrap);
             @apply(--flex-auto);
@@ -67,58 +69,27 @@
         }
     </style>
     <template>
-        <div class="container">
+        <template is="dom-repeat" items="[[twitter]]"  as='twitt'>
             <paper-card class='block fancy'>
                 <div class="card-content">
-                    <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
+                    <img class="avatar" src="{{twitt.profile_image}}"></img>
                     <div class="title">
-                        <div class="name">Elton John</div>
-                        <div class="tag">@EltonJohn</div>
+                        <div class="name">{{twitt.name}}</div>
+                        <div class="tag">@{{twitt.username}}</div>
                     </div>
                 </div>
                 <div class="card-text">
-                    <div>Usu eu novum <b>#ICWE</b>, vel quodsi aliquip ea.</div>
-                    <div>Ut labores minimum atomorum pro. Laudem tibique ut has.</div>
-                    <div>Usu eu novum principes, vel quodsi aliquip ea.</div>
+                    <div>{{twitt.text}}</div>
                 </div>
             </paper-card>
-            <paper-card class='block fancy'>
-                <div class="card-content">
-                    <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
-                    <div class="title">
-                        <div class="name">Elton John</div>
-                        <div class="tag">@EltonJohn</div>
-                    </div>
-                </div>
-                <div class="card-text">
-                    <b>#ICWE16</b>...
-                </div>
-            </paper-card>
-            <paper-card class='block fancy'>
-                <div class="card-content">
-                    <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
-                    <div class="title">
-                        <div class="name">Elton John</div>
-                        <div class="tag">@EltonJohn</div>
-                    </div>
-                </div>
-                <div class="card-text">
-                    ...
-                </div>
-            </paper-card>
-            <paper-card class='block fancy'>
-                <div class="card-content">
-                    <img class="avatar" src="https://s-media-cache-ak0.pinimg.com/236x/3a/4d/10/3a4d103e6f911c9bc995609262239d71.jpg"></img>
-                    <div class="title">
-                        <div class="name">Elton John</div>
-                        <div class="tag">@EltonJohn</div>
-                    </div>
-                </div>
-                <div class="card-text">
-                    ...
-                </div>
-            </paper-card>
-        </div>
+        </template>
+
+        <iron-ajax
+                auto
+                url="/twitter/"
+                handle-as="json"
+                last-response="{{twitter}}">
+            </iron-ajax>
     </template>
 
     <script>
@@ -126,7 +97,14 @@
             'use strict';
 
             Polymer({
-                is: 'web-social'
+                is: 'web-social',
+                properties: {
+
+                    twitter: {
+                        type: Object,
+                        notify: true
+                    }
+                }
 
             });
 
