@@ -1,0 +1,218 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="web-talks">
+    <style>
+        :host {
+            @apply(--layout-vertical);
+            @apply(--layout-wrap);
+            @apply(‑‑layout-center-justified);
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+
+        .day {
+            @apply(--layout-horizontal);
+        }
+
+        .month {
+            font-size: larger;
+            font-weight: 700;
+            @apply(--layout-flex);
+        }
+
+        .number {
+            font-size: x-large;
+            font-weight: 800;
+
+        }
+
+        .date {
+            padding-right: 15px;
+            border-right: 1px solid #000;
+        }
+
+        .event {
+            @apply(--layout-vertical);
+            @apply(--layout-flex);
+
+        }
+
+        .name {
+            @apply(--layout-flex);
+            @apply(--layout-flex-3);
+            font-size: xx-large;
+            font-weight: 800;
+        }
+
+        .info {
+            @apply(--layout-horizontal);
+            margin-left: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <template>
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="day">
+            <div class="date">
+                <span class="number">14</span>
+                <span class="month">Nov</span>
+            </div>
+            <div class="event">
+                <div class="info">
+                    <div class="name">Event Title</div>
+                    <div class="layout vertical flex-2 center-justified">
+                        <span>Speaker</span>
+
+                        <div class="layout horizontal justified"><span>Keynote</span><span>Aula Magna</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<a on-click="onClick" href="#speaker">speakers</a>-->
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-talks',
+                properties: {
+                    selected: {
+                        notify: true,
+                        type: Number
+                    }
+                },
+                onClick: function () {
+                    this.selected = 6;
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>
