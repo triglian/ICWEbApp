@@ -5,7 +5,7 @@ var ObjectId = mongoose.Types.ObjectId;
 var speakerIds = [];
 for (var i = 0; i < 7; i++) {
   speakerIds.push(ObjectId());
-};
+}
 
 var events = {
   name : 'Event',
@@ -78,7 +78,7 @@ var events = {
       feedback : []
     }
   ]
-}
+};
 
 var speakers = {
   name : 'Speaker',
@@ -88,45 +88,45 @@ var speakers = {
       name          : "Marco Calzana",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[0]._id
+      events        : [events.data[0]._id]
     },
     {
       "_id"         : speakerIds[2],
       name          : "Francesco Zuppichini",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[1]._id
+      events        : [events.data[1]._id]
     },
     {
       "_id"         : speakerIds[3],
         name        : "Paolo Aurecchia",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[2]._id
+      events        : [events.data[2]._id]
     },
     {
       "_id"         : speakerIds[4],
       name          : "Alexander North",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[3]._id
+      events        : [events.data[3]._id]
     },
     {
       "_id"         : speakerIds[5],
       name          : "Luigi Frunzio",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[4]._id
+      events        : [events.data[4]._id]
     },
     {
       "_id"         : speakerIds[6],
       name          : "Davide Cammarata",
       organisation  : "USI",
       bio           : "Dummy",
-      events        : events.data[5]._id
+      events        : [events.data[5]._id]
     }
   ]
-}
+};
 
 
 var seedData = [];

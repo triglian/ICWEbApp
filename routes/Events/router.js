@@ -1,28 +1,31 @@
 'use strict';
 
-var express = require('express')
+var express = require('express');
 var router = express.Router();
 var middleware =  require('../middleware');
+
 var mongoose = require('mongoose');
-var ObjectId = mongoose.Types.ObjectId;
+//var ObjectId = mongoose.Types.ObjectId;
 var Event = mongoose.model('Event');
 
 var config = require("../../config");
 
+//supported methods
+router.all('/:talkid', middleware.supportedMethods('GET, OPTIONS'));
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 var fieldsFilter = { '__v': 0 };
 
+//routes
 router.get('/', function(req, res, next) {
-    Event.find({}, fieldsFilter).exec(function (err, talks) {
+    Event.find({}, fieldsFilter).populate("speaker").exec(function (err, talks) {
         if (err) return next(err);
-        console.log(talks)
         res.json(talks);
     });
 });
 
-router.get('/:talkId', function(req, res, next) {
-    Event.findById(req.params.talkId, function(err, talk) {
+router.get('/:talkid', function(req, res, next) {
+    Event.findById(req.params.talkid, fieldsFilter).populate("speaker").exec(function(err, talk) {
         if (err) return next(err);
         if (!talk) {
             res.status(404);
