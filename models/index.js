@@ -7,10 +7,12 @@ var mongoose = require('mongoose');
 
 require('./Comment');
 require('./Event');
-require('./Speaker')
+require('./Speaker');
+require('./Twitter')
 
 module.exports = {
     'Comment' : mongoose.model('Comment'),
     'Event' : mongoose.model('Event'),
-    'Speaker': mongoose.model('Speaker')
+    'Speaker': mongoose.model('Speaker'),
+    'Twitter':mongoose.model('Twitter')
 };
