@@ -58,7 +58,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "ICWE Mobile Web App",
-      date     : new Date(),
+      date     : new Date(10000000),
       place    : "USI auditorium",
       speaker  : speakerIds[5],
       abstract : "Dummy Dummy",
@@ -69,7 +69,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "Atelier Beats Group Project",
-      date     : new Date(),
+      date     : new Date('Wed Nov 25 2015 22:22:40 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[6],
       abstract : "Dummy Dummy",
