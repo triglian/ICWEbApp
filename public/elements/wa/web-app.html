@@ -26,7 +26,8 @@
 <link rel="import" href="../event/event.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../elements/events/events.html">
-<!--<link rel="import" href="components/">-->
+<link rel="import" href="../../components/paper-toast/paper-toast.html">
+<link rel="import" href="../../elements/routing.html">
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
@@ -258,6 +259,7 @@
                 handle-as="json"
                 last-response="{{events}}">
         ></iron-ajax>
+        <paper-toast id="toast"></paper-toast>
     </template>
 
     <script>

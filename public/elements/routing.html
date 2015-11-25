@@ -7,46 +7,51 @@
         // More info: https://visionmedia.github.io/page.js/
 
         // Middleware
-//        function scrollToTop(ctx, next) {
-//            abApp.scrollPageToTop();
-//            next();
-//        }
-//
-//        // Routes
-//        page('/', scrollToTop, function() {
-//            abApp.route = 'library';
-//        });
-//
-//        page('/albums', scrollToTop, function() {
-//            abApp.route = 'albums';
-//        });
-//
-//        page('/album/:albumid', scrollToTop, function(data) {
-//            abApp.route = 'albumbyid';
-//            abApp.params = data.params;
-//        });
-//        page('/playlists/:playlistid', scrollToTop, function(data) {
-//            abApp.route = 'playlistbyid';
-//            abApp.params = data.params;
-//        });
-//
-//
-//        page('/artists', scrollToTop, function() {
-//            abApp.route = 'artists';
-//        });
-//        page('/artist/:artistid', scrollToTop, function(data) {
-//            abApp.route = 'artistbyid';
-//            abApp.params = data.params;
-//        });
-//
-//        /* Implement the routing for the playlists here */
-//
-//
-//        page('*', function() {
-//            abApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
-//            abApp.$.toast.show();
-//            page.redirect('/');
-//        });
+        function scrollToTop(ctx, next) {
+//            webApp.scrollPageToTop();
+            next();
+        }
+
+        // Routes
+        page('/', scrollToTop, function() {
+            webApp.selected = 0;
+        });
+
+        page('/social', scrollToTop, function() {
+            webApp.selected = 1;
+        });
+
+        page('/sponsors', scrollToTop, function(data) {
+            webApp.selected = 2;
+        });
+
+        page('/speakers', scrollToTop, function() {
+            webApp.selected = 3;
+        });
+
+        page('/speakers/:id', scrollToTop, function(data) {
+            webApp.selected = 6;
+            webApp.$.speaker._id = data.params;
+        });
+
+        page('/events', scrollToTop, function(data) {
+            webApp.selected = 4;
+        });
+
+        page('/events/:id', scrollToTop, function(data) {
+            webApp.selected = 7;
+            webApp.$.event._id = data.params;
+        });
+        page('/contacts', scrollToTop, function(data) {
+            webApp.selected = 5;
+        });
+
+
+        page('*', function() {
+            webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+            webApp.$.toast.show();
+            page.redirect('/');
+        });
 
         // add #! before urls
         page({
