@@ -128,9 +128,49 @@ var speakers = {
   ]
 };
 
+var tweets = {
+  name : 'Twitter',
+  data : [
+    {
+      "_id"         : ObjectId(),
+      name          : "Person0",
+      username      : "USI",
+      text          : "Dummy",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+    },
+    {
+      "_id"         : ObjectId(),
+      name          : "Person1",
+      username      : "USI",
+      text          : "Dummy",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+    },
+    {
+      "_id"         : ObjectId(),
+      name          : "Person2",
+      username      : "USI",
+      text          : "Dummy",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+    },
+    {
+      "_id"         : ObjectId(),
+      name          : "Person3",
+      username      : "USI",
+      text          : "Dummy",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+    },
+    {
+      "_id"         : ObjectId(),
+      name          : "Person4",
+      username      : "USI",
+      text          : "Dummy",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+    }
+  ]}
 
 var seedData = [];
 seedData.push(events);
 seedData.push(speakers);
+seedData.push(tweets);
 
 module.exports = seedData;

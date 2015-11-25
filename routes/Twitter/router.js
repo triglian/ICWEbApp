@@ -24,21 +24,16 @@ stream.on('tweet', function (tweet) {
 
 function addTweet(tweet){
     var newTweet = new Twitter();
-    console.log(tweet)
     newTweet.text = tweet.text;
     newTweet.name = tweet.user.name;
     newTweet.username = tweet.user.screen_name;
     newTweet.profile_image = tweet.user.profile_image_url;
-    console.log(newTweet)
-
     newTweet.save(newTweet);
 }
 
 router.get("/", function(req, res, next) {
-    console.log('saving')
     Twitter.find({}, {}, function(err, twitters) {
         if (err) return next(err);
-        console.log(twitters)
         res.json(twitters);
     });
 });
