@@ -16,7 +16,20 @@
         .day {
             @apply(--layout-horizontal);
         }
+        @media (max-width: 880px) {
+            .day {
+                @apply(--layout-vertical);
+            }
+            .event {
+                -webkit-flex-basis: auto !important;
+                flex-basis: auto !important;
+                border-left: 1px solid rgba(0, 0, 0, 0.3);
+            }
+            .date {
+                border-right: none !important;
+            }
 
+        }
         .month {
             font-size: larger;
             font-weight: 700;
@@ -61,14 +74,6 @@
             font-weight: 100;
         }
 
-        /*.info:before {*/
-        /*border: 1px solid white;*/
-        /*content: '';*/
-        /*}*/
-        /*.info:after {*/
-        /*border: 1px solid #bbbbbb;*/
-        /*content: '';*/
-        /*}*/
     </style>
     <template>
         <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
@@ -77,22 +82,23 @@
                 <div class="date">
                     <span class="number">[[ _dayToPrint(day.value.date) ]]</span>
                     <span class="month">[[ _monthToPrint(day.value.date) ]]</span>
-            </div>
-            <div class="event">
-            <template is="dom-repeat" items="{{day.value.events}}" as="event" sort="_sort">
+                </div>
+                <div class="event">
+                    <template is="dom-repeat" items="{{day.value.events}}" as="event" sort="_sort">
 
-                    <paper-material elevation="1" class="info">
-                        <div class="layout vertical flex-2 center-justified">
-                            <div class="layout horizontal justified"><span class="hour">[[ _hour(event.date) ]]</span></div>
-                            <div class="name">{{event.name}}</div>
-                            <div class="layout horizontal justified"><span>{{event.kind}}</span><span>{{event.speaker.name}}</span><span>{{event.place}}</span>
+                        <paper-material elevation="1" class="info">
+                            <div class="layout vertical flex-2 center-justified">
+                                <div class="layout horizontal justified"><span
+                                        class="hour">[[ _hour(event.date) ]]</span></div>
+                                <div class="name">{{event.name}}</div>
+                                <div class="layout horizontal justified"><span>{{event.kind}}</span><span>{{event.speaker.name}}</span><span>{{event.place}}</span>
+                                </div>
                             </div>
-                        </div>
-                    </paper-material>
+                        </paper-material>
 
-            </template>
+                    </template>
                 </div>
-                </div>
+            </div>
         </template>
 
 
@@ -141,13 +147,13 @@
 
                     var days = {}
                     for (var i in this.events) {
-                        var day = this.events[i].date.slice(0,10);
+                        var day = this.events[i].date.slice(0, 10);
                         if (!days[day]) {
                             days[day] = {}
                             days[day]['events'] = [this.events[i]]
                             days[day]['date'] = new Date(this.events[i].date)
                         }
-                        else{
+                        else {
                             days[day]['events'].push(this.events[i])
                         }
 
@@ -161,26 +167,26 @@
                 _sortDate: function (a, b) {
                     return a.value.date.getTime() - b.value.date.getTime()
                 },
-                _isDay: function(a,b){
+                _isDay: function (a, b) {
                     return a.getDay() == new Date(b).getDay()
                 },
-                _hour: function(a){
+                _hour: function (a) {
                     var date = new Date(a)
-                    var hour = date.getHours()+':'+date.getMinutes()
+                    var hour = date.getHours() + ':' + date.getMinutes()
                     return hour
                 },
-                _dayToPrint: function(day){
+                _dayToPrint: function (day) {
                     var day = day.getDate()
                     if (Number(day) < 10) {
                         day = '0' + day
                     }
                     return day
                 },
-                _monthToPrint: function(day){
+                _monthToPrint: function (day) {
                     return this.month[day.getMonth()]
                 },
-                _toArray: function(obj) {
-                    var arr = Object.keys(obj).map(function(key) {
+                _toArray: function (obj) {
+                    var arr = Object.keys(obj).map(function (key) {
                         return {
                             name: key,
                             value: obj[key]
@@ -188,7 +194,7 @@
                     });
                     return arr
                 },
-                _log: function(e){
+                _log: function (e) {
                     console.log(e)
                     return 'bla'
                 }
