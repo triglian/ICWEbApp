@@ -1,117 +1,125 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/iron-image/iron-image.html">
+
+
 <dom-module id="web-event">
     <style>
+        /** {*/
+            /*border: 1px solid black;*/
+        /*}*/
         .event-content {
             display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-self: flex-start;
-            padding: 10px;
+        }
+        paper-card {
+            flex: 1 1 auto;
+            margin: 20px;
+        }
+        .card-content {
+            display: flex;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
+        .card-content + .card-content {
+            border-top: 1px solid #cdcdcd;
+        }
+        .event-info-box {
+            display: flex;
+            flex-flow: row wrap;
+            flex: 1 1 auto;
         }
         .event-name {
             flex: 1 1 auto;
-            padding: 10px;
+            font-size: 200%;
+            font-weight: bold;
+            padding: 5px 15px 5px 5px;
         }
-        .event-type {
-            flex: 0 1 auto;
-        }
-        .event-short-info {
-            flex: 1 1 auto;
-            flex-direction: column;
+        .event-info-box-small {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-self: flex-start;
-            padding: 10px;
+            flex-flow: row wrap;
+            flex: 0 1 auto;
+            padding: 5px 5px 5px 0px;
         }
-        .event-time {
+        .event-info-box-small > div {
+            display: flex;
+            flex-flow: column wrap;
             flex: 1 1 auto;
+            padding: 5px 20px 5px 5px;
         }
-        .event-place {
-            flex: 1 1 auto;
+        .event-kind, .event-pdf, .event-date, .event-place {
+            flex: 0 1 auto;
+            font-weight: bold;
         }
-        .event-description {
-            flex: 1 1 auto;
-            padding: 10px;
+        .event-abstract {
+            flex: 0 1 auto;
+            padding: 5px;
         }
         .event-speaker {
-            border-top: 1px solid #aaaaaa;
-            flex: 1 1 auto;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-self: flex-start;
-            padding: 10px;
+            flex-flow: row wrap;
+            flex: 0 1 auto;
+            text-decoration: none;
+            color: black;
         }
         .event-speaker-img {
+            height: 100px;
+            width: 100px;
             flex: 0 1 auto;
-            height: 150px;
         }
         .event-speaker-info {
-            flex: 0 1 auto;
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-self: flex-start;
-            padding: 10px;
+            flex-flow: column wrap;
+            flex: 0 1 auto;
         }
-        .event-speaker-name {
-            flex: 1 1 auto;
+        .event-speaker-name, .event-speaker-org {
+            flex: 0 1 auto;
         }
         .event-speaker-org {
-            flex: 1 1 auto;
-            color: #7b7b7b; /* TODO: Should become a variable later on */
+            color: #a5a5a5;
         }
-        .event-feedback {
-            padding: 10px;
-            /*TODO*/
-        }
+
     </style>
     <template>
         <div class="event-content">
-            <h2 class="event-name">On the Importance of Being Babbage</h2>
-            <div class="event-type"></div>
-            <div class="event-short-info">
-                <div class="event-time">Tue 2015/12/25 10:00 AM - 11:30 AM</div>
-                <div class="event-place">Room A-007</div>
-            </div>
-            <div class="event-description">
-                <p>Prof. Babbage will give a event about his awesome achievements.</p>
-                <p>After the attempt at making the first difference engine fell through, Babbage worked to design a more
-                    complex machine called the Analytical Engine. He hired C. G. Jarvis, who had previously worked for
-                    Clement as a draughtsman. The Analytical Engine marks the transition from mechanised arithmetic
-                    to fully-fledged general purpose computation. It is largely on it that Babbage's standing as computer
-                    pioneer rests.</p>
-                <p>The major innovation was that the Analytical Engine was to be programmed using punched cards: the
-                    Engine was intended to use loops of Jacquard's punched cards to control a mechanical calculator,
-                    which could use as input the results of preceding computations. The machine was also intended
-                    to employ several features subsequently used in modern computers, including sequential control,
-                    branching and looping. It would have been the first mechanical device to be, in principle,
-                    Turing-complete. The Engine was not a single physical machine, but rather a succession of designs
-                    that Babbage tinkered with until his death in 1871.</p>
-            </div>
-            <div class="event-speaker">
-                <img class="event-speaker-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Charles_Babbage_1860.jpg/202px-Charles_Babbage_1860.jpg">
-                <div class="event-speaker-info">
-                    <div class="event-speaker-name">Prof. Charles Babbage</div>
-                    <div class="event-speaker-org">University of Awesome</div>
+            <paper-card>
+                <div class="card-content">
+                    <div class="event-info-box">
+                        <div class="event-name">[[event.name]]</div>
+                        <div class="event-info-box-small">
+                            <div>
+                                <div class="event-kind">[[event.kind]]</div>
+                                <div class="event-date">[[_formatDate(event.date)]]</div>
+                            </div>
+                            <div>
+                                <div class="event-place">[[event.place]]</div>
+                                <a class="event-pdf" href="[[event.pdf]]">Event pdf</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-abstract">[[event.abstract]]</div>
                 </div>
-            </div>
-            <div class="event-feedback">
-                Feedback
-            </div>
+                <div class="card-content">
+                    <a href="/#!speakers/[[event.speaker._id]]" class="event-speaker">
+                        <iron-image class="event-speaker-img" sizing="contain" src$="[[event.speaker.picture]]"></iron-image>
+                        <div class="event-speaker-info">
+                            <div class="event-speaker-name">[[event.speaker.name]]</div>
+                            <div class="event-speaker-org">[[event.speaker.organisation]]</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-content">
+                    FEEDBACK
+                </div>
+            </paper-card>
         </div>
-
 
         <iron-ajax
                 auto
                 url="/events/{{_id}}"
                 handle-as="json"
                 last-response="{{event}}">
-        ></iron-ajax>
+            ></iron-ajax>
     </template>
 
     <script>
@@ -132,6 +140,13 @@
                         type: Object,
                         notify: true
                     }
+                },
+                _log: function(s){ console.log(s); },
+                _formatDate: function(date) {
+                    var d = new Date(date);
+                    console.log(d.toDateString());
+                    console.log(d.toTimeString());
+                    return d.toDateString().slice(3,10) + " - " + d.toTimeString().slice(0,5);
                 }
 
             });
