@@ -8,11 +8,13 @@ var mongoose = require('mongoose');
 require('./Comment');
 require('./Event');
 require('./Speaker');
-require('./Twitter')
+require('./Twitter');
+require('./Sponsor');
 
 module.exports = {
     'Comment' : mongoose.model('Comment'),
     'Event' : mongoose.model('Event'),
     'Speaker': mongoose.model('Speaker'),
-    'Twitter':mongoose.model('Twitter')
+    'Twitter':mongoose.model('Twitter'),
+    'Sponsor':mongoose.model('Sponsor')
 };

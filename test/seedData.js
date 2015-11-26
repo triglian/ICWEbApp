@@ -13,7 +13,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "USI Social Web",
-      date     : new Date(),
+      date     : new Date('Wed Nov 25 2015 08:30:00 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[1],
       abstract : "Dummy Dummy",
@@ -22,9 +22,9 @@ var events = {
       feedback : []
     },
     {
-      "_id"          : ObjectId(),
+      "_id"    : ObjectId(),
       name     : "USI Big Brother",
-      date     : new Date(),
+      date     : new Date('Wed Nov 25 2015 08:40:00 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[2],
       abstract : "Dummy Dummy",
@@ -35,7 +35,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "EZ-Stats",
-      date     : new Date(),
+      date     : new Date('Wed Nov 25 2015 08:50:00 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[3],
       abstract : "Dummy Dummy",
@@ -46,7 +46,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "ASQ-PDF Import",
-      date     : new Date(),
+      date     : new Date('Thurs Nov 26 2015 08:10:10 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[4],
       abstract : "Dummy Dummy",
@@ -58,7 +58,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "ICWE Mobile Web App",
-      date     : new Date(10000000),
+      date     : new Date('Thurs Nov 26 2015 09:10:00 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[5],
       abstract : "Dummy Dummy",
@@ -69,7 +69,7 @@ var events = {
     {
       "_id"    : ObjectId(),
       name     : "Atelier Beats Group Project",
-      date     : new Date('Wed Nov 25 2015 22:22:40 GMT+0100 (CET)'),
+      date     : new Date('Fri Nov 28 2015 10:10:00 GMT+0100 (CET)'),
       place    : "USI auditorium",
       speaker  : speakerIds[6],
       abstract : "Dummy Dummy",
@@ -166,11 +166,35 @@ var tweets = {
       text          : "Dummy",
       profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
     }
-  ]}
+  ]
+};
+var sponsor = {
+  name: 'Sponsor',
+  data: [
+    {
+      "_id"         : ObjectId(),
+      logo_url      : "https://www.post.ch/-/media/framework/logos/post.png?la=it&vs=1",
+      company_name  : "La Posta Svizzera",
+      website       : "https://www.post.ch/"
+    },
+    {
+      "_id"         : ObjectId(),
+      logo_url      : "http://www.pardolive.ch/mirror/get.do?q=80&url=http%3A%2F%2Fwww.pardolive.ch%3A80%2Fdam%2Fjcr%3A793f99fb-2aae-4d21-96e4-8e9c56b5b671%2Fsbb_cff_ffs.png",
+      company_name  : "FFS",
+      website       : "http://www.ffs.ch"
+    },
+    {
+      "_id"         : ObjectId(),
+      logo_url      : "http://img.deusm.com/informationweek/2015/09/1322015/logo_420_color_2x.png",
+      company_name  : "Google",
+      website       : "http://www.google.ch"
+    }
+  ]
+};
 
 var seedData = [];
 seedData.push(events);
 seedData.push(speakers);
 seedData.push(tweets);
-
+seedData.push(sponsor);
 module.exports = seedData;
