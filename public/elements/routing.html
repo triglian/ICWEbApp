@@ -31,7 +31,7 @@
 
         page('/speakers/:id', scrollToTop, function(data) {
             webApp.selected = 6;
-            webApp.$.speaker._id = data.params;
+            webApp.$.speaker._id = data.params.id;
         });
 
         page('/events', scrollToTop, function(data) {
@@ -40,7 +40,7 @@
 
         page('/events/:id', scrollToTop, function(data) {
             webApp.selected = 7;
-            webApp.$.event._id = data.params;
+            webApp.$.event._id = data.params.id;
         });
         page('/contacts', scrollToTop, function(data) {
             webApp.selected = 5;
@@ -64,7 +64,7 @@
 
         page('speakers/:id', scrollToTop, function(data) {
             webApp.selected = 6;
-            webApp.$.speaker._id = data.params;
+            webApp.$.speaker._id = data.params.id;
         });
 
         page('events', scrollToTop, function(data) {
@@ -73,7 +73,7 @@
 
         page('events/:id', scrollToTop, function(data) {
             webApp.selected = 7;
-            webApp.$.event._id = data.params;
+            webApp.$.event._id = data.params.id;
         });
         page('contacts', scrollToTop, function(data) {
             webApp.selected = 5;
