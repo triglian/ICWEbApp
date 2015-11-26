@@ -18,14 +18,14 @@ var fieldsFilter = { '__v': 0 };
 
 //routes
 router.get('/', function(req, res, next) {
-    Event.find({}, fieldsFilter).populate("speaker").exec(function (err, talks) {
+    Event.find({}, fieldsFilter).populate("speaker", "picture name organisation").exec(function (err, talks) {
         if (err) return next(err);
         res.json(talks);
     });
 });
 
 router.get('/:talkid', function(req, res, next) {
-    Event.findById(req.params.talkid, fieldsFilter).populate("speaker").exec(function(err, talk) {
+    Event.findById(req.params.talkid, fieldsFilter).populate("speaker", "picture name organisation").exec(function(err, talk) {
         if (err) return next(err);
         if (!talk) {
             res.status(404);
