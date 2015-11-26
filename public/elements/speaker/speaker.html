@@ -23,7 +23,7 @@
             padding: 5px;
         }
         .card-content + .card-content {
-            border-top: 1px solid #cdcdcd;
+            border-top: 1px solid #e8e8e8;
         }
         .speaker-info-box {
             display: flex;
@@ -36,13 +36,14 @@
             flex: 0 0 auto;
             border-radius: 50%;
             margin-right: 15px;
+            margin-bottom: 10px;
         }
         .speaker-name {
             font-size: 200%;
             font-weight: bold;
             flex: 1 1 auto;
-            padding-right: 20px;
-
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
         .speaker-info-subbox {
             display: flex;
@@ -94,7 +95,7 @@
                             <li>
                                 <a href="/#!events/[[event._id]]" class="speaker-event">
                                     <div class="speaker-event-name">[[event.name]]</div>
-                                    <div class="speaker-event-date-place">[[_formatDate(event.date)]] - [[event.place]]</div>
+                                    <div class="speaker-event-date-place">[[_formatDate(event.date)]] in [[event.place]]</div>
                                 </a>
                             </li>
                         </template>
