@@ -3,6 +3,7 @@
 <link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/iron-image/iron-image.html">
 
+<script src="../../js/utils.js"></script>
 
 <dom-module id="web-event">
     <style>
@@ -28,10 +29,11 @@
             display: flex;
             flex-flow: row wrap;
             flex: 1 1 auto;
+            padding-bottom: 30px;
         }
         .event-name {
             flex: 1 1 auto;
-            font-size: 200%;
+            font-size: 250%;
             font-weight: bold;
             padding: 5px 15px 5px 5px;
         }
@@ -63,9 +65,11 @@
             color: black;
         }
         .event-speaker-img {
-            height: 100px;
-            width: 100px;
+            height: 50px;
+            width: 50px;
             flex: 0 1 auto;
+            border-radius: 50%;
+            margin-right: 10px;
         }
         .event-speaker-info {
             display: flex;
@@ -93,7 +97,7 @@
                             </div>
                             <div>
                                 <div class="event-place">[[event.place]]</div>
-                                <a class="event-pdf" href="[[event.pdf]]">Event pdf</a>
+                                <a class="event-pdf" href="http://[[event.pdf]]">Event pdf</a>
                             </div>
                         </div>
                     </div>
@@ -142,12 +146,7 @@
                     }
                 },
                 _log: function(s){ console.log(s); },
-                _formatDate: function(date) {
-                    var d = new Date(date);
-                    console.log(d.toDateString());
-                    console.log(d.toTimeString());
-                    return d.toDateString().slice(3,10) + " - " + d.toTimeString().slice(0,5);
-                }
+                _formatDate: formatDateSingle
 
             });
 

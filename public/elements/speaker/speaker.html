@@ -1,67 +1,106 @@
-<!--TODO: enable data binding-->
 <link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/iron-image/iron-image.html">
+
+<script src="../../js/utils.js"></script>
 
 <dom-module id="web-speaker">
     <style>
-        .speaker-content {
+        /** {*/
+            /*border: 1px solid black;*/
+        /*}*/
+        .event-content {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-self: flex-start;
-            padding: 10px;
         }
-        .speaker-image {
-            flex: 0 1 auto;
-            height: 200px;
+        paper-card {
+            flex: 1 1 auto;
+            margin: 20px;
         }
-        .speaker-short-info {
+        .card-content {
             display: flex;
-            flex-direction: column;
-            padding: 10px;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
+        .card-content + .card-content {
+            border-top: 1px solid #cdcdcd;
+        }
+        .speaker-info-box {
+            display: flex;
+            flex-flow: row wrap;
             flex: 1 1 auto;
         }
-        .speaker-place {
-            flex: 0 1 auto;
-            padding: 5px;
-            color: #7b7b7b; /* TODO: Should become a variable later on */
+        .speaker-picture {
+            height: 75px;
+            width: 75px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            margin-right: 15px;
         }
         .speaker-name {
+            font-size: 200%;
+            font-weight: bold;
+            flex: 1 1 auto;
+            padding-right: 20px;
+
+        }
+        .speaker-info-subbox {
+            display: flex;
             flex: 0 1 auto;
-            padding: 5px;
+            flex-flow: column wrap;
         }
-        .speaker-description {
-            flex: 0 1 100%;
-            padding: 10px;
+        .speaker-info-subbox > * {
+            flex: 0 1 auto;
         }
-        .speaker-talks {
+        .speaker-event {
+            display: inline-flex;
+            flex-flow: row wrap;
+            text-decoration: none;
+            color: black;
+            padding-bottom: 5px;
+        }
+        .speaker-event-name {
             flex: 0 1 100%;
-            padding: 10px;
+        }
+        .speaker-event-date-place {
+            flex: 1 1 auto;
+            color: #9b9b9b;
         }
 
     </style>
     <template>
-        <div class="speaker-content">
-            <img class="speaker-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Charles_Babbage_1860.jpg/202px-Charles_Babbage_1860.jpg">
-            <div class="speaker-short-info">
-                <div class="speaker-name">Prof. Charles Babbage</div>
-                <dic class="speaker-place">University of Awesome</dic>
-            </div>
-            <div class="speaker-description">
-                <p>Charles Babbage, FRS (/ˈbæbɪdʒ/; 26 December 1791 –18 October 1871) was an English polymath. A
-                mathematician, philosopher, inventor and mechanical engineer, Babbage is best remembered for originating
-                the concept of a programmable computer.</p>
-                <p>Considered a "father of the computer", Babbage is credited with inventing the first mechanical
-                computer that eventually led to more complex designs. His varied work in other fields has led him to be
-                described as "pre-eminent" among the many polymaths of his century.</p>
-            </div>
-            <div class="speaker-talks">
-                <div class="speaker-talks-title">Talks:</div>
-                <ul class="speaker-talks-list">
-                    <li class="speaker-talks-list-item"><a>The Importance of Being Babbage</a></li>
-                </ul>
-            </div>
+        <div class="event-content">
+            <paper-card>
+                <div class="card-content">
+                    <div class="speaker-info-box">
+                        <iron-image class="speaker-picture" sizing="contain" src$="[[speaker.picture]]"></iron-image>
+                        <div class="speaker-name">[[speaker.name]]</div>
+                        <div class="speaker-info-subbox">
+                            <div class="speker-org">[[speaker.organisation]]</div>
+                            <a class="speaker-website" href="http://[[speaker.website]]">[[speaker.website]]</a>
+                            <a class="speaker-email" href="mailto:[[speaker.email]]">[[speaker.email]]</a>
+                            <a class="speaker-twitter" href="https://twitter.com/[[_parseTwitter(speaker.twitter)]]">[[speaker.twitter]]</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="speaker-bio">
+                        [[speaker.bio]]
+                    </div>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <template is="dom-repeat" items="[[speaker.events]]" as="event">
+                            <li>
+                                <a href="/#!events/[[event._id]]" class="speaker-event">
+                                    <div class="speaker-event-name">[[event.name]]</div>
+                                    <div class="speaker-event-date-place">[[_formatDate(event.date)]] - [[event.place]]</div>
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </paper-card>
         </div>
 
         <iron-ajax
@@ -91,6 +130,10 @@
                         type: Object,
                         notify: true
                     }
+                },
+                _formatDate: formatDateSingle,
+                _parseTwitter: function(t) {
+                    return t ? t.slice(1, t.length) : "";
                 }
 
             });
