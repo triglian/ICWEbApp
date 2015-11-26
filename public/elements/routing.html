@@ -46,6 +46,38 @@
             webApp.selected = 5;
         });
 
+        page('', scrollToTop, function() {
+            webApp.selected = 0;
+        });
+
+        page('social', scrollToTop, function() {
+            webApp.selected = 1;
+        });
+
+        page('sponsors', scrollToTop, function(data) {
+            webApp.selected = 2;
+        });
+
+        page('speakers', scrollToTop, function() {
+            webApp.selected = 3;
+        });
+
+        page('speakers/:id', scrollToTop, function(data) {
+            webApp.selected = 6;
+            webApp.$.speaker._id = data.params;
+        });
+
+        page('events', scrollToTop, function(data) {
+            webApp.selected = 4;
+        });
+
+        page('events/:id', scrollToTop, function(data) {
+            webApp.selected = 7;
+            webApp.$.event._id = data.params;
+        });
+        page('contacts', scrollToTop, function(data) {
+            webApp.selected = 5;
+        });
 
         page('*', function() {
             webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
