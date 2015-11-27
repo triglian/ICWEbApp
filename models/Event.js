@@ -17,7 +17,7 @@ var eventSchema = new mongoose.Schema({
     name     : { type : String, default: "" },
     date     : { type : Date, default: Date.now() },
     place    : { type : String, default: "" },
-    speaker  : { type : ObjectId, ref: "Speaker" },
+    speakers  : [{ type : ObjectId, ref: "Speaker" }],
     abstract : { type : String, default: "" },
     kind     : { type : String, default: "" },
     pdf      : { type : String, default: "" },
