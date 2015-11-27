@@ -19,7 +19,7 @@ var program = {
                 twitter       : "@marcoRocket",
                 picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png",
                 email         : "marco@marco.ch"
-      }],
+      },{ref:"Luigi Frunzio"}],
       abstract : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim. Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
       kind     : "Talk",
       pdf      : "no pdf",
@@ -148,17 +148,17 @@ var speakers = {
 program.events.forEach(function (e){
     e._id = ObjectId();
     for(var i = 0; i < e.speakers.length; i++){
+        e.speakers[i].events = []
         if(!e.speakers[i].ref) {
             var speaker = e.speakers[i];
             speaker._id = ObjectId();
-            speaker.events = [e._id];
+            speaker.events.push(e._id);
             speakers.data.push(speaker);
         }
     }
 });
-program.events.forEach(function (e){
-    e._id = ObjectId();
-    for(var i = 0; i < e.speakers.length; i++){
+program.events.forEach(function (e) {
+    for(var i = 0; i < e.speakers.length; i++) {
         if(e.speakers[i].ref) {
             for (var j = 0; j < speakers.data.length; j++) {
                 if (e.speakers[i].ref == speakers.data[j].name) {
@@ -168,8 +168,23 @@ program.events.forEach(function (e){
             }
         }
     }
-    events.data.push(e)
-});
+        events.data.push(e)
+})
+console.log(events)
+//program.events.forEach(function (e){
+//    e._id = ObjectId();
+//    for(var i = 0; i < e.speakers.length; i++){
+//        if(e.speakers[i].ref) {
+//            for (var j = 0; j < speakers.data.length; j++) {
+//                if (e.speakers[i].ref == speakers.data[j].name) {
+//                    e.speakers[i] = speakers.data[j]._id
+//                    speakers.data[j].events.push(e._id);
+//                }
+//            }
+//        }
+//    }
+//    events.data.push(e)
+//});
 
 var tweets = {
   name : 'Twitter',
