@@ -1,0 +1,64 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/iron-icons/iron-icons.html">
+<link rel="import" href="../../components/iron-icon/iron-icon.html">
+
+
+
+<dom-module id="star-rating">
+    <style>
+        .star {
+            cursor: pointer;
+        }
+    </style>
+    <template>
+        <span class="star-container">
+            <template is="dom-repeat" items="[[stars]]" as="star">
+                <iron-icon id="star" class="star" icon="[[_starIcon(star, rating)]]" on-tap="_updateRating"></iron-icon>
+            </template>
+        </span>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'star-rating',
+                properties: {
+                    quantity: {
+                        type: Number,
+                        value: 5
+                    },
+                    stars: {
+                        type: Array,
+                        computed: '_starsArray(quantity)'
+                    },
+                    rating: {
+                        type: Number,
+                        notify: true,
+                        value: 0
+                    }
+                },
+                _starsArray: function(quantity) {
+                    var stars = [];
+                    for(var i = 1; i <= this.quantity; i++) {
+                        stars.push(i);
+                    }
+
+                    return stars;
+                },
+                _updateRating: function(evt) {
+                    this.rating = evt.model.index + 1;
+                },
+                _starIcon: function(star, rating) {
+                    return (star <= rating) ? "icons:star" : "icons:star-border";
+                }
+
+            });
+
+
+        })();
+    </script>
+
+</dom-module>
