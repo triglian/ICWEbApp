@@ -170,21 +170,6 @@ program.events.forEach(function (e) {
     }
         events.data.push(e)
 })
-console.log(events)
-//program.events.forEach(function (e){
-//    e._id = ObjectId();
-//    for(var i = 0; i < e.speakers.length; i++){
-//        if(e.speakers[i].ref) {
-//            for (var j = 0; j < speakers.data.length; j++) {
-//                if (e.speakers[i].ref == speakers.data[j].name) {
-//                    e.speakers[i] = speakers.data[j]._id
-//                    speakers.data[j].events.push(e._id);
-//                }
-//            }
-//        }
-//    }
-//    events.data.push(e)
-//});
 
 var tweets = {
   name : 'Twitter',

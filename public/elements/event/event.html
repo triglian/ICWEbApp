@@ -1,7 +1,13 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 
 <link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-button/paper-button.html">
+
 <link rel="import" href="../../components/iron-image/iron-image.html">
+<link rel="import" href="../../components/paper-input/paper-textarea.html">
+<link rel="import" href="../../components/iron-form/iron-form.html">
+<link rel="import" href="../../components/gold-email-input/gold-email-input.html">
+
 
 <script src="../../js/utils.js"></script>
 
@@ -121,6 +127,12 @@
                 </template>
                 <div class="card-content">
                     FEEDBACK
+                    <form is="iron-form" id="form" method="post" action="/form/handler">
+                        <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address"></gold-email-input>
+                        <paper-textarea label="Comments"></paper-textarea>
+                        <paper-button raised>Submit</paper-button>
+                    </form>
+
                 </div>
             </paper-card>
         </div>
