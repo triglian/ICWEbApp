@@ -25,6 +25,9 @@
         .card-content + .card-content {
             border-top: 1px solid #e8e8e8;
         }
+        template + .card-content {
+            border-top: 1px solid #e8e8e8;
+        }
         .event-info-box {
             display: flex;
             flex-flow: row wrap;
@@ -105,15 +108,17 @@
                 <div class="card-content">
                     <div class="event-abstract">[[event.abstract]]</div>
                 </div>
-                <div class="card-content">
-                    <a href="/#!speakers/[[event.speaker._id]]" class="event-speaker">
-                        <iron-image class="event-speaker-img" sizing="contain" src$="[[event.speaker.picture]]"></iron-image>
-                        <div class="event-speaker-info">
-                            <div class="event-speaker-name">[[event.speaker.name]]</div>
-                            <div class="event-speaker-org">[[event.speaker.organisation]]</div>
-                        </div>
-                    </a>
-                </div>
+                <template is="dom-repeat" items="[[event.speakers]]" as="speaker">
+                    <div class="card-content">
+                        <a href="/#!speakers/[[speaker._id]]" class="event-speaker">
+                            <iron-image class="event-speaker-img" sizing="contain" src$="[[speaker.picture]]"></iron-image>
+                            <div class="event-speaker-info">
+                                <div class="event-speaker-name">[[speaker.name]]</div>
+                                <div class="event-speaker-org">[[speaker.organisation]]</div>
+                            </div>
+                        </a>
+                    </div>
+                </template>
                 <div class="card-content">
                     FEEDBACK
                 </div>
@@ -134,9 +139,6 @@
 
             Polymer({
                 is: 'web-event',
-//                ready: function() {
-//                    window.singleEvent = this;
-//                },
                 properties: {
                     _id: {
                         type: String,
