@@ -3,15 +3,20 @@
 <link rel="import" href="../../components/iron-icons/iron-icons.html">
 <link rel="import" href="../../components/iron-icon/iron-icon.html">
 
-
-
 <dom-module id="star-rating">
     <style>
         .star {
             cursor: pointer;
         }
+        .star-rating-label {
+            color: #757575;
+            font-size: 12px;
+            white-space: nowrap;
+            font-family: 'Roboto', 'Noto', sans-serif
+        }
     </style>
     <template>
+        <span class="star-rating-label">[[label]]</span><br>
         <span class="star-container">
             <template is="dom-repeat" items="[[stars]]" as="star">
                 <iron-icon id="star" class="star" icon="[[_starIcon(star, rating)]]" on-tap="_updateRating"></iron-icon>
@@ -38,6 +43,10 @@
                         type: Number,
                         notify: true,
                         value: 0
+                    },
+                    label: {
+                        type: String,
+                        value: ""
                     }
                 },
                 _starsArray: function(quantity) {
