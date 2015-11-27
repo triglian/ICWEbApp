@@ -245,19 +245,19 @@
                 url="/info/"
                 handle-as="json"
                 last-response="{{info}}">
-        ></iron-ajax>
+            ></iron-ajax>
         <iron-ajax
                 auto
                 url="/speakers/"
                 handle-as="json"
                 last-response="{{speakers}}">
-        ></iron-ajax>
+            ></iron-ajax>
         <iron-ajax
                 auto
                 url="/events/"
                 handle-as="json"
                 last-response="{{events}}">
-        ></iron-ajax>
+            ></iron-ajax>
         <paper-toast id="toast"></paper-toast>
     </template>
 
@@ -273,7 +273,8 @@
                 properties: {
                     selected: {
                         type: Number,
-                        notify: true
+                        notify: true,
+                        value: 0
                     },
                     info: {
                         type: String
