@@ -7,6 +7,7 @@
 <link rel="import" href="../../components/paper-input/paper-textarea.html">
 <link rel="import" href="../../components/iron-form/iron-form.html">
 <link rel="import" href="../../components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../../elements/star-rating/star-rating.html">
 
 
 <script src="../../js/utils.js"></script>
@@ -126,13 +127,12 @@
                     </div>
                 </template>
                 <div class="card-content">
-                    FEEDBACK
-                    <form is="iron-form" id="form" method="post" action="/form/handler">
+                    <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
+                        <star-rating></star-rating>
                         <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address"></gold-email-input>
                         <paper-textarea label="Comments"></paper-textarea>
-                        <paper-button raised>Submit</paper-button>
+                        <paper-button raised on-click="_submitForm">Submit</paper-button>
                     </form>
-
                 </div>
             </paper-card>
         </div>
@@ -162,7 +162,16 @@
                     }
                 },
                 _log: function(s){ console.log(s); },
-                _formatDate: formatDateSingle
+                _formatDate: formatDateSingle,
+                _submitForm: function(){
+                    console.log('submitted')
+
+                    this.$.form.submit();
+                },
+                _computeAction: function(id){
+                    console.log("/events/"+id+'/comment')
+                    return "/events/"+id+'/comment';
+                }
 
             });
 
