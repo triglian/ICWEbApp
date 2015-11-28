@@ -128,9 +128,9 @@
                 </template>
                 <div class="card-content">
                     <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
-                        <star-rating></star-rating>
-                        <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address"></gold-email-input>
-                        <paper-textarea label="Comments"></paper-textarea>
+                        <star-rating label="Rating" name="stars"></star-rating>
+                        <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email"></gold-email-input>
+                        <paper-textarea label="Comments" name="comment"></paper-textarea>
                         <paper-button raised on-click="_submitForm">Submit</paper-button>
                     </form>
                 </div>
@@ -164,12 +164,12 @@
                 _log: function(s){ console.log(s); },
                 _formatDate: formatDateSingle,
                 _submitForm: function(){
-                    console.log('submitted')
+                    console.log('submitted');
 
                     this.$.form.submit();
                 },
                 _computeAction: function(id){
-                    console.log("/events/"+id+'/comment')
+                    console.log("/events/"+id+'/comment');
                     return "/events/"+id+'/comment';
                 }
 

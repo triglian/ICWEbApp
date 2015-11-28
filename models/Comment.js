@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 
 
 var commentSchema = new mongoose.Schema({
+    email    : { type : String, default: "" },
     comment  : { type : String, default: "" },
     time     : { type : Date, default: Date.now() },
     stars    : { type : Number, default: 0 }

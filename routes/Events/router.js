@@ -11,7 +11,7 @@ var Event = mongoose.model('Event');
 var config = require("../../config");
 
 //supported methods
-router.all('/:talkid', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/:eventid', middleware.supportedMethods('GET, OPTIONS'));
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 var fieldsFilter = { '__v': 0 };
@@ -24,8 +24,8 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/:talkid', function(req, res, next) {
-    Event.findById(req.params.talkid, fieldsFilter).populate("speakers", "picture name organisation").exec(function(err, talk) {
+router.get('/:eventid', function(req, res, next) {
+    Event.findById(req.params.eventid, fieldsFilter).populate("speakers", "picture name organisation").exec(function(err, talk) {
         if (err) return next(err);
         if (!talk) {
             res.status(404);
@@ -37,6 +37,15 @@ router.get('/:talkid', function(req, res, next) {
         else {
             res.json(talk);
         }
+    });
+});
+
+router.post('/:eventid/comment', function(req, res, next){
+    console.log(req.body);
+    res.status(200);
+    res.json({
+        statusCode: 200,
+        message: "OK"
     });
 });
 
