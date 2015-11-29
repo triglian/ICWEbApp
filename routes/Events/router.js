@@ -40,8 +40,16 @@ router.get('/:eventid', function(req, res, next) {
     });
 });
 
-router.post('/:eventid/comment', function(req, res, next){
+router.post('/:eventid/feedback', function(req, res, next){
     console.log(req.body);
+    res.status(200);
+    res.json({
+        statusCode: 200,
+        message: "OK"
+    });
+});
+
+router.get('/:eventid/feedback', function(req, res, next) {
     res.status(200);
     res.json({
         statusCode: 200,

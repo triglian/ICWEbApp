@@ -44,7 +44,7 @@
                     },
                     stars: {
                         type: Array,
-                        value: [1,2,3,4,5]
+                        computed: "_computeStars(quantity)"
                     },
                     label: {
                         type: String,
@@ -63,6 +63,15 @@
                 },
                 _starIcon: function(star, value) {
                     return (star <= Number(value)) ? "icons:star" : "icons:star-border";
+                },
+                _computeStars: function(quantity) {
+                    var stars = [];
+
+                    for(var i = 1; i <= quantity; i++) {
+                        stars.push(i);
+                    }
+
+                    return stars;
                 }
 
             });

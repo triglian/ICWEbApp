@@ -164,13 +164,10 @@
                 _log: function(s){ console.log(s); },
                 _formatDate: formatDateSingle,
                 _submitForm: function(){
-                    console.log('submitted');
-
                     this.$.form.submit();
                 },
                 _computeAction: function(id){
-                    console.log("/events/"+id+'/comment');
-                    return "/events/"+id+'/comment';
+                    return "/events/"+id+'/feedback';
                 }
 
             });
