@@ -142,7 +142,7 @@
                 <template is="dom-repeat" items="{{feed}}" as="feed">
                     <div class="event-content2">
                     <paper-card style="margin: 0 auto; min-width: 200px">
-                        <div style="margin: 10px"><star-rating label="Rating" name="stars"></star-rating></div>
+                        <div style="margin: 10px"><star-rating label="Rating" name="stars" value="{{feed.stars}}"></star-rating></div>
                         <div style="margin: 15px">{{feed.comment}}</div>
                     </paper-card>
                     </div>
