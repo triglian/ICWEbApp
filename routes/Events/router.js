@@ -43,11 +43,20 @@ router.get('/:eventid', function(req, res, next) {
 });
 
 router.get('/:eventid/feedback', function(req, res, next) {
-    res.status(200);
-    res.json({
-        statusCode: 200,
-        message: "OK"
-    });
+    Event.findById(req.params.eventid, fieldsFilter , function(err, event) {
+        if (err) return next(err);
+        if (!event) {
+            res.status(404);
+            res.json({
+                statusCode: 404,
+                message: "Not Found"
+            });
+        }
+        else {
+            res.json(event.feedback);
+        }
+    })
+
 });
 
 router.post('/:eventid/feedback', function(req, res, next){
