@@ -46,9 +46,15 @@
         .tag{
             font-size: small;
         }
+        web-events {
+            width: 100% !important;
+        }
+        web-events .date {
+            visibility: hidden;
+        }
     </style>
     <template>
-        <paper-toggle-button active$="{{toggle}}"></paper-toggle-button>
+        <paper-toggle-button active="{{toggle}}"></paper-toggle-button>
         <template is="dom-if" if="{{toggle}}">
             <web-events events="{{eventsToVisualize}}"></web-events>
         </template>
@@ -112,16 +118,21 @@
                         observer: '_visualize'
                     },
                     eventsToVisualize : {
-                        type: Array
+                        type: Array,
+                        notify: true
                     },
 
 
                 },
                 _visualize: function(){
-                    var date = Date.now()
+                    var arr = []
+                    var date = "2015-11-25";
                     for (var i in this.events){
-                        console.log(this.events[i].date)
+                        if(this.events[i].date.slice(0,10) == date){
+                           arr.push(this.events[i])
+                        }
                     }
+                    this.eventsToVisualize = arr
                 }
 
         })
