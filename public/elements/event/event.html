@@ -20,6 +20,11 @@
         .event-content {
             display: flex;
         }
+        .event-content2 {
+            display: flex;
+            border: 1px solid #e8e8e8;
+
+        }
         paper-card {
             flex: 1 1 auto;
             margin: 20px;
@@ -134,6 +139,15 @@
                         <paper-button raised on-click="_submitForm">Submit</paper-button>
                     </form>
                 </div>
+                <template is="dom-repeat" items="{{feed}}" as="feed">
+                    <div class="event-content2">
+                    <paper-card style="margin: 0 auto; min-width: 200px">
+                        <div style="margin: 10px"><star-rating label="Rating" name="stars" value="{{feed.stars}}"></star-rating></div>
+                        <div style="margin: 15px">{{feed.comment}}</div>
+                    </paper-card>
+                    </div>
+
+        </template>
             </paper-card>
         </div>
 
@@ -142,6 +156,12 @@
                 url="/events/{{_id}}"
                 handle-as="json"
                 last-response="{{event}}">
+            ></iron-ajax>
+        <iron-ajax
+                auto
+                url="/events/{{_id}}/feedback"
+                handle-as="json"
+                last-response="{{feed}}">
             ></iron-ajax>
     </template>
 
@@ -158,6 +178,10 @@
                     },
                     event: {
                         type: Object,
+                        notify: true
+                    },
+                    feed: {
+                        type: Array,
                         notify: true
                     }
                 },
