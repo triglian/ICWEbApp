@@ -7,85 +7,85 @@
         // More info: https://visionmedia.github.io/page.js/
 
         // Middleware
-        function scrollToTop(ctx, next) {
+        function nothingDoNext(ctx, next) {
 //            webApp.scrollPageToTop();
             next();
         }
 
         // Routes
-        page('/', scrollToTop, function() {
+        page('/', nothingDoNext, function() {
             webApp.selected = 0;
         });
 
-        page('/social', scrollToTop, function() {
+        page('/social', nothingDoNext, function() {
             webApp.selected = 1;
             page.redirect('/#!social');
 
         });
 
-        page('/sponsors', scrollToTop, function(data) {
+        page('/sponsors', nothingDoNext, function(data) {
             webApp.selected = 2;
             page.redirect('/#!sponsors');
         });
 
-        page('/speakers', scrollToTop, function() {
+        page('/speakers', nothingDoNext, function() {
             webApp.selected = 3;
             page.redirect('/#!speakers');
         });
 
-        page('/speakers/:id', scrollToTop, function(data) {
-            webApp.selected = 6;
+        page('/speakers/:id', nothingDoNext, function(data) {
             webApp.$.speaker._id = data.params.id;
+            webApp.selected = 6;
         });
 
-        page('/events', scrollToTop, function(data) {
+        page('/events', nothingDoNext, function(data) {
             webApp.selected = 4;
             page.redirect('/#!events');
         });
 
-        page('/events/:id', scrollToTop, function(data) {
-            webApp.selected = 7;
+        page('/events/:id', nothingDoNext, function(data) {
             webApp.$.event._id = data.params.id;
+            webApp.selected = 7;
         });
-        page('/contacts', scrollToTop, function(data) {
+        page('/contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
             page.redirect('/#!contact');
         });
 
-        page('', scrollToTop, function() {
+        page('', nothingDoNext, function() {
             webApp.selected = 0;
         });
 
-        page('social', scrollToTop, function() {
+        page('social', nothingDoNext, function() {
             webApp.selected = 1;
             page.redirect('/#!social');
         });
 
-        page('sponsors', scrollToTop, function(data) {
+        page('sponsors', nothingDoNext, function(data) {
             webApp.selected = 2;
             page.redirect('/#!sponsors');
         });
 
-        page('speakers', scrollToTop, function() {
+        page('speakers', nothingDoNext, function() {
             webApp.selected = 3;
             page.redirect('/#!speakers');
         });
 
-        page('speakers/:id', scrollToTop, function(data) {
-            webApp.selected = 6;
+        page('speakers/:id', nothingDoNext, function(data) {
             webApp.$.speaker._id = data.params.id;
+            webApp.selected = 6;
         });
 
-        page('events', scrollToTop, function(data) {
+        page('events', nothingDoNext, function(data) {
             webApp.selected = 4;
             page.redirect('/#!events');
         });
 
-        page('events/:id', scrollToTop, function(data) {
-            webApp.selected = 7;
+        page('events/:id', nothingDoNext, function(data) {
             webApp.$.event._id = data.params.id;
+            webApp.selected = 7;
         });
-        page('contacts', scrollToTop, function(data) {
+        page('contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
         });
 

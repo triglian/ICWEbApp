@@ -207,7 +207,7 @@
                 </paper-toolbar>
                 <iron-pages selected="{{selected}}">
                     <section>
-                        <web-home id="home"></web-home>
+                        <web-home id="home" events="[[events]]"></web-home>
                     </section>
                     <section>
                         <web-social id="social"></web-social>
@@ -216,7 +216,7 @@
                         <web-sponsors id="sponsors"></web-sponsors>
                     </section>
                     <section>
-                        <web-speakers id="speakers" selected={{selected}}></web-speakers>
+                        <web-speakers id="speakers" speakers="[[speakers]]"></web-speakers>
                     </section>
                     <section>
                         <web-events id="events" events="[[events]]"></web-events>

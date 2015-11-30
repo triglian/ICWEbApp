@@ -1,14 +1,107 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/iron-image/iron-image.html">
+<link rel="import" href="../../components/paper-styles/default-theme.html">
 
 <dom-module id="web-speakers">
     <style>
 
+        @media (max-width: 880px) {
+            :host {
+                width: 95% !important;
+            }
+        }
+        @media (max-width: 640px) {
+            paper-card {
+                width: 45% !important;
+            }
+        }
+        @media (max-width: 460px) {
+            paper-card {
+                width: 90% !important;
+            }
+        }
+        :host {
+            @apply(--layout-horizontal);
+            flex-wrap: wrap;
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+
+        paper-card {
+            width: 30%;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            @apply(--layout-vertical);
+        }
+
+        .photo {
+            margin-top: 5px;
+            @apply(--layout-horizontal);
+            @apply(--layout-center-justified);
+        }
+
+        .info {
+            margin-top: 5px;
+            @apply(--layout-vertical);
+        }
+
+        .name {
+            @apply(--layout-horizontal);
+            @apply(--layout-center-justified);
+
+        }
+
+        .talks {
+            @apply(--layout-vertical);
+            flex-grow: 2;
+            color: var(--secondary-text-color);
+        }
+
+        .event {
+            @apply(--layout-horizontal);
+            @apply(--layout-center-justified);
+        }
+
+        .twitter {
+            @apply(--layout-self-end);
+            color: var(--disabled-text-color);
+        }
+
+        .speaker-image {
+            height: 75px;
+            width: 75px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+        }
+        .end {
+            @apply(--layout-self-end);
+        }
     </style>
     <template>
+        <template is="dom-repeat" items="{{speakers}}" as="speaker">
+            <paper-card>
+                <div class="photo">
 
-        <a on-click="onClick" href="#speaker">speakers</a>
+                    <iron-image class="speaker-image" sizing="contain" src$="[[speaker.picture]]"></iron-image>
+
+                </div>
+                <div class="info">
+                    <h3 class="name">[[speaker.name]]</h3>
+
+                    <div class="talks">
+                        <template is="dom-repeat" items="{{speaker.events}}" as="event">
+                            <span class="event">[[event.name]]</span>
+                        </template>
+                    </div>
+                    <div class="end">
+                        <span class="twitter">[[speaker.twitter]]</span>
+                    </div>
+                </div>
+            </paper-card>
+        </template>
     </template>
 
     <script>
@@ -21,11 +114,24 @@
                     selected: {
                         notify: true,
                         type: Number
+                    },
+                    speakers: {
+                        notify: true,
+                        type: Array
+                    },
+                    _sort: function(a,b){
+                        var nameA = a.name.split(" ");
+                        var nameB = b.name.split(" ");
+                        nameA = nameA[nameA.length-1];
+                        nameB = nameB[nameB.length-1]
+                        if ( nameA < nameB )
+                            return -1;
+                        if ( nameA > nameB )
+                            return 1;
+                        return 0;
                     }
-                },
-                onClick: function () {
-                    this.selected = 6;
                 }
+
             });
 
 

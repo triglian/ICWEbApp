@@ -77,6 +77,10 @@
             font-weight: 100;
         }
 
+        .eventLink {
+            text-decoration: none;
+            color:inherit;
+        }
     </style>
     <template>
         <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
@@ -93,7 +97,7 @@
                             <div class="layout vertical flex-2 center-justified">
                                 <div class="layout horizontal justified"><span
                                         class="hour">[[ _hour(event.date) ]]</span></div>
-                                <div class="name">{{event.name}}</div>
+                                <div class="name"><a href="#!events/{{event._id}}" class="eventLink">{{event.name}}</a></div>
                                 <div class="layout horizontal justified"><span>{{event.kind}}</span><span>{{event.speakers[0].name}}</span><span>{{event.place}}</span>
                                 </div>
                             </div>

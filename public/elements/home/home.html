@@ -1,11 +1,99 @@
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-styles/default-theme.html">
+<link rel="import" href="../../components/paper-styles/typography.html">
+<link rel="import" href="../../components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../events/events.html">
 
 <dom-module id="web-home">
     <style>
+        @media (max-width: 880px) {
+            :host {
+                width: 95% !important;
+            }
+        }
+        @media (max-width: 500px) {
+            .twitt {
+                @apply(--layout-vertical);
+            }
+        }
 
+        :host {
+            @apply(--layout-vertical);
+            flex-wrap: wrap;
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+        #title {
+            @apply(--paper-font-display1);
+        }
+        paper-card {
+            margin-top: 15px;
+        }
+        .twitt{
+            @apply(--layout-horizontal);
+            flex-wrap: wrap;
+        }
+        .block {
+            @apply(--layout-flex);
+            margin-bottom: 15px;
+        }
+        .name{
+            font-size: medium;
+        }
+        .tag{
+            font-size: small;
+        }
     </style>
     <template>
-        home
+        <paper-toggle-button active$="{{toggle}}"></paper-toggle-button>
+        <template is="dom-if" if="{{toggle}}">
+            <web-events events="{{eventsToVisualize}}"></web-events>
+        </template>
+        <span id="title">ICWE 2016</span>
+        <paper-card>
+            Organization Details
+        </paper-card>
+        <paper-card class="twitt">
+            Last Twitt
+            <paper-card class='block'>
+                <div class="card-content">
+                    <img class="avatar" src="{{twitt.profile_image}}"></img>
+                    <div class="title">
+                        <div class="name">Name</div>
+                        <div class="tag">@username</div>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <div>text</div>
+                </div>
+            </paper-card>
+            <paper-card class='block'>
+                <div class="card-content">
+                    <img class="avatar" src="{{twitt.profile_image}}"></img>
+                    <div class="title">
+                        <div class="name">Name</div>
+                        <div class="tag">@username</div>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <div>text</div>
+                </div>
+            </paper-card><paper-card class='block'>
+            <div class="card-content">
+                <img class="avatar" src="{{twitt.profile_image}}"></img>
+                <div class="title">
+                    <div class="name">Name</div>
+                    <div class="tag">@username</div>
+                </div>
+            </div>
+            <div class="card-text">
+                <div>text</div>
+            </div>
+        </paper-card>
+        </paper-card>
     </template>
 
     <script>
@@ -13,12 +101,35 @@
             'use strict';
 
             Polymer({
-                is: 'web-home'
+                is: 'web-home',
+                properties: {
+                    toggle: {
+                        notify: true,
+                        type: Boolean
+                    },
+                    events:{
+                        type: Array,
+                        observer: '_visualize'
+                    },
+                    eventsToVisualize : {
+                        type: Array
+                    },
 
-            });
+
+                },
+                _visualize: function(){
+                    var date = Date.now()
+                    for (var i in this.events){
+                        console.log(this.events[i].date)
+                    }
+                }
+
+        })
+            ;
 
 
-        })();
+        })
+        ();
     </script>
 
 </dom-module>
