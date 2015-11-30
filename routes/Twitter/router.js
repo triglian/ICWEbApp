@@ -31,9 +31,11 @@ function addTweet(tweet){
     newTweet.save(newTweet);
 }
 router.get("/", function(req, res, next) {
+
     Twitter.find({}, {}, function(err, twitters) {
         if (err) return next(err);
         res.json(twitters);
-    });
+    }).sort({date:-1});
 });
+
 module.exports = router;
