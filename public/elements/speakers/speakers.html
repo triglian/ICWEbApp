@@ -79,6 +79,10 @@
         .end {
             @apply(--layout-self-end);
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
     <template>
         <template is="dom-repeat" items="{{speakers}}" as="speaker">
@@ -89,11 +93,11 @@
 
                 </div>
                 <div class="info">
-                    <h3 class="name">[[speaker.name]]</h3>
+                    <h3 class="name"><a href="/#!speakers/[[speaker._id]]">[[speaker.name]]</a></h3>
 
                     <div class="talks">
                         <template is="dom-repeat" items="{{speaker.events}}" as="event">
-                            <span class="event">[[event.name]]</span>
+                            <a class="event" href="/#!events/[[event._id]]">[[event.name]]</a>
                         </template>
                     </div>
                     <div class="end">
