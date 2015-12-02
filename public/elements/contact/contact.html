@@ -1,0 +1,51 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-styles/default-theme.html">
+<link rel="import" href="../../components/paper-styles/typography.html">
+
+
+<dom-module id="web-contact">
+    <style>
+        @media (max-width: 880px) {
+            :host {
+                width: 95% !important;
+            }
+        }
+
+
+        :host {
+            @apply(--layout-vertical);
+            flex-wrap: wrap;
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+
+    </style>
+    <template>
+        <paper-card>
+
+        </paper-card>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-contact',
+                properties: {
+
+                },
+
+
+            })
+            ;
+
+
+        })
+        ();
+    </script>
+
+</dom-module>

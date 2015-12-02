@@ -15,7 +15,6 @@
 <link rel="import" href="../../components/paper-menu/paper-menu.html">
 <link rel="import" href="../../components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../../components/paper-item/paper-item.html">
-<link rel="import" href="../../elements/dropdown-panel/dropdown-panel.html">
 <link rel="import" href="../../elements/mdi-iconset/mdi.html">
 <link rel="import" href="../../components/iron-pages/iron-pages.html">
 <link rel="import" href="../../elements/home/home.html">
@@ -23,10 +22,11 @@
 <link rel="import" href="../../elements/speaker/speaker.html">
 <link rel="import" href="../../elements/speakers/speakers.html">
 <link rel="import" href="../../elements/sponsors/sponsors.html">
-<link rel="import" href="../../elements/talk/talk.html">
+<link rel="import" href="../event/event.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../elements/talks/talks.html">
-<!--<link rel="import" href="components/">-->
+<link rel="import" href="../../elements/events/events.html">
+<link rel="import" href="../../components/paper-toast/paper-toast.html">
+<link rel="import" href="../../elements/routing.html">
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
 <!--<link rel="import" href="components/">-->
@@ -147,7 +147,7 @@
                 <paper-toolbar>
                     <paper-menu-button id="mobileMenu">
                         <paper-icon-button icon="icons:menu" class="dropdown-trigger"></paper-icon-button>
-                        <dropdown-panel class="dropdown-content">
+                        <paper-menu class="dropdown-content" selected="{{selected}}">
                             <paper-item>
                                 <iron-icon icon="icons:home"></iron-icon>
                                 HOME
@@ -166,13 +166,13 @@
                             </paper-item>
                             <paper-item>
                                 <iron-icon icon="communication:chat-bubble"></iron-icon>
-                                TALKS
+                                EVENTS
                             </paper-item>
                             <paper-item>
                                 <iron-icon icon="mdi:mail-ru"></iron-icon>
                                 CONTACTS
                             </paper-item>
-                        </dropdown-panel>
+                        </paper-menu>
                     </paper-menu-button>
                     <div id="logo"> [[info.title]]</div>
                     <paper-tabs class="menu" selected="{{selected}}">
@@ -194,7 +194,7 @@
                         </paper-tab>
                         <paper-tab>
                             <iron-icon icon="communication:chat-bubble"></iron-icon>
-                            TALKS
+                            EVENTS
                         </paper-tab>
                         <paper-tab>
                             <iron-icon icon="mdi:mail-ru"></iron-icon>
@@ -207,28 +207,28 @@
                 </paper-toolbar>
                 <iron-pages selected="{{selected}}">
                     <section>
-                        <web-home></web-home>
+                        <web-home id="home" events="[[events]]"></web-home>
                     </section>
                     <section>
-                        <web-social></web-social>
+                        <web-social id="social"></web-social>
                     </section>
                     <section>
-                        <web-sponsors></web-sponsors>
+                        <web-sponsors id="sponsors"></web-sponsors>
                     </section>
                     <section>
-                        <web-speakers selected={{selected}}></web-speakers>
+                        <web-speakers id="speakers" speakers="[[speakers]]"></web-speakers>
                     </section>
                     <section>
-                        <web-talks></web-talks>
+                        <web-events id="events" events="[[events]]"></web-events>
                     </section>
                     <section>
-                        <web-contact></web-contact>
+                        <web-contact id="contact"></web-contact>
                     </section>
                     <section>
-                        <web-speaker></web-speaker>
+                        <web-speaker id="speaker"></web-speaker>
                     </section>
                     <section>
-                        <web-talk></web-talk>
+                        <web-event id="event"></web-event>
                     </section>
                 </iron-pages>
             </paper-scroll-header-panel>
@@ -239,12 +239,26 @@
                 NEWS
             </paper-scroll-header-panel>
         </paper-drawer-panel>
+
         <iron-ajax
                 auto
                 url="/info/"
                 handle-as="json"
                 last-response="{{info}}">
-        </iron-ajax>
+            ></iron-ajax>
+        <iron-ajax
+                auto
+                url="/speakers/"
+                handle-as="json"
+                last-response="{{speakers}}">
+            ></iron-ajax>
+        <iron-ajax
+                auto
+                url="/events/"
+                handle-as="json"
+                last-response="{{events}}">
+            ></iron-ajax>
+        <paper-toast id="toast"></paper-toast>
     </template>
 
     <script>
@@ -253,13 +267,25 @@
 
             Polymer({
                 is: 'web-app',
+                ready: function() {
+                    window.webApp = this;
+                },
                 properties: {
                     selected: {
                         type: Number,
-                        notify: true
+                        notify: true,
+                        value: 0
                     },
                     info: {
                         type: String
+                    },
+                    speakers: {
+                        type: Array,
+                        notify: true
+                    },
+                    events: {
+                        type: Array,
+                        notify: true
                     }
                 }
             });

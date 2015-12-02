@@ -75,7 +75,7 @@ app.use(methodOverride(
 //Add some routes
 var routers = require('./routes/routers');
 app.use('/twitter', routers.Twitter);
-
+app.use('/sponsors', routers.Sponsors);
 app.use('/events', routers.Events);
 app.use('/speakers', routers.Speakers);
 app.use('/', routers.root)

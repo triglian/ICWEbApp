@@ -5,7 +5,7 @@
 
 <dom-module id="web-sponsors">
     <style>
-        .container {
+        :host {
             @apply(--layout-horizontal);
             @apply(--layout-wrap);
             @apply(--flex-auto);
@@ -13,7 +13,7 @@
             justify-content: center;
             margin-top: 16px;
         }
-        .container > a{
+        a{
             margin-right: 10px;
             margin-left: 10px;
             margin-top: 5px;
@@ -39,77 +39,32 @@
         }
     </style>
     <template>
-        <div class="container">
-            <a href="http://expressjs.com/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                    sizing="contain" preload src="../../imgs/sponsors/express.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Express JS</h1></paper-tooltip>
-                <figcaption style="width:180px">Express</figcaption>
+        <template is="dom-repeat" items="[[sponsor]]"  as='sponsor'>
+            <a href="{{sponsor.website}}" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
+                    sizing="contain" preload src="{{sponsor.logo_url}}"></iron-image>
+                <paper-tooltip position="bottom" offset="-1"><h1>{{sponsor.company_name}}</h1></paper-tooltip>
+                <figcaption style="width:180px">{{sponsor.company_name}}</figcaption>
             </a>
-            <a href="http://facebook.com" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                    sizing="contain" preload src="../../imgs/sponsors/facebook-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Facebook</h1></paper-tooltip>
-                <figcaption style="width:180px">Facebook</figcaption>
-            </a>
-            <a href="https://nodejs.org/en/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                    sizing="contain" preload src="../../imgs/sponsors/node-js-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Node JS</h1></paper-tooltip>
-                <figcaption style="width:180px">Node JS</figcaption>
-            </a>
-            <a href="http://twitter.com" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                    sizing="contain" preload src="../../imgs/sponsors/unnamed.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Twitter</h1></paper-tooltip>
-                <figcaption style="width:180px">Twitter</figcaption>
-            </a>
-            <a href="https://www.polymer-project.org/1.0/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                             sizing="contain" preload src="../../imgs/sponsors/p-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Polymer</h1></paper-tooltip>
-                <figcaption style="width:180px">Polymer</figcaption>
-            </a>
-            <a href="http://expressjs.com/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                        sizing="contain" preload src="../../imgs/sponsors/express.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Express JS</h1></paper-tooltip>
-                <figcaption style="width:180px">Express JS</figcaption>
-            </a>
-            <a href="http://facebook.com" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                      sizing="contain" preload src="../../imgs/sponsors/facebook-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Facebook</h1></paper-tooltip>
-                <figcaption style="width:180px">...</figcaption>
-            </a>
-            <a href="https://nodejs.org/en/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                         sizing="contain" preload src="../../imgs/sponsors/node-js-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Node JS</h1></paper-tooltip>
-                <figcaption style="width:180px">...</figcaption>
-
-            </a>
-            <a href="http://twitter.com" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                     sizing="contain" preload src="../../imgs/sponsors/unnamed.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Twitter</h1></paper-tooltip>
-                <figcaption style="width:180px">...</figcaption>
-
-            </a>
-            <a href="https://www.polymer-project.org/1.0/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                                       sizing="contain" preload src="../../imgs/sponsors/p-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Polymer</h1></paper-tooltip>
-                <figcaption style="width:180px">...</figcaption>
-
-            </a>
-            <a href="https://www.polymer-project.org/1.0/" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
-                                                                                       sizing="contain" preload src="../../imgs/sponsors/p-logo.png"></iron-image>
-                <paper-tooltip position="bottom" offset="-1"><h1>Polymer</h1></paper-tooltip>
-                <figcaption style="width:180px">...</figcaption>
-
-            </a>
-
-
-        </div>
-
+        </template>
+        <iron-ajax
+                auto
+                url="/sponsors/"
+                handle-as="json"
+                last-response="{{sponsor}}">
+        </iron-ajax>
     </template>
 
     <script>
         (function () {
             'use strict';
             Polymer({
-                is: 'web-sponsors'
+                is: 'web-sponsors',
+                properties: {
+                    sponsor: {
+                        type: Object,
+                        notify: true
+                    }
+                }
             });
         })();
     </script>

@@ -1,11 +1,144 @@
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-styles/default-theme.html">
+<link rel="import" href="../../components/paper-styles/typography.html">
+<link rel="import" href="../../components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../events/events.html">
 
 <dom-module id="web-home">
     <style>
+        @media (max-width: 880px) {
+            :host {
+                width: 95% !important;
+            }
+        }
 
+        @media (max-width: 500px) {
+            .twitt {
+                @apply(--layout-vertical);
+            }
+        }
+
+        :host {
+            @apply(--layout-vertical);
+            flex-wrap: wrap;
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+
+        #title {
+            @apply(--paper-font-display1);
+        }
+
+        paper-card {
+            margin-top: 15px;
+        }
+
+        #twitt {
+            @apply(--layout-vertical);
+        }
+
+        #twittContainer {
+            @apply(--layout-horizontal);
+        }
+
+        .block {
+            @apply(--layout-flex);
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: medium;
+        }
+
+        .tag {
+            font-size: small;
+        }
+
+        web-events {
+            width: 100% !important;
+        }
+        .avatar {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            color: white;
+            line-height: 64px;
+            font-size: 30px;
+            text-align: center;
+        }
+        .card-text{
+            font-size: medium;
+            margin-bottom: 16px;
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+        .card-content{
+            @apply(--layout-horizontal);
+        }
+        .twittTitle {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            color: var(--paper-indigo-500);
+        }
     </style>
     <template>
-        home
+        <paper-toggle-button active="{{toggle}}"></paper-toggle-button>
+        <template is="dom-if" if="{{toggle}}">
+            <web-events events="{{eventsToVisualize}}"></web-events>
+        </template>
+        <span id="title">ICWE 2016</span>
+        <paper-card>
+            Organization Details
+        </paper-card>
+        <paper-card id="twitt">
+            <div>Last Twitt</div>
+            <div id="twittContainer">
+                <paper-card class='block'>
+                    <div class="card-content">
+                        <img class="avatar" src="http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"></img>
+
+                        <div class="twittTitle">
+                            <div class="name">Name</div>
+                            <div class="tag">@username</div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <div>text</div>
+                    </div>
+                </paper-card>
+                <paper-card class='block'>
+                    <div class="card-content">
+                        <img class="avatar" src="http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"></img>
+
+                        <div class="twittTitle">
+                            <div class="name">Name</div>
+                            <div class="tag">@username</div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <div>text</div>
+                    </div>
+                </paper-card>
+                <paper-card class='block'>
+                    <div class="card-content">
+                        <img class="avatar" src="http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"></img>
+
+                        <div class="twittTitle">
+                            <div class="name">Name</div>
+                            <div class="tag">@username</div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <div>text</div>
+                    </div>
+                </paper-card>
+            </div>
+        </paper-card>
     </template>
 
     <script>
@@ -13,12 +146,40 @@
             'use strict';
 
             Polymer({
-                is: 'web-home'
+                is: 'web-home',
+                properties: {
+                    toggle: {
+                        notify: true,
+                        type: Boolean
+                    },
+                    events: {
+                        type: Array,
+                        observer: '_visualize'
+                    },
+                    eventsToVisualize: {
+                        type: Array,
+                        notify: true
+                    },
 
-            });
+
+                },
+                _visualize: function () {
+                    var arr = []
+                    var date = "2015-11-25";
+                    for (var i in this.events) {
+                        if (this.events[i].date.slice(0, 10) == date) {
+                            arr.push(this.events[i])
+                        }
+                    }
+                    this.eventsToVisualize = arr
+                }
+
+            })
+            ;
 
 
-        })();
+        })
+        ();
     </script>
 
 </dom-module>

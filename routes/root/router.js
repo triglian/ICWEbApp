@@ -9,7 +9,7 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index')
+    res.sendFile("index.html");
 });
 
 /*GET for basic info about the conference */
