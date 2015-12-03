@@ -216,19 +216,19 @@ var sponsor = {
   data: [
     {
       "_id"         : ObjectId(),
-      logo_url      : "http://www.post.ch/-/media/framework/logos/post.png?la=it&vs=1",
+      logo_url      : "http://gelb-bewegt.post.ch/img/img_logo_die_post-de.png",
       company_name  : "La Posta Svizzera",
       website       : "http://www.post.ch/"
     },
     {
       "_id"         : ObjectId(),
-      logo_url      : "http://www.pardolive.ch/mirror/get.do?q=80&url=http%3A%2F%2Fwww.pardolive.ch%3A80%2Fdam%2Fjcr%3A793f99fb-2aae-4d21-96e4-8e9c56b5b671%2Fsbb_cff_ffs.png",
+      logo_url      : "http://www.ffs.ch/content/sbbshop/it/winterthur/07_eg_ag_sbbberatungundverkauf/_jcr_content/shop/logo.spooler.spoolimage.-1.gif/1302690069821/logo_sbb_reisebuero.gif",
       company_name  : "FFS",
       website       : "http://www.ffs.ch"
     },
     {
       "_id"         : ObjectId(),
-      logo_url      : "http://img.deusm.com/informationweek/2015/09/1322015/logo_420_color_2x.png",
+      logo_url      : "http://www.google.com/images/branding/googlelogo/2x/googlelogo_color_116x41dp.png",
       company_name  : "Google",
       website       : "http://www.google.ch"
     }

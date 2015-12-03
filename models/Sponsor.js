@@ -8,21 +8,21 @@ var sponsorImagePath = "imgs/sponsors/";
 
 
 var sponsorSchema = new mongoose.Schema({
-    logo_url        : { type : String },
-    company_name    : { type : String },
-    website         : { type : String }
+    logo_url        : { type : String, required: true },
+    company_name    : { type : String, required: true },
+    website         : { type : String, required: true }
 });
 
 
 sponsorSchema.pre('save', function (next) {
-    var picture = this.picture.split("/");
-    var path = "public/" + sponsorImagePath + picture[picture.length - 1];
+    var logo_url = this.logo_url.split("/");
+    var path = "public/" + sponsorImagePath + logo_url[logo_url.length - 1];
     var sponsor = this;
 
-    http.get(this.picture, function (res) {
+    http.get(sponsor.logo_url, function (res) {
         if (res.statusCode != 200) {
-            console.log(sponsor.picture + " not found. Set to default picture.");
-            sponsor.picture = sponsorImagePath + "default.png";
+            console.log(sponsor.logo_url + " not found. Set to default picture.");
+            sponsor.logo_url = sponsorImagePath + "default.png";
             return next();
         }
 
@@ -34,13 +34,13 @@ sponsorSchema.pre('save', function (next) {
 
         res.on('end', function () {
             fs.writeFile(path, data.read(), function () {
-                sponsor.picture = sponsorImagePath + picture[picture.length - 1];
+                sponsor.logo_url = sponsorImagePath + logo_url[logo_url.length - 1];
                 return next();
             });
         });
     }).on('error', function() {
-        console.log(sponsor.picture + " not found. Set to default picture.");
-        sponsor.picture = sponsorImagePath + "default.png";
+        console.log(sponsor.logo_url + " not found. Set to default picture.");
+        sponsor.logo_url = sponsorImagePath + "default.png";
         return next();
     });
 });
