@@ -4,11 +4,7 @@
 <link rel="import" href="../../components/paper-button/paper-button.html">
 
 <link rel="import" href="../../components/iron-image/iron-image.html">
-<link rel="import" href="../../components/paper-input/paper-textarea.html">
-<link rel="import" href="../../components/iron-form/iron-form.html">
-<link rel="import" href="../../components/gold-email-input/gold-email-input.html">
-<link rel="import" href="../../elements/star-rating/star-rating.html">
-
+<link rel="import" href="../../elements/event/feedback-form.html">
 
 <script src="../../js/utils.js"></script>
 
@@ -19,11 +15,6 @@
         /*}*/
         .event-content {
             display: flex;
-        }
-        .event-content2 {
-            display: flex;
-            border: 1px solid #e8e8e8;
-
         }
         paper-card {
             flex: 1 1 auto;
@@ -131,25 +122,13 @@
                         </a>
                     </div>
                 </template>
-                <template is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
+
+                <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
                     <div class="card-content">
-                        <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
-                            <star-rating label="Rating" name="stars"></star-rating>
-                            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email"></gold-email-input>
-                            <paper-textarea label="Comments" name="comment"></paper-textarea>
-                            <paper-button raised on-click="_submitForm">Submit</paper-button>
-                        </form>
+                        <feedback-form _id="[[_id]]"></feedback-form>
                     </div>
                 </template>
-                <!--<template is="dom-repeat" items="{{feed}}" as="feed">-->
-                    <!--<div class="event-content2">-->
-                    <!--<paper-card style="margin: 0 auto; min-width: 200px">-->
-                        <!--<div style="margin: 10px"><star-rating label="Rating" name="stars" value="{{feed.stars}}"></star-rating></div>-->
-                        <!--<div style="margin: 15px">{{feed.comment}}</div>-->
-                    <!--</paper-card>-->
-                    <!--</div>-->
 
-        <!--</template>-->
             </paper-card>
         </div>
 
@@ -159,12 +138,6 @@
                 handle-as="json"
                 last-response="{{event}}">
             ></iron-ajax>
-        <!--<iron-ajax-->
-                <!--auto-->
-                <!--url="/events/{{_id}}/feedback"-->
-                <!--handle-as="json"-->
-                <!--last-response="{{feed}}">-->
-            <!--&gt;</iron-ajax>-->
     </template>
 
     <script>
@@ -181,20 +154,9 @@
                     event: {
                         type: Object,
                         notify: true
-                    },
-                    feed: {
-                        type: Array,
-                        notify: true
                     }
                 },
-                _log: function(s){ console.log(s); },
                 _formatDate: formatDateSingle,
-                _submitForm: function(){
-                    this.$.form.submit();
-                },
-                _computeAction: function(id){
-                    return "/events/"+id+'/feedback';
-                },
                 _feedbackIsOpen: function(date) {
                     var now = Date.now();
                     var evt = new Date(date).getTime();

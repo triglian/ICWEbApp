@@ -18,6 +18,18 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 var fieldsFilter = { '__v': 0 };
 
+
+//utils
+
+function checkComment(obj) {
+    if(obj.stars && obj.email && obj.comment) {
+        return { stars: obj.stars, email: obj.email, comment: obj.comment };
+    }
+    else {
+        return undefined;
+    }
+}
+
 //routes
 router.get('/', function(req, res, next) {
     Event.find({}, fieldsFilter).populate("speakers", "picture name organisation").exec(function (err, talks) {
@@ -60,8 +72,16 @@ router.get('/:eventid/feedback', function(req, res, next) {
 });
 
 router.post('/:eventid/feedback', function(req, res, next){
-    var data = req.body;
-    Event.findById(req.params.eventid, fieldsFilter , function(err, event){
+    var comment = checkComment(req.body);
+    if(!comment) {
+        res.status(400);
+        res.json({
+            statusCode: 400,
+            message: "Bad Request"
+        });
+        return;
+    }
+    Event.findById(req.params.eventid, fieldsFilter, function(err, event){
         if (err) return next (err);
         if (!event) {
             res.status(404);
@@ -71,42 +91,37 @@ router.post('/:eventid/feedback', function(req, res, next){
             });
             return;
         }
-        var feed = new Comment();
-        feed.email = data.email;
-        feed.stars = data.stars;
-        feed.comment = data.comment;
 
-        event.feedback.push(feed);
-        event.save(onModelSave(res));
+        var found = false;
+        var i = 0;
+        while(i < event.feedback.length && !found) {
+            if(event.feedback[i].email === comment.email) {
+                found = true;
+            }
+            i++;
+        }
+
+        if(found) {
+            res.status(400);
+            res.json({
+                statusCode: 400,
+                message: "Bad Request"
+            });
+            return;
+        }
+
+        event.feedback.push(comment);
+        event.save(function(err, saved) {
+            if (err) return next (err);
+            res.status(201);
+            res.json({
+                statusCode: 201,
+                message: "Created"
+            });
+        });
     });
 });
 
-function onModelSave(res, status, sendItAsResponse){
-    var statusCode = status || 204;
-    var sendItAsResponse = sendItAsResponse || false;
-    return function(err, saved){
-        if (err) {
-            if (err.name === 'ValidationError'
-                || err.name === 'TypeError' ) {
-                res.status(400)
-                return res.json({
-                    statusCode: 400,
-                    message: "Bad Request"
-                });
-            }else{
-                return next (err);
-            }
-        }
-        if( sendItAsResponse){
-            var obj = saved.toObject();
-            delete obj.password;
-            delete obj.__v;
-            addLinks(obj);
-            res.status(statusCode)
-            return res.json(obj);
-        }else{
-            return res.status(statusCode).end();
-        }
-    }
-}
+
+
 module.exports = router;
