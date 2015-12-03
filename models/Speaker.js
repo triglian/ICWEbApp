@@ -43,7 +43,7 @@ speakerSchema.pre('save', function (next) {
             });
         });
     }).on('error', function() {
-        console.log("Invalid image link. Set to default picture.");
+        console.log(speaker.picture + " not found. Set to default picture.");
         speaker.picture = speakerImagePath + "default.png";
         return next();
     });
