@@ -92,6 +92,20 @@ router.post('/:eventid/feedback', function(req, res, next){
             return;
         }
 
+        // Event is outside date range
+        var now = Date.now();
+        var evt = new Date(event.date).getTime();
+        var allowed = evt < now && now < evt + 86400000 * 3;
+        if(!allowed) {
+            res.status(400);
+            res.json({
+                statusCode: 400,
+                message: "Bad Request"
+            });
+            return;
+        }
+
+        // Email was already used
         var found = false;
         var i = 0;
         while(i < event.feedback.length && !found) {
@@ -100,7 +114,6 @@ router.post('/:eventid/feedback', function(req, res, next){
             }
             i++;
         }
-
         if(found) {
             res.status(400);
             res.json({
@@ -110,6 +123,7 @@ router.post('/:eventid/feedback', function(req, res, next){
             return;
         }
 
+        // Everything is fine
         event.feedback.push(comment);
         event.save(function(err, saved) {
             if (err) return next (err);
