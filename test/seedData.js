@@ -17,7 +17,7 @@ var program = {
                 bio           : "Curabitur eu odio nec massa elementum ultrices egestas a sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec et ipsum ut nisl efficitur congue. Praesent elementum, ligula quis euismod maximus, tellus ipsum dignissim lacus, at tincidunt erat diam quis tortor. Suspendisse non neque interdum, tincidunt dolor vel, pharetra libero. Phasellus accumsan mattis viverra. Mauris velit lorem, tempor nec ipsum at, condimentum finibus ligula. Fusce sollicitudin, eros eget porta consequat, enim ipsum pretium ligula, non iaculis ipsum massa in velit. Proin nulla enim, euismod elementum sem id, congue sagittis purus. Praesent sem augue, fringilla eu sodales quis, dapibus vitae nisl.In lacus est, lobortis nec suscipit a, imperdiet nec libero. Nulla a nibh tincidunt, placerat justo nec, maximus ante. Cras eget mi augue. Vestibulum blandit interdum velit, vitae egestas nisl euismod quis. In vitae velit sit amet odio suscipit finibus sit amet quis urna. Aenean feugiat erat quis varius cursus. Sed convallis sem eget nisl malesuada imperdiet. Cras vitae mauris enim. Curabitur tristique efficitur orci, vitae rutrum diam finibus vel.",
                 website       : "www.marcocalzana.ch",
                 twitter       : "@marcoRocket",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png",
+                picture       : "",
                 email         : "marco@marco.ch"
       },{ref:"Luigi Frunzio"}],
       abstract : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim. Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
@@ -35,7 +35,7 @@ var program = {
                 bio           : "In lacus est, lobortis nec suscipit a, imperdiet nec libero. Nulla a nibh tincidunt, placerat justo nec, maximus ante. Cras eget mi augue. Vestibulum blandit interdum velit, vitae egestas nisl euismod quis. In vitae velit sit amet odio suscipit finibus sit amet quis urna. Aenean feugiat erat quis varius cursus",
                 website       : "www.fz.ch",
                 twitter       : "@fz",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png",
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png",
                 email         : "Zuppi@usi.ch"
       }],
       abstract : "Dummy Dummy",
@@ -56,7 +56,7 @@ var program = {
                 bio           : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim. Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
                 website       : "www.paoloau.ch",
                 twitter       : "@paoloau",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
       }],
       feedback : []
     },
@@ -70,7 +70,7 @@ var program = {
                 bio           : "Mauris velit lorem, tempor nec ipsum at, condimentum finibus ligula. ",
                 website       : "www.an.ch",
                 twitter       : "@nortAlexander",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png",
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_3_normal.png",
                 email         : "north@usi.ch"
       },
           {
@@ -93,7 +93,7 @@ var program = {
                 bio           : "Dummy",
                 website       : "www.luigifrunzio.ch",
                 twitter       : "@luigifrunzio",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png"
       }],
       abstract : "Dummy Dummy",
       kind     : "Talk",
@@ -110,7 +110,7 @@ var program = {
                 bio           : "Fusce ultricies massa id elit scelerisque rhoncus. Vivamus mollis laoreet nunc ut volutpat. Duis vestibulum eros velit, id scelerisque tortor porta ac. Vivamus sit amet elementum enim. Etiam sed lectus pulvinar, placerat massa at, vehicula tortor. Pellentesque faucibus felis velit, ac vehicula est posuere a. Phasellus a neque at elit condimentum condimentum volutpat eget velit. Etiam commodo nulla lorem, ac varius lacus aliquam ut. Nunc sed massa nec erat pulvinar aliquam. Vivamus ornare dui at pulvinar pellentesque. Aliquam a viverra nulla.",
                 website       : "www.cammarata.ch",
                 twitter       : "@dcamma",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png",
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png2",
                 email         : "camma@usi.ch"
       }],
       abstract : "Dummy Dummy",
@@ -216,9 +216,9 @@ var sponsor = {
   data: [
     {
       "_id"         : ObjectId(),
-      logo_url      : "https://www.post.ch/-/media/framework/logos/post.png?la=it&vs=1",
+      logo_url      : "http://www.post.ch/-/media/framework/logos/post.png?la=it&vs=1",
       company_name  : "La Posta Svizzera",
-      website       : "https://www.post.ch/"
+      website       : "http://www.post.ch/"
     },
     {
       "_id"         : ObjectId(),
