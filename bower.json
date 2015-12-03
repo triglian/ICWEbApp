@@ -3,6 +3,7 @@
   "dependencies": {
     "gold-email-input":"PolymerElements/gold-email-input#^1.0.0",
     "google-map": "GoogleWebComponents/google-map#^1.0.0",
+    "google-chart": "GoogleWebComponents/google-chart#^1.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "iron-form": "PolymerElements/iron-form#^1.0.0",
