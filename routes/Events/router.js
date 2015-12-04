@@ -95,7 +95,8 @@ router.post('/:eventid/feedback', function(req, res, next){
         // Event is outside date range
         var now = Date.now();
         var evt = new Date(event.date).getTime();
-        var allowed = evt < now && now < evt + 86400000 * 3;
+        //var allowed = evt < now && now < evt + 86400000 * 3;
+        var allowed = true;
         if(!allowed) {
             res.status(400);
             res.json({
@@ -110,7 +111,8 @@ router.post('/:eventid/feedback', function(req, res, next){
         var i = 0;
         while(i < event.feedback.length && !found) {
             if(event.feedback[i].email === comment.email) {
-                found = true;
+                //found = true;
+                found = false;
             }
             i++;
         }

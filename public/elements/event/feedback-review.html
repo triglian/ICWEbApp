@@ -1,0 +1,68 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/iron-list/iron-list.html">
+
+<link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/paper-input/paper-textarea.html">
+<link rel="import" href="../../components/iron-form/iron-form.html">
+<link rel="import" href="../../components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../../elements/star-rating/star-rating.html">
+<link rel="import" href="../../components/google-chart/google-chart.html">
+<link rel="import" href="../../elements/star-rating/star-rating.html">
+<link rel="import" href="../../elements/event/chart.html">
+
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="feedback-review">
+    <style>
+        .card-content {
+            display: flex;
+            flex-flow: column;
+            padding: 5px;
+        }
+        .card-content {
+            border-top: 1px solid #e8e8e8;
+        }
+        .email {
+            right: 0px;
+            font-size: small;
+            color: #1e88e5;
+            top:10px
+        }
+        .comment{
+            border-radius: 25px;
+            border: 1px solid #f4f4f4;
+            padding: 10px;
+        }
+    </style>
+    <template>
+        <h3>Feedbacks Details</h3>
+        <template is="dom-repeat" items="{{feedbacks}}" as="feeds">
+                <div class="card-content">
+                    <star-rating label="Rating"  value="{{feeds.stars}}"></star-rating>
+                    <a class="email" href="mailto:{{feeds.email}}">{{feeds.email}}</a>
+                    <p class="comment">{{feeds.comment}}</p>
+                </div>
+        </template>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'feedback-review',
+                properties: {
+                    feedbacks: {
+                        type: Array,
+                        notify: true
+                    }
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>

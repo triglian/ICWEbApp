@@ -5,6 +5,7 @@
 
 <link rel="import" href="../../components/iron-image/iron-image.html">
 <link rel="import" href="../../elements/event/feedback-form.html">
+<link rel="import" href="../../elements/event/feedback-review.html">
 
 <script src="../../js/utils.js"></script>
 
@@ -88,6 +89,9 @@
         .event-speaker-org {
             color: #a5a5a5;
         }
+        h2{
+            text-decoration: underline;
+        }
 
     </style>
     <template>
@@ -126,9 +130,16 @@
                 <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
                     <div class="card-content">
                         <feedback-form _id="[[_id]]"></feedback-form>
+                        <feedback-review _id="[[_id]]"></feedback-review>
                     </div>
                 </template>
-
+                <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
+                    <div class="card-content">
+                        <h2>Feedbacks Review</h2>
+                        <feedback-review-chart stars="[[event.feedback]]"></feedback-review-chart>
+                        <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
+                    </div>
+                </template>
             </paper-card>
         </div>
 
@@ -160,8 +171,9 @@
                 _feedbackIsOpen: function(date) {
                     var now = Date.now();
                     var evt = new Date(date).getTime();
-                    return evt < now && now < evt + 86400000 * 3;
-                }
+//                    return evt < now && now < evt + 86400000 * 3;
+                    return true;
+                },
 
             });
 
