@@ -10,12 +10,25 @@
 <link rel="import" href="../../components/google-chart/google-chart.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
 <link rel="import" href="../../elements/event/chart.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 
 
 <script src="../../js/utils.js"></script>
 
 <dom-module id="feedback-review">
     <style>
+        .container {
+            @apply(--layout-horizontal);
+        }
+        .flexchild {
+            @apply(--layout-flex);
+        }
+        .flex2child {
+            @apply(--layout-flex-2);
+        }
+        .flex3child {
+            @apply(--layout-flex-3);
+        }
         code {
             color: #007000;
         }
@@ -42,24 +55,48 @@
             border: 1px solid #f4f4f4;
             padding: 10px;
         }
+        .comment2{
+            border-radius: 25px;
+            border: 1px solid #f4f4f4;
+            padding: 10px;
+        }
     </style>
     <template>
-        <h3>Ratings Chart</h3>
+        <div class="container">
+            <div class="flex3child">
+                <h3>Ratings Chart</h3>
+                <google-chart
+                            id='mutating_chart'
+                            type='column'
+                            cols='[{"label": "Stars", "type": "string"},{"label": "Ratings", "type": "number"}]'
+                            rows='{{defi}}'>
+                </google-chart>
+            </div>
+                <div class="flex3child">
+                    <h3>Ratings Details</h3>
+                    <div class="comment2">
+                        <p>Total number of feedbacks:</p>
+                        <div>Number of 5 stars: {{No5}}</div>
+                        <div>Number of 4 stars: {{No4}}</div>
+                        <div>Number of 3 stars: {{No3}}</div>
+                        <div>Number of 2 stars: {{No2}}</div>
+                        <div>Number of 1 stars: {{No1}}</div>
+                        <div>Not set: {{No0}}</div>
+                        <br>
+                        <div>Average words per feedback: {{avgW}}</div>
 
-        <google-chart
-                    id='mutating_chart'
-                    type='column'
-                    cols='[{"label": "Stars", "type": "string"},{"label": "Ratings", "type": "number"}]'
-                    rows='{{defi}}'>
-        </google-chart>
-        <h3>Feedbacks Details</h3>
-        <template is="dom-repeat" items="{{feedbacks}}" as="feeds">
-                <div class="card-content">
-                    <star-rating label="Rating"  value="{{feeds.stars}}"></star-rating>
-                    <a class="email" href="mailto:{{feeds.email}}">{{feeds.email}}</a>
-                    <p class="comment">{{feeds.comment}}</p>
+                    </div>
                 </div>
-        </template>
+        </div>
+
+        <h3>Feedbacks</h3>
+            <template is="dom-repeat" items="{{feedbacks}}" as="feeds">
+                    <div class="card-content">
+                        <star-rating label="Rating"  value="{{feeds.stars}}"></star-rating>
+                        <a class="email" href="mailto:{{feeds.email}}">{{feeds.email}}</a>
+                        <p class="comment">{{feeds.comment}}</p>
+                    </div>
+            </template>
     </template>
 
     <script>
@@ -76,7 +113,36 @@
                     defi:{
                         type : Array,
                         computed: '_computeStarsArr(feedbacks)'
+                    },
+                    No5:{
+                        type: Number,
+                        computed: '_computeNo5(feedbacks)'
+                    },
+                    No4:{
+                        type: Number,
+                        computed: '_computeNo4(feedbacks)'
+                    },
+                    No3:{
+                        type: Number,
+                        computed: '_computeNo3(feedbacks)'
+                    },
+                    No2:{
+                        type: Number,
+                        computed: '_computeNo2(feedbacks)'
+                    },
+                    No1:{
+                        type: Number,
+                        computed: '_computeNo1(feedbacks)'
+                    },
+                    No0:{
+                        type: Number,
+                        computed: '_computeNo0(feedbacks)'
+                    },
+                    avgW:{
+                        type: Number,
+                        computed: '_computeAvgWords(feedbacks)'
                     }
+
                 },
                 _computeStarsArr: function(arr){
                     var occurencies = [0,0,0,0,0,0];
@@ -104,8 +170,74 @@
                         arrToReturn[j].push(occurencies[j])
                     }
                     return arrToReturn;
+                },
+                _computeNo0:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==0){
+                           tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeNo1:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==1){
+                            tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeNo2:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==2){
+                            tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeNo3:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==3){
+                            tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeNo4:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==4){
+                            tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeNo5:function(ob){
+                    var tot = 0;
+                    for(var i = 0 ; i < ob.length; i++) {
+                        if(ob[i].stars==5){
+                            tot++
+                        }
+                    }
+                    return tot;
+                },
+                _computeAvgWords: function(ob) {
+                    var tempo = []
+                    for (var i = 0; i < ob.length; i++) {
+                        tempo.push(ob[i].comment.split(/\s+/).length);
+                    }
+                    var sum = 0;
+                    for (var i = 0; i < tempo.length; i++) {
+                        sum += tempo[i]
+                    }
+                    var rest = sum / tempo.length
+                    return rest
                 }
-            });
+            })
         })();
     </script>
 
