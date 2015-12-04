@@ -130,10 +130,9 @@
                 <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
                     <div class="card-content">
                         <feedback-form _id="[[_id]]"></feedback-form>
-                        <feedback-review _id="[[_id]]"></feedback-review>
                     </div>
                 </template>
-                <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
+                <template>
                     <div class="card-content">
                         <h2>Feedbacks Review</h2>
                         <feedback-review-chart stars="[[event.feedback]]"></feedback-review-chart>
