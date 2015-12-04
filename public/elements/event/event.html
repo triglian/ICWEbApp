@@ -132,13 +132,10 @@
                         <feedback-form _id="[[_id]]"></feedback-form>
                     </div>
                 </template>
-                <template>
-                    <div class="card-content">
-                        <h2>Feedbacks Review</h2>
-                        <feedback-review-chart stars="[[event.feedback]]"></feedback-review-chart>
-                        <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
-                    </div>
-                </template>
+                <div class="card-content">
+                    <h2>Feedbacks Review</h2>
+                    <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
+                </div>
             </paper-card>
         </div>
 

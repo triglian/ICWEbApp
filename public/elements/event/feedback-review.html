@@ -16,6 +16,13 @@
 
 <dom-module id="feedback-review">
     <style>
+        code {
+            color: #007000;
+        }
+        google-chart {
+            height: 300px;
+            width: 400px;
+        }
         .card-content {
             display: flex;
             flex-flow: column;
@@ -37,6 +44,14 @@
         }
     </style>
     <template>
+        <h3>Ratings Chart</h3>
+
+        <google-chart
+                    id='mutating_chart'
+                    type='column'
+                    cols='[{"label": "Stars", "type": "string"},{"label": "Ratings", "type": "number"}]'
+                    rows='{{defi}}'>
+        </google-chart>
         <h3>Feedbacks Details</h3>
         <template is="dom-repeat" items="{{feedbacks}}" as="feeds">
                 <div class="card-content">
@@ -57,11 +72,40 @@
                     feedbacks: {
                         type: Array,
                         notify: true
+                    },
+                    defi:{
+                        type : Array,
+                        computed: '_computeStarsArr(feedbacks)'
                     }
+                },
+                _computeStarsArr: function(arr){
+                    var occurencies = [0,0,0,0,0,0];
+                    var arrToReturn = [['0 stars'],['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']]
+                    for(var i = 0 ; i < arr.length; i++){
+                        if(arr[i].stars==0) {
+                            occurencies[0]++
+                        } else if (arr[i].stars==1){
+                            occurencies[1]++
+                        }
+                        else if (arr[i].stars==2){
+                            occurencies[2]++
+                        }
+                        else if (arr[i].stars==3){
+                            occurencies[3]++
+                        }
+                        else if (arr[i].stars==4){
+                            occurencies[4]++
+                        }
+                        else if (arr[i].stars==5){
+                            occurencies[5]++
+                        }
+                    }
+                    for(var j = 0; j<occurencies.length;j++){
+                        arrToReturn[j].push(occurencies[j])
+                    }
+                    return arrToReturn;
                 }
             });
-
-
         })();
     </script>
 
