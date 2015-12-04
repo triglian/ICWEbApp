@@ -73,69 +73,73 @@ router.get('/:eventid/feedback', function(req, res, next) {
 
 router.post('/:eventid/feedback', function(req, res, next){
     var comment = checkComment(req.body);
+    var id = req.params.eventid;
+
     if(!comment) {
         res.status(400);
         res.json({
             statusCode: 400,
-            message: "Bad Request"
+            message: "Bad request"
         });
-        return;
     }
-    Event.findById(req.params.eventid, fieldsFilter, function(err, event){
-        if (err) return next (err);
-        if (!event) {
-            res.status(404);
-            res.json({
-                statusCode: 404,
-                message: "Not Found"
-            });
-            return;
-        }
 
-        // Event is outside date range
-        var now = Date.now();
-        var evt = new Date(event.date).getTime();
+    comment = new Comment(comment);
+
+    Event.findById(id, fieldsFilter, function(err, event) {
+        if (err) return next(err);
+
+        //var now = Date.now();
+        //var evt = new Date(event.date).getTime();
         //var allowed = evt < now && now < evt + 86400000 * 3;
-        var allowed = true;
-        if(!allowed) {
-            res.status(400);
-            res.json({
-                statusCode: 400,
-                message: "Bad Request"
-            });
-            return;
-        }
+        //if(!allowed) {
+        //    res.status(400);
+        //    res.json({
+        //        statusCode: 400,
+        //        message: "Bad request"
+        //    });
+        //    return;
+        //}
 
-        // Email was already used
-        var found = false;
-        var i = 0;
-        while(i < event.feedback.length && !found) {
-            if(event.feedback[i].email === comment.email) {
-                //found = true;
-                found = false;
-            }
-            i++;
-        }
-        if(found) {
-            res.status(400);
-            res.json({
-                statusCode: 400,
-                message: "Bad Request"
-            });
-            return;
-        }
+        //var i = 0;
+        //var found = false;
+        //while(i < event.feedback.length && !found) {
+        //    if(event.feedback[i] === comment.email) {
+        //        found = true;
+        //    }
+        //    ++i;
+        //}
+        //if(found) {
+        //    res.status(400);
+        //    res.json({
+        //        statusCode: 400,
+        //        message: "Bad request"
+        //    });
+        //    return;
+        //}
 
-        // Everything is fine
         event.feedback.push(comment);
-        event.save(function(err, saved) {
-            if (err) return next (err);
+
+        console.log("Save");
+        Event.findByIdAndUpdate({_id: event._id }, { feedback: event.feedback }, function(err, changed) {
+            if (err) return next(err);
+            if(!changed) {
+                res.status(400);
+                res.json({
+                    statusCode: 400,
+                    message: "Bad request"
+                });
+                return;
+            }
+
             res.status(201);
             res.json({
                 statusCode: 201,
                 message: "Created"
             });
         });
-    });
+    })
+
+
 });
 
 
