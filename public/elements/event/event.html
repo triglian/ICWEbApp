@@ -107,7 +107,9 @@
                             </div>
                             <div>
                                 <div class="event-place">[[event.place]]</div>
-                                <a class="event-pdf" href="http://[[event.pdf]]">Event pdf</a>
+                                <template id="event-pdf-if" is="dom-if" if="{{event.pdf}}">
+                                    <a class="event-pdf" href="http://[[event.pdf]]">Event pdf</a>
+                                </template>
                             </div>
                         </div>
                     </div>
