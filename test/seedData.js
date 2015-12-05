@@ -176,7 +176,7 @@ var tweets = {
   data : [
     {
       "_id"         : ObjectId(),
-      name          : "Person0",
+      name          : "icwe16",
       username      : "USI",
       text          : "Dummy",
       profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
@@ -190,7 +190,7 @@ var tweets = {
     },
     {
       "_id"         : ObjectId(),
-      name          : "Person2",
+      name          : "icwe16",
       username      : "USI",
       text          : "Dummy",
       profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'

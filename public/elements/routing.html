@@ -19,18 +19,18 @@
 
         page('/social', nothingDoNext, function() {
             webApp.selected = 1;
-            page.redirect('/#!social');
+//            page.redirect('/#!social');
 
         });
 
         page('/sponsors', nothingDoNext, function(data) {
             webApp.selected = 2;
-            page.redirect('/#!sponsors');
+//            page.redirect('/#!sponsors');
         });
 
         page('/speakers', nothingDoNext, function() {
             webApp.selected = 3;
-            page.redirect('/#!speakers');
+//            page.redirect('/#!speakers');
         });
 
         page('/speakers/:id', nothingDoNext, function(data) {
@@ -40,7 +40,7 @@
 
         page('/events', nothingDoNext, function(data) {
             webApp.selected = 4;
-            page.redirect('/#!events');
+//            page.redirect('/#!events');
         });
 
         page('/events/:id', nothingDoNext, function(data) {
@@ -49,7 +49,7 @@
         });
         page('/contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
-            page.redirect('/#!contact');
+//            page.redirect('/#!contact');
         });
 
         page('', nothingDoNext, function() {
@@ -58,17 +58,17 @@
 
         page('social', nothingDoNext, function() {
             webApp.selected = 1;
-            page.redirect('/#!social');
+//            page.redirect('/#!social');
         });
 
         page('sponsors', nothingDoNext, function(data) {
             webApp.selected = 2;
-            page.redirect('/#!sponsors');
+//            page.redirect('/#!sponsors');
         });
 
         page('speakers', nothingDoNext, function() {
             webApp.selected = 3;
-            page.redirect('/#!speakers');
+//            page.redirect('/#!speakers');
         });
 
         page('speakers/:id', nothingDoNext, function(data) {
@@ -78,7 +78,7 @@
 
         page('events', nothingDoNext, function(data) {
             webApp.selected = 4;
-            page.redirect('/#!events');
+//            page.redirect('/#!events');
         });
 
         page('events/:id', nothingDoNext, function(data) {
@@ -92,7 +92,7 @@
         page('*', function() {
             webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
             webApp.$.toast.show();
-            page.redirect('/');
+//            page.redirect('/');
         });
 
         // add #! before urls

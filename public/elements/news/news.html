@@ -3,7 +3,7 @@
 <link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
-<dom-module id="web-social">
+<dom-module id="web-news">
     <style>
         :host{
             @apply(--layout-horizontal);
@@ -50,8 +50,8 @@
             margin-left: 16px;
             margin-right: 16px;
         }
-        .name{
-            font-size: medium;
+        .hour{
+            color: var(--secondary-text-color);
         }
         .tag{
             font-size: small;
@@ -59,24 +59,14 @@
         b{
             color: #0b97c4;
         }
-        .grid{
-            /*width:160px;*/
-            clear:both;
-        }
-        .block {
-            /*margin:10px;*/
-            /*float:left;*/
-        }
+
     </style>
     <template>
         <template is="dom-repeat" items="[[twitter]]"  as='twitt' sort="_sort">
             <paper-card class='block fancy'>
                 <div class="card-content">
-                    <img class="avatar" src="{{twitt.profile_image}}"></img>
-                    <div class="title">
-                        <div class="name">{{twitt.name}}</div>
-                        <div class="tag">@{{twitt.username}}</div>
-                    </div>
+                        <div class="hour">{{_toDateString(twitt.date)}}</div>
+
                 </div>
                 <div class="card-text">
                     <div>{{twitt.text}}</div>
@@ -84,12 +74,7 @@
             </paper-card>
         </template>
 
-        <!--<iron-ajax-->
-                <!--auto-->
-                <!--url="/twitter/"-->
-                <!--handle-as="json"-->
-                <!--last-response="{{twitter}}">-->
-            <!--</iron-ajax>-->
+
     </template>
 
     <script>
@@ -97,7 +82,7 @@
             'use strict';
 
             Polymer({
-                is: 'web-social',
+                is: 'web-news',
                 properties: {
 
                     twitter: {
@@ -109,6 +94,10 @@
                     var dateA = new Date(a.date);
                     var dateB = new Date(b.date);
                     return dateA.getTime() - dateB.getTime()
+                },
+                _toDateString: function(date){
+                    var date = new Date(date);
+                    return date.toDateString() + ' ' + date.toTimeString().slice(0,5)
                 }
             });
 

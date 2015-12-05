@@ -20,6 +20,7 @@
 <link rel="import" href="../../elements/home/home.html">
 <link rel="import" href="../../elements/social/social.html">
 <link rel="import" href="../../elements/speaker/speaker.html">
+<link rel="import" href="../../elements/news/news.html">
 <link rel="import" href="../../elements/speakers/speakers.html">
 <link rel="import" href="../../elements/sponsors/sponsors.html">
 <link rel="import" href="../event/event.html">
@@ -236,7 +237,7 @@
                 <paper-toolbar>
                     <div>NEWS</div>
                 </paper-toolbar>
-                NEWS
+                <web-news id="news"></web-news>
             </paper-scroll-header-panel>
         </paper-drawer-panel>
 
@@ -244,20 +245,24 @@
                 auto
                 url="/info/"
                 handle-as="json"
-                last-response="{{info}}">
-            ></iron-ajax>
+                last-response="{{info}}"
+                on-response="afterInfoSetSocket">
+            >
+        </iron-ajax>
         <iron-ajax
                 auto
                 url="/speakers/"
                 handle-as="json"
                 last-response="{{speakers}}">
-            ></iron-ajax>
+            >
+        </iron-ajax>
         <iron-ajax
                 auto
                 url="/events/"
                 handle-as="json"
                 last-response="{{events}}">
-            ></iron-ajax>
+            >
+        </iron-ajax>
         <paper-toast id="toast"></paper-toast>
     </template>
 
@@ -267,14 +272,16 @@
 
             Polymer({
                 is: 'web-app',
-                ready: function() {
+                ready: function () {
                     window.webApp = this;
+                    this.readyFlag = true
                 },
                 properties: {
                     selected: {
                         type: Number,
                         notify: true,
-                        value: 0
+                        value: 0,
+                        observer: ['_changeURLClosure']
                     },
                     info: {
                         type: String
@@ -286,10 +293,71 @@
                     events: {
                         type: Array,
                         notify: true
+                    },
+                    readyFlag: {
+                        type: Boolean,
+                        value: false
                     }
-                }
-            });
+                },
+                afterInfoSetSocket: function () {
+                    var socket = io.connect()
 
+
+                    socket.on('initialData', function (data) {
+                        webApp.$.social.twitter = data;
+                        var newsTweetArr = [];
+                        data.forEach(function (item) {
+                            if (webApp.info.twitterMain.indexOf('@' + item.name) != -1) {
+                                newsTweetArr.push(item)
+                            }
+                        });
+                        webApp.$.news.twitter = newsTweetArr;
+                    });
+
+                    socket.on('newsTweet', function (data) {
+                        webApp.$.social.twitter.push(data);
+                        webApp.$.news.twitter.push(data)
+                    });
+
+                    socket.on('newTweet', function (data) {
+                        webApp.$.social.twitter.push(data)
+                    });
+                },
+                _changeURLClosure: function () {
+                    var map = {
+                        0: {
+                            url: '/',
+                            title: ''
+                        },
+                        1: {
+                            title: 'Social',
+                            url: '/#!social'
+                        },
+                        2:{
+                            title: 'Sponsors',
+                            url: '/#!sponsors'
+                        },
+                        3:{
+                            title: 'Speakers',
+                            url: '/#!speakers'
+                        },
+                        4:{
+                            title: 'Events',
+                            url:'/#!events'
+                        },
+                        5:{
+                            title: 'Contacts',
+                            url: '/#!contacts'
+                        }
+                    };
+                    return function() {
+
+                        if ( this.readyFlag && map[this.selected] ) {
+                            window.history.pushState(null, this.info.title + ' - ' + map[this.selected].title, map[this.selected].url)
+                        }
+                    }
+                }()
+            });
 
         })();
     </script>

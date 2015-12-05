@@ -16,7 +16,12 @@ router.get('/', function(req, res, next) {
 router.get('/info/', function(req,res,next){
    var info = {
        'url': config.url,
-       'title': config.title
+       'name': config.name,
+       'title': config.websiteTitle,
+       'description': config.description,
+       'location': config.location,
+       'email': config.email,
+       'twitterMain': config.twitterMain
    };
     res.json(info)
 });
