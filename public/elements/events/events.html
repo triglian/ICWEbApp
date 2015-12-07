@@ -16,23 +16,28 @@
         .day {
             @apply(--layout-horizontal);
         }
+
         @media (max-width: 880px) {
             :host {
-                width:95% ;
+                width: 95%;
             }
+
             .day {
                 @apply(--layout-vertical);
             }
+
             .event {
                 -webkit-flex-basis: auto !important;
                 flex-basis: auto !important;
                 border-left: 1px solid rgba(0, 0, 0, 0.3);
             }
+
             .date {
                 border-right: none !important;
             }
 
         }
+
         .month {
             font-size: larger;
             font-weight: 700;
@@ -79,7 +84,7 @@
 
         .eventLink {
             text-decoration: none;
-            color:inherit;
+            color: inherit;
         }
     </style>
     <template>
@@ -97,8 +102,13 @@
                             <div class="layout vertical flex-2 center-justified">
                                 <div class="layout horizontal justified"><span
                                         class="hour">[[ _hour(event.date) ]]</span></div>
-                                <div class="name"><a href="#!events/{{event._id}}" class="eventLink">{{event.name}}</a></div>
-                                <div class="layout horizontal justified"><span>{{event.kind}}</span><span>{{event.speakers[0].name}}</span><span>{{event.place}}</span>
+                                <div class="name"><a href="#!events/{{event._id}}" class="eventLink">{{event.name}}</a>
+                                </div>
+                                <div class="layout horizontal justified"><span>{{event.kind}}</span>
+                                    <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
+                                        <span>{{speaker.name}}</span>
+                                    </template>
+                                    <span>{{event.place}}</span>
                                 </div>
                             </div>
                         </paper-material>
