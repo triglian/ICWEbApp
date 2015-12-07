@@ -328,7 +328,7 @@
                         webApp.tweet = data;
                         var newsTweetArr = [];
                         data.forEach(function (item) {
-                            if (webApp.info.twitterMain.indexOf('@' + item.name) != -1) {
+                            if (webApp.info.twitterMain.indexOf('@' + item.username) != -1) {
                                 newsTweetArr.push(item)
                             }
                         });
@@ -345,7 +345,12 @@
 
                     socket.on('newTweet', function (data) {
                         webApp.push('tweet',data);
+
                     });
+
+                    socket.on('deletedTweet', function(data){
+
+                    })
                 },
                 _changeURLClosure: function () {
                     var map = {

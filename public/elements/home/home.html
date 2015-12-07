@@ -137,7 +137,7 @@
         <paper-card id="twitt">
             <div class="paperTitle">Last Tweets</div>
             <div class="container">
-                <template is="dom-repeat" items="{{tweets}}" as="tweet">
+                <template is="dom-repeat" items="{{tweets}}" as="tweet" sort="_sort">
                     <template is="dom-if" if="{{_index(index)}}">
                         <paper-card class='block'>
                             <div class="card-content">
@@ -186,6 +186,11 @@
                         type: Object
                     }
 
+                },
+                _sort: function(a,b){
+                    var dateA = new Date(a.date);
+                    var dateB = new Date(b.date);
+                    return (dateA.getTime() - dateB.getTime())*-1
                 },
                 _visualize: function () {
                     var arr = []

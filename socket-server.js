@@ -33,4 +33,8 @@ module.exports = function(httpServer) {
         io.emit('newsTweet', data);
     });
 
+    eventBus.on('deletedTweet', function(data){
+        io.emit('deletedTweet', data);
+    })
+
 };

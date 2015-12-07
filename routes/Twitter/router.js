@@ -22,9 +22,14 @@ var stream = T.stream('statuses/filter', { track: config.twitterFeeds });
 
 stream.on('tweet', newTweet);
 
-var newsStream = T.stream('statuses/filter', { track: config.twitterMain });
+//stream.on('delete', removeTweet);
+
+var newsStream = T.stream('statuses/filter', { follow: config.twitterMainID });
 
 newsStream.on('tweet', newNewsTweet);
+
+//newsStream.on('delete', removeTweet);
+
 
 function addTweet(tweet){
     var newTweet = new Twitter();
@@ -38,13 +43,27 @@ function addTweet(tweet){
 }
 
 function newTweet(tweet){
+    console.log(tweet)
     var newTweet = addTweet(tweet);
     eventEmitter.emit('newTweet', newTweet)
 }
 
 function newNewsTweet(tweet){
+    console.log(tweet)
     var newTweet = addTweet(tweet);
     eventEmitter.emit('newsTweet', newTweet)
+}
+
+function removeTweet(tweet){
+    var newTweet = {};
+    newTweet.text = tweet.text;
+    newTweet.name = tweet.user.name;
+    newTweet.username = tweet.user.screen_name;
+    newTweet.profile_image = tweet.user.profile_image_url;
+    newTweet.date = new Date(tweet.created_at);
+    Twitter.find(newTweet).remove(function(err,deleted){
+        eventEmitter.emit('deletedTweet', newTweet)
+    })
 }
 
 

@@ -62,7 +62,7 @@
 
     </style>
     <template>
-        <template is="dom-repeat" items="[[twitter]]"  as='twitt' sort="_sort">
+        <template is="dom-repeat" items="{{twitter}}"  as='twitt' sort="_sort">
             <paper-card class='block fancy'>
                 <div class="card-content">
                         <div class="hour">{{_toDateString(twitt.date)}}</div>
@@ -86,16 +86,17 @@
                 properties: {
 
                     twitter: {
-                        type: Object,
+                        type: Array,
                         notify: true
                     }
                 },
                 _sort: function(a,b){
                     var dateA = new Date(a.date);
                     var dateB = new Date(b.date);
-                    return dateA.getTime() - dateB.getTime()
+                    return -(dateA.getTime() - dateB.getTime())
                 },
                 _toDateString: function(date){
+
                     var date = new Date(date);
                     return date.toDateString() + ' ' + date.toTimeString().slice(0,5)
                 }
