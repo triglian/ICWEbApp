@@ -3,6 +3,8 @@
 <link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
+<script src="../../js/utils.js"></script>
+
 <dom-module id="web-news">
     <style>
         :host{
@@ -90,11 +92,7 @@
                         notify: true
                     }
                 },
-                _sort: function(a,b){
-                    var dateA = new Date(a.date);
-                    var dateB = new Date(b.date);
-                    return -(dateA.getTime() - dateB.getTime())
-                },
+                _sort: sortDatesDescending,
                 _toDateString: function(date){
 
                     var date = new Date(date);
