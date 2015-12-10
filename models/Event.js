@@ -24,42 +24,74 @@ var eventSchema = new mongoose.Schema({
     speakers  : [{ type : ObjectId, ref: "Speaker" }],
     abstract : { type : String, required: true },
     kind     : { type : String, default: "" },
-    pdf      : { type : String },
+    pdf      : { type: Array },
     feedback : { type : [commentSchema], default: [] }
 });
 
 
 eventSchema.pre('save', function (next) {
-    if(this.pdf) {
-        var pdf = this.pdf.split("/");
-        var event = this;
-        var path = "public/" + pdfPath + pdf[pdf.length - 1];
+    if(this.pdf && this.pdf.length > 0) {
+        var pdfs = this.pdf;
 
-        http.get(event.pdf, function (res) {
-            if (res.statusCode > 200 || res.statusCode <= 400) {
-                console.log(event.pdf + " not found. Removed.");
-                event.pdf = "";
-                return next();
+        var i = 0;
+        var pdf = pdfs[i];
+        var callback = function(res) {
+            var pdfAddress = pdf.split("/");
+            var path = "public/" + pdfPath + pdfAddress[pdfAddress.length - 1];
+
+            if (res.statusCode != 200) {
+                errorCallback();
             }
+            else {
+                var data = new stream.Transform();
 
-            var data = new stream.Transform();
-
-            res.on('data', function (chunk) {
-                data.push(chunk);
-            });
-
-            res.on('end', function () {
-                fs.writeFile(path, data.read(), function () {
-                    event.pdf = pdfPath + pdf[pdf.length - 1];
-                    return next();
+                res.on('data', function (chunk) {
+                    data.push(chunk);
                 });
-            });
-        }).on('error', function() {
-            console.log(event.pdf + " not found. Removed.");
-            event.pdf = "";
+
+                res.on('end', function () {
+                    fs.writeFile(path, data.read(), function () {
+                        pdfs[i] = pdfPath + pdfAddress[pdfAddress.length - 1];
+                        recall();
+                    });
+                });
+            }
+        };
+        var errorCallback = function() {
+            console.log(pdf + " not found. Removed.");
+            pdfs[i] = null;
+            recall()
+        };
+        var cleanup = function() {
+            var i;
+            while (i = pdfs.indexOf(null) != -1) {
+                pdfs.splice(i, 1);
+            }
             return next();
-        });
+        };
+        var recall = function() {
+            i += 1;
+            if( i < pdfs.length) {
+                pdf = pdfs[i];
+                http.get(pdf, callback).on('error', errorCallback);
+            }
+            else {
+                cleanup();
+            }
+        };
+
+        http.get(pdf, callback).on('error', errorCallback);
+    }
+    else {
+        return next();
     }
 });
+
+function arrayRemove(array, item) {
+    console.log("Removing pdfs");
+    console.log("Removal done");
+}
+
+
 
 mongoose.model('Event', eventSchema);
