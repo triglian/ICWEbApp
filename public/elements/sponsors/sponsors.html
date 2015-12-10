@@ -1,0 +1,73 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../components/iron-image/iron-image.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="web-sponsors">
+    <style>
+        :host {
+            @apply(--layout-horizontal);
+            @apply(--layout-wrap);
+            @apply(--flex-auto);
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        a{
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        figcaption{
+            text-align: center;
+            font-size: small;
+            position: bottom !important;
+        }
+        @media (min-width: 900px) {
+            figcaption{
+                visibility: hidden;
+                display: none;
+            }
+
+        }
+        @media (max-width: 900px) {
+            paper-tooltip{
+                visibility: hidden;
+                display: none;
+            }
+        }
+    </style>
+    <template>
+        <template is="dom-repeat" items="[[sponsor]]"  as='sponsor'>
+            <a href="{{sponsor.website}}" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
+                    sizing="contain" preload src="{{sponsor.logo_url}}"></iron-image>
+                <paper-tooltip position="bottom" offset="-1"><h1>{{sponsor.company_name}}</h1></paper-tooltip>
+                <figcaption style="width:180px">{{sponsor.company_name}}</figcaption>
+            </a>
+        </template>
+        <iron-ajax
+                auto
+                url="/sponsors/"
+                handle-as="json"
+                last-response="{{sponsor}}">
+        </iron-ajax>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+            Polymer({
+                is: 'web-sponsors',
+                properties: {
+                    sponsor: {
+                        type: Object,
+                        notify: true
+                    }
+                }
+            });
+        })();
+    </script>
+
+</dom-module>
+

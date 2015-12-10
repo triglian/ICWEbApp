@@ -1,0 +1,395 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../components/iron-icons/iron-icons.html">
+<link rel="import" href="../../components/iron-icon/iron-icon.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-styles/color.html">
+<link rel="import" href="../../components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../components/paper-tabs/paper-tab.html">
+<link rel="import" href="../../components/iron-icons/communication-icons.html">
+<link rel="import" href="../../components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../../components/paper-menu/paper-menu.html">
+<link rel="import" href="../../components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../components/paper-item/paper-item.html">
+<link rel="import" href="../../elements/mdi-iconset/mdi.html">
+<link rel="import" href="../../components/iron-pages/iron-pages.html">
+<link rel="import" href="../../elements/home/home.html">
+<link rel="import" href="../../elements/social/social.html">
+<link rel="import" href="../../elements/speaker/speaker.html">
+<link rel="import" href="../../elements/news/news.html">
+<link rel="import" href="../../elements/speakers/speakers.html">
+<link rel="import" href="../../elements/sponsors/sponsors.html">
+<link rel="import" href="../../elements/contact/contact.html">
+<link rel="import" href="../event/event.html">
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../elements/events/events.html">
+<link rel="import" href="../../components/paper-toast/paper-toast.html">
+<link rel="import" href="../../elements/routing.html">
+
+<!--<link rel="stylesheet" href="components/paper-styles/demo.css">-->
+<link rel="import" href="../../styles/custom-style.html">
+
+<dom-module id="web-app">
+    <style is="custom-style" include="custom-styles"></style>
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        paper-scroll-header-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: var(--paper-grey-200, #eee);
+        }
+
+        .menu {
+            flex-grow: 2;
+        }
+
+        #mobileMenu {
+            display: none;
+        }
+
+        @media (max-width: 880px) {
+            .menu {
+                display: none;
+            }
+
+            #mobileMenu {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 990px) {
+            #ending {
+                /*display: inline-flex !important;*/
+                flex-grow: 1;
+                @apply(--layout-flex-1);
+                @apply(--layout-horizontal);
+                @apply(--layout-end-justified);
+            }
+
+        }
+
+        #logo {
+            font-size: large;
+        }
+        #ending{
+            display:none;
+        }
+
+        iron-icon {
+            --iron-icon-height: 16px;
+            --iron-icon-width: 16px;
+            padding-right: 5px !important;
+        }
+
+        paper-icon-button {
+            --iron-icon-height: 16px;
+            --iron-icon-width: 16px;
+        }
+
+        paper-toolbar {
+            --paper-toolbar-background: #008bff;
+        }
+
+        paper-tabs {
+            --paper-tabs-selection-bar-color: #FFF;
+            margin-left: 15px !important;
+        }
+
+        paper-tab {
+            --paper-tab-ink: #FFF;
+        }
+
+        #paperDrawerPanel[right-drawer] [drawer] {
+            border-left: 1px solid var(--google-grey-300);
+        }
+
+        #paperDrawerPanel [main] {
+            background-color: var(--google-grey-100);
+        }
+
+        #paperDrawerPanel [drawer] {
+            background-color: #FFF;
+        }
+
+        [paper-drawer-toggle] {
+            position: absolute;
+            top: 12px;
+            right: 10px !important;
+        }
+
+        paper-menu {
+            display: block;
+            --paper-menu-background-color: inherit;
+        }
+
+
+        paper-menu-button {
+            --paper-menu-button-dropdown: {
+                top: 68px !important;
+                width: 150%;
+            }
+        }
+
+        paper-item {
+            color: #000 !important;
+        }
+        #drawerLeft{
+            border-right: 1px solid var(--google-grey-300);
+        }
+    </style>
+    <template>
+        <paper-drawer-panel left-drawer drawer-toggle-attribute="left-drawer-toggle" force-narrow="true">
+            <paper-scroll-header-panel fixed drawer id="drawerLeft">
+                <paper-toolbar>
+                    <div>MENU</div>
+                </paper-toolbar>
+                <paper-menu class="dropdown-content" selected="{{selected}}">
+                <paper-item>
+                <iron-icon icon="icons:home"></iron-icon>
+                HOME
+                </paper-item>
+                <paper-item>
+                <iron-icon icon="mdi:twitter"></iron-icon>
+                SOCIAL
+                </paper-item>
+                <paper-item>
+                <iron-icon icon="icons:supervisor-account"></iron-icon>
+                SPONSORS
+                </paper-item>
+                <paper-item>
+                <iron-icon icon="icons:account-circle"></iron-icon>
+                SPEAKERS
+                </paper-item>
+                <paper-item>
+                <iron-icon icon="communication:chat-bubble"></iron-icon>
+                EVENTS
+                </paper-item>
+                <paper-item>
+                <iron-icon icon="mdi:mail-ru"></iron-icon>
+                CONTACTS
+                </paper-item>
+                </paper-menu>
+            </paper-scroll-header-panel>
+        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="990px" main drawer-toggle-attribute="right-drawer-toggle" >
+            <paper-scroll-header-panel fixed main>
+                <paper-toolbar>
+
+                    <div id="logo"> [[info.title]]</div>
+                    <div id="mobileMenu">
+                        <paper-icon-button icon="icons:menu"  left-drawer-toggle></paper-icon-button>
+                    </div>
+                    <paper-tabs class="menu" selected="{{selected}}">
+                        <paper-tab>
+                            <iron-icon icon="icons:home"></iron-icon>
+                            HOME
+                        </paper-tab>
+                        <paper-tab>
+                            <iron-icon icon="mdi:twitter"></iron-icon>
+                            SOCIAL
+                        </paper-tab>
+                        <paper-tab>
+                            <iron-icon icon="icons:supervisor-account"></iron-icon>
+                            SPONSORS
+                        </paper-tab>
+                        <paper-tab>
+                            <iron-icon icon="icons:account-circle"></iron-icon>
+                            SPEAKERS
+                        </paper-tab>
+                        <paper-tab>
+                            <iron-icon icon="communication:chat-bubble"></iron-icon>
+                            EVENTS
+                        </paper-tab>
+                        <paper-tab>
+                            <iron-icon icon="mdi:mail-ru"></iron-icon>
+                            CONTACTS
+                        </paper-tab>
+                    </paper-tabs>
+                    <div id="ending">
+                        <paper-icon-button icon="icons:feedback"  right-drawer-toggle></paper-icon-button>
+                    </div>
+                </paper-toolbar>
+                <iron-pages selected="{{selected}}">
+                    <section>
+                        <web-home id="home" info="{{info}}" tweets="{{tweet}}" events="[[events]]"></web-home>
+                    </section>
+                    <section>
+                        <web-social id="social" twitter="{{tweet}}"></web-social>
+                    </section>
+                    <section>
+                        <web-sponsors id="sponsors"></web-sponsors>
+                    </section>
+                    <section>
+                        <web-speakers id="speakers" speakers="[[speakers]]"></web-speakers>
+                    </section>
+                    <section>
+                        <web-events id="events" events="[[events]]"></web-events>
+                    </section>
+                    <section>
+                        <web-contact id="contact"></web-contact>
+                    </section>
+                    <section>
+                        <web-speaker id="speaker"></web-speaker>
+                    </section>
+                    <section>
+                        <web-event id="event"></web-event>
+                    </section>
+                </iron-pages>
+            </paper-scroll-header-panel>
+            <paper-scroll-header-panel fixed drawer>
+                <paper-toolbar>
+                    <div>NEWS</div>
+                </paper-toolbar>
+                <web-news id="news" twitter="{{newsTweet}}"></web-news>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+        </paper-drawer-panel>
+
+        <iron-ajax
+                auto
+                url="/info/"
+                handle-as="json"
+                last-response="{{info}}"
+                on-response="afterInfoSetSocket">
+            >
+        </iron-ajax>
+        <iron-ajax
+                auto
+                url="/speakers/"
+                handle-as="json"
+                last-response="{{speakers}}">
+            >
+        </iron-ajax>
+        <iron-ajax
+                auto
+                url="/events/"
+                handle-as="json"
+                last-response="{{events}}">
+            >
+        </iron-ajax>
+        <paper-toast id="toast"></paper-toast>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-app',
+                ready: function () {
+                    window.webApp = this;
+                    this.readyFlag = true
+                },
+                properties: {
+                    selected: {
+                        type: Number,
+                        notify: true,
+                        value: 0,
+                        observer: ['_changeURLClosure']
+                    },
+                    info: {
+                        type: String
+                    },
+                    speakers: {
+                        type: Array,
+                        notify: true
+                    },
+                    events: {
+                        type: Array,
+                        notify: true
+                    },
+                    readyFlag: {
+                        type: Boolean,
+                        value: false
+                    },
+                    tweet: {
+                        type: Array,
+                        notify: true
+                    },
+                    newsTweet: {
+                        type: Array,
+                        notify: true
+                    }
+                },
+                afterInfoSetSocket: function () {
+                    var socket = io.connect()
+
+
+                    socket.on('initialData', function (data) {
+                        webApp.tweet = data;
+                        var newsTweetArr = [];
+                        data.forEach(function (item) {
+                            if (webApp.info.twitterMain.indexOf('@' + item.username) != -1) {
+                                newsTweetArr.push(item)
+                            }
+                        });
+                        webApp.newsTweet = newsTweetArr;
+                    });
+
+                    socket.on('newsTweet', function (data) {
+
+                        webApp.push('tweet',data);
+                        webApp.push('newsTweet',data);
+
+
+                    });
+
+                    socket.on('newTweet', function (data) {
+                        webApp.push('tweet',data);
+
+                    });
+
+                    socket.on('deletedTweet', function(data){
+
+                    })
+                },
+                _changeURLClosure: function () {
+                    var map = {
+                        0: {
+                            url: '/',
+                            title: ''
+                        },
+                        1: {
+                            title: 'Social',
+                            url: '/#!social'
+                        },
+                        2:{
+                            title: 'Sponsors',
+                            url: '/#!sponsors'
+                        },
+                        3:{
+                            title: 'Speakers',
+                            url: '/#!speakers'
+                        },
+                        4:{
+                            title: 'Events',
+                            url:'/#!events'
+                        },
+                        5:{
+                            title: 'Contacts',
+                            url: '/#!contacts'
+                        }
+                    };
+                    return function() {
+
+                        if ( this.readyFlag && map[this.selected] ) {
+                            window.history.pushState(null, this.info.title + ' - ' + map[this.selected].title, map[this.selected].url)
+                        }
+                    }
+                }()
+            });
+
+        })();
+    </script>
+
+</dom-module>
+

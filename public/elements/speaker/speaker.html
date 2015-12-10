@@ -1,0 +1,142 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/iron-image/iron-image.html">
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="web-speaker">
+    <style>
+        /** {*/
+            /*border: 1px solid black;*/
+        /*}*/
+        .event-content {
+            display: flex;
+        }
+        paper-card {
+            flex: 1 1 auto;
+            margin: 20px;
+        }
+        .card-content {
+            display: flex;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
+        .card-content + .card-content {
+            border-top: 1px solid #e8e8e8;
+        }
+        .speaker-info-box {
+            display: flex;
+            flex-flow: row wrap;
+            flex: 1 1 auto;
+        }
+        .speaker-picture {
+            height: 75px;
+            width: 75px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .speaker-name {
+            font-size: 200%;
+            font-weight: bold;
+            flex: 1 1 auto;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .speaker-info-subbox {
+            display: flex;
+            flex: 0 1 auto;
+            flex-flow: column wrap;
+        }
+        .speaker-info-subbox > * {
+            flex: 0 1 auto;
+        }
+        .speaker-event {
+            display: inline-flex;
+            flex-flow: row wrap;
+            text-decoration: none;
+            color: black;
+            padding-bottom: 5px;
+        }
+        .speaker-event-name {
+            flex: 0 1 100%;
+        }
+        .speaker-event-date-place {
+            flex: 1 1 auto;
+            color: #9b9b9b;
+        }
+
+    </style>
+    <template>
+        <div class="event-content">
+            <paper-card>
+                <div class="card-content">
+                    <div class="speaker-info-box">
+                        <iron-image class="speaker-picture" sizing="contain" src$="[[speaker.picture]]"></iron-image>
+                        <div class="speaker-name">[[speaker.name]]</div>
+                        <div class="speaker-info-subbox">
+                            <div class="speker-org">[[speaker.organisation]]</div>
+                            <a class="speaker-website" href="http://[[speaker.website]]">[[speaker.website]]</a>
+                            <a class="speaker-email" href="mailto:[[speaker.email]]">[[speaker.email]]</a>
+                            <a class="speaker-twitter" href="https://twitter.com/[[_parseTwitter(speaker.twitter)]]">[[speaker.twitter]]</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="speaker-bio">
+                        [[speaker.bio]]
+                    </div>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <template is="dom-repeat" items="[[speaker.events]]" as="event">
+                            <li>
+                                <a href="/#!events/[[event._id]]" class="speaker-event">
+                                    <div class="speaker-event-name">[[event.name]]</div>
+                                    <div class="speaker-event-date-place">[[_formatDate(event.date)]] in [[event.place]]</div>
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </paper-card>
+        </div>
+
+        <iron-ajax
+                auto
+                url="/speakers/{{_id}}"
+                handle-as="json"
+                last-response="{{speaker}}">
+        ></iron-ajax>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-speaker',
+                properties: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    },
+                    speaker: {
+                        type: Object,
+                        notify: true
+                    }
+                },
+                _formatDate: formatDateSingle,
+                _parseTwitter: function(t) {
+                    return t ? t.slice(1, t.length) : "";
+                }
+
+            });
+
+
+        })();
+    </script>
+
+</dom-module>

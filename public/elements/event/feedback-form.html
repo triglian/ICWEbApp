@@ -1,0 +1,49 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/paper-input/paper-textarea.html">
+<link rel="import" href="../../components/iron-form/iron-form.html">
+<link rel="import" href="../../components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../../elements/star-rating/star-rating.html">
+
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="feedback-form">
+    <style></style>
+    <template>
+
+        <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
+            <star-rating label="Rating" name="stars"></star-rating>
+            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email"></gold-email-input>
+            <paper-textarea label="Comments" name="comment"></paper-textarea>
+            <paper-button raised on-click="_submitForm">Submit</paper-button>
+        </form>
+
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'feedback-form',
+                properties: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    }
+                },
+                _submitForm: function(evt){
+                    this.$.form.submit();
+                },
+                _computeAction: function(id){
+                    return "/events/"+id+'/feedback';
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>

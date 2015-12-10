@@ -1,0 +1,215 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-styles/default-theme.html">
+<link rel="import" href="../../components/paper-styles/typography.html">
+<link rel="import" href="../../components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../events/events.html">
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="web-home">
+    <style>
+        @media (max-width: 880px) {
+            :host {
+                width: 95% !important;
+            }
+            .container {
+                -webkit-flex-direction: column !important;
+                flex-direction: column !important;
+            }
+        }
+
+        @media (max-width: 500px) {
+            #twitt {
+                @apply(--layout-vertical);
+            }
+
+        }
+
+        :host {
+            @apply(--layout-vertical);
+            flex-wrap: wrap;
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 90%;
+        }
+
+        #title {
+            -webkit-font-smoothing: antialiased;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 40px;
+        }
+
+        paper-card {
+            margin-top: 15px;
+        }
+
+        #twitt {
+            @apply(--layout-vertical);
+        }
+
+        .container {
+            @apply(--layout-horizontal);
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .block {
+            flex: 1;
+            /*@apply(--layout-flex);*/
+            margin-bottom: 15px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .name {
+            font-size: medium;
+        }
+
+        .tag {
+            font-size: small;
+        }
+
+        web-events {
+            width: 100% !important;
+        }
+
+        .avatar {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            color: white;
+            line-height: 64px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .card-text {
+            font-size: medium;
+            margin-bottom: 16px;
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .card-content {
+            @apply(--layout-horizontal);
+        }
+
+        .twittTitle {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            color: var(--paper-indigo-500);
+        }
+        #completeName {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 40px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .paperTitle {
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 40px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            margin-left: 10px;
+        }
+    </style>
+    <template>
+        <span id="title">[[info.title]]</span>
+        <span id="completeName">[[info.name]]</span>
+        <paper-toggle-button active="{{toggle}}"></paper-toggle-button>
+        <template is="dom-if" if="{{toggle}}">
+            <web-events events="{{eventsToVisualize}}"></web-events>
+        </template>
+
+        <paper-card>
+            <div class="paperTitle">Description</div>
+            <div class='container'>[[info.description]]</div>
+        </paper-card>
+        <paper-card id="twitt">
+            <div class="paperTitle">Last Tweets</div>
+            <div class="container">
+                <template is="dom-repeat" items="{{tweets}}" as="tweet" sort="_sort">
+                    <template is="dom-if" if="{{_index(index)}}">
+                        <paper-card class='block'>
+                            <div class="card-content">
+                                <img class="avatar"
+                                     src="[[tweet.profile_image]]"></img>
+
+                                <div class="twittTitle">
+                                    <div class="name">[[tweet.name]]</div>
+                                    <div class="tag">@[[tweet.username]]</div>
+                                </div>
+                            </div>
+                            <div class="card-text">
+                                <div>[[tweet.text]]</div>
+                            </div>
+                        </paper-card>
+                    </template>
+                </template>
+            </div>
+        </paper-card>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-home',
+                properties: {
+                    toggle: {
+                        notify: true,
+                        type: Boolean
+                    },
+                    events: {
+                        type: Array,
+                        observer: '_visualize'
+                    },
+                    eventsToVisualize: {
+                        type: Array,
+                        notify: true
+                    },
+                    tweets: {
+                        type: Array,
+                        notify: true
+                    },
+                    info: {
+                        type: Object
+                    }
+
+                },
+                _sort: sortDatesDescending,
+                _visualize: function () {
+                    var arr = []
+                    var date = "2015-11-25";
+                    for (var i in this.events) {
+                        if (this.events[i].date.slice(0, 10) == date) {
+                            arr.push(this.events[i])
+                        }
+                    }
+                    this.eventsToVisualize = arr
+                },
+                _index: function (value) {
+                    return value < 3;
+                }
+
+            })
+            ;
+
+
+        })
+        ();
+    </script>
+
+</dom-module>

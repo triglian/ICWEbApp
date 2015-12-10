@@ -1,0 +1,224 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-material/paper-material.html">
+
+<dom-module id="web-events">
+    <style>
+        :host {
+            @apply(--layout-vertical);
+            @apply(--layout-wrap);
+            @apply(‑‑layout-center-justified);
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 80%;
+        }
+
+        .day {
+            @apply(--layout-horizontal);
+        }
+
+        @media (max-width: 880px) {
+            :host {
+                width: 95%;
+            }
+
+            .day {
+                @apply(--layout-vertical);
+            }
+
+            .event {
+                -webkit-flex-basis: auto !important;
+                flex-basis: auto !important;
+                border-left: 1px solid rgba(0, 0, 0, 0.3);
+            }
+
+            .date {
+                border-right: none !important;
+            }
+
+        }
+
+        .month {
+            font-size: larger;
+            font-weight: 700;
+            @apply(--layout-flex);
+        }
+
+        .number {
+            font-size: x-large;
+            font-weight: 800;
+
+        }
+
+        .date {
+            padding-right: 15px;
+            border-right: 1px solid rgba(0, 0, 0, 0.3);
+            min-width: 90px;
+        }
+
+        .event {
+            @apply(--layout-vertical);
+            @apply(--layout-flex);
+
+        }
+
+        .name {
+            @apply(--layout-flex);
+            @apply(--layout-flex-3);
+            font-size: xx-large;
+            font-weight: 800;
+        }
+
+        .info {
+            @apply(--layout-horizontal);
+            margin-left: 5px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+
+        }
+
+        .hour {
+            font-weight: 100;
+        }
+
+        .eventLink {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+    <template>
+        <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
+
+            <div class="day">
+                <div class="date">
+                    <span class="number">[[ _dayToPrint(day.value.date) ]]</span>
+                    <span class="month">[[ _monthToPrint(day.value.date) ]]</span>
+                </div>
+                <div class="event">
+                    <template is="dom-repeat" items="{{day.value.events}}" as="event" sort="_sort">
+
+                        <paper-material elevation="1" class="info">
+                            <div class="layout vertical flex-2 center-justified">
+                                <div class="layout horizontal justified"><span
+                                        class="hour">[[ _hour(event.date) ]]</span></div>
+                                <div class="name"><a href="#!events/{{event._id}}" class="eventLink">{{event.name}}</a>
+                                </div>
+                                <div class="layout horizontal justified"><span>{{event.kind}}</span>
+                                    <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
+                                        <span>{{speaker.name}}</span>
+                                    </template>
+                                    <span>{{event.place}}</span>
+                                </div>
+                            </div>
+                        </paper-material>
+
+                    </template>
+                </div>
+            </div>
+        </template>
+
+
+        <!--<a on-click="onClick" href="#speaker">speakers</a>-->
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-events',
+                properties: {
+                    selected: {
+                        notify: true,
+                        type: Number
+                    },
+                    events: {
+                        type: Object,
+                        observer: 'getDays'
+                    },
+                    days: {
+                        type: Array
+                    },
+                    month: {
+                        type: Array
+                    }
+                },
+                onClick: function () {
+                    this.selected = 6;
+                },
+                getDays: function () {
+                    var month = new Array();
+                    month[0] = "Jan";
+                    month[1] = "Feb";
+                    month[2] = "Mar";
+                    month[3] = "Apr";
+                    month[4] = "May";
+                    month[5] = "Jun";
+                    month[6] = "Jul";
+                    month[7] = "Aug";
+                    month[8] = "Sep";
+                    month[9] = "Oct";
+                    month[10] = "Nov";
+                    month[11] = "Dec";
+
+                    var days = {}
+                    for (var i in this.events) {
+                        var day = this.events[i].date.slice(0, 10);
+                        if (!days[day]) {
+                            days[day] = {}
+                            days[day]['events'] = [this.events[i]]
+                            days[day]['date'] = new Date(this.events[i].date)
+                        }
+                        else {
+                            days[day]['events'].push(this.events[i])
+                        }
+
+                    }
+                    this.month = month
+                    this.days = days
+                },
+                _sort: function (a, b) {
+                    return new Date(a.date).getTime() - new Date(b.date).getTime()
+                },
+                _sortDate: function (a, b) {
+                    return a.value.date.getTime() - b.value.date.getTime()
+                },
+                _isDay: function (a, b) {
+                    return a.getDay() == new Date(b).getDay()
+                },
+                _hour: function (a) {
+                    var date = new Date(a)
+                    var hour = date.getHours() + ':' + date.getMinutes()
+                    return hour
+                },
+                _dayToPrint: function (day) {
+                    var day = day.getDate()
+                    if (Number(day) < 10) {
+                        day = '0' + day
+                    }
+                    return day
+                },
+                _monthToPrint: function (day) {
+                    return this.month[day.getMonth()]
+                },
+                _toArray: function (obj) {
+                    var arr = Object.keys(obj).map(function (key) {
+                        return {
+                            name: key,
+                            value: obj[key]
+                        };
+                    });
+                    return arr
+                },
+                _log: function (e) {
+                    console.log(e)
+                    return 'bla'
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>
