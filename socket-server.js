@@ -29,9 +29,6 @@ module.exports = function(httpServer) {
         io.emit('newTweet', data);
     });
 
-    eventBus.on('newsTweet', function(data){
-        io.emit('newsTweet', data);
-    });
 
     eventBus.on('deletedTweet', function(data){
         io.emit('deletedTweet', data);

@@ -171,6 +171,8 @@ var tweets = {
   data : [
     {
       "_id"         : ObjectId(),
+      "tweetId"     : 1234,
+      "textId"      : "1234",
       name          : "icwe16",
       username      : "USI",
       text          : "Dummy",
@@ -178,6 +180,8 @@ var tweets = {
     },
     {
       "_id"         : ObjectId(),
+        "tweetId"   : 12344,
+        "textId"    : "12344",
       name          : "Person1",
       username      : "USI",
       text          : "Dummy",
@@ -185,6 +189,8 @@ var tweets = {
     },
     {
       "_id"         : ObjectId(),
+      "tweetId"     : 11234,
+      "textId"      : "11234",
       name          : "icwe16",
       username      : "USI",
       text          : "Dummy",
@@ -192,6 +198,8 @@ var tweets = {
     },
     {
       "_id"         : ObjectId(),
+      "tweetId"     : 12234,
+      "textId"      : "12234",
       name          : "Person3",
       username      : "USI",
       text          : "Dummy",
@@ -199,6 +207,8 @@ var tweets = {
     },
     {
       "_id"         : ObjectId(),
+      "tweetId"     : 12324,
+      "textId"      : "12324",
       name          : "Person4",
       username      : "USI",
       text          : "Dummy",

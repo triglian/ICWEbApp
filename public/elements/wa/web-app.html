@@ -337,21 +337,27 @@
                         webApp.newsTweet = newsTweetArr;
                     });
 
-                    socket.on('newsTweet', function (data) {
 
-                        webApp.push('tweet',data);
-                        webApp.push('newsTweet',data);
-
-
-                    });
 
                     socket.on('newTweet', function (data) {
+                        if (webApp.info.twitterMain.indexOf('@' + data.username) != -1) {
+                            webApp.push('newsTweet',data);
+                        }
                         webApp.push('tweet',data);
 
                     });
 
                     socket.on('deletedTweet', function(data){
-
+                        webApp.newsTweet.forEach(function(item, index){
+                            if (item.tweetId == data.tweetId && item.textId == data.textId){
+                                webApp.splice('newsTweet', index)
+                            }
+                        });
+                        webApp.tweet.forEach(function(item, index){
+                            if (item.tweetId == data.tweetId && item.textId == data.textId){
+                                webApp.splice('tweet', index)
+                            }
+                        })
                     })
                 },
                 _changeURLClosure: function () {
