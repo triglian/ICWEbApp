@@ -24,7 +24,7 @@ var eventSchema = new mongoose.Schema({
     speakers  : [{ type : ObjectId, ref: "Speaker" }],
     abstract : { type : String, required: true },
     kind     : { type : String, default: "" },
-    pdf      : { type: Array },
+    pdf      : { type: Array, default: [] },
     feedback : { type : [commentSchema], default: [] }
 });
 

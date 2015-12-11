@@ -21,8 +21,7 @@ var program = {
                 email         : "marco@marco.ch"
       },{ref:"Luigi Frunzio"}],
       abstract : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim. Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
-      kind     : "Talk",
-      feedback : []
+      kind     : "Talk"
     },
     {
       name     : "USI Big Brother",
@@ -38,8 +37,7 @@ var program = {
                 email         : "Zuppi@usi.ch"
       }],
       abstract : "Dummy Dummy",
-      kind     : "Talk",
-      feedback : []
+      kind     : "Talk"
     },
     {
       name     : "EZ-Stats",
@@ -55,8 +53,7 @@ var program = {
                 website       : "www.paoloau.ch",
                 twitter       : "@paoloau",
                 picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
-      }],
-      feedback : []
+      }]
     },
     {
       name     : "ASQ-PDF Import",
@@ -77,8 +74,7 @@ var program = {
       ],
       abstract : "Fusce sollicitudin, eros eget porta consequat, enim ipsum pretium ligula, non iaculis ipsum massa in velit. Proin nulla enim, euismod elementum sem id, congue sagittis purus. Praesent sem augue, fringilla eu sodales quis, dapibus vitae nisl.",
       kind     : "Talk",
-      pdf      : ["http://www.cypherpunks.to/~peter/06_random.pdf"],
-      feedback : []
+      pdf      : ["http://www.cypherpunks.to/~peter/06_random.pdf"]
     }
     ,
     {
@@ -94,8 +90,7 @@ var program = {
                 picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png"
       }],
       abstract : "Dummy Dummy",
-      kind     : "Talk",
-      feedback : []
+      kind     : "Talk"
     },
     {
       name     : "Atelier Beats Group Project",
@@ -111,8 +106,7 @@ var program = {
                 email         : "camma@usi.ch"
       }],
       abstract : "Dummy Dummy",
-      kind     : "Talk",
-      feedback : []
+      kind     : "Talk"
     },
     {
       name     : "Atelier Beats Group Project",
@@ -123,8 +117,7 @@ var program = {
                 {ref: "Marco Calzana"}
       ],
       abstract : "Fusce ultricies massa id elit scelerisque rhoncus. Vivamus mollis laoreet nunc ut volutpat. Duis vestibulum eros velit, id scelerisque tortor porta ac. Vivamus sit amet elementum enim. Etiam sed lectus pulvinar, placerat massa at, vehicula tortor. Pellentesque faucibus felis velit, ac vehicula est posuere a. Phasellus a neque at elit condimentum condimentum volutpat eget velit. Etiam commodo nulla lorem, ac varius lacus aliquam ut. Nunc sed massa nec erat pulvinar aliquam. Vivamus ornare dui at pulvinar pellentesque. Aliquam a viverra nulla.",
-      kind     : "Talk",
-      feedback : []
+      kind     : "Talk"
     }
   ]
 };
