@@ -57,8 +57,11 @@
     <script>
         (function () {
             'use strict';
+
             Polymer({
                 is: 'web-sponsors',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     sponsor: {
                         type: Object,

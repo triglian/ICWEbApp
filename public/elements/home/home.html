@@ -169,6 +169,8 @@
 
             Polymer({
                 is: 'web-home',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     toggle: {
                         notify: true,

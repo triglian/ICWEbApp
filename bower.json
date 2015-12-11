@@ -1,7 +1,7 @@
 {
   "name": "icwe16wa",
   "dependencies": {
-    "gold-email-input":"PolymerElements/gold-email-input#^1.0.0",
+    "gold-email-input": "PolymerElements/gold-email-input#^1.0.0",
     "google-map": "GoogleWebComponents/google-map#^1.0.0",
     "google-chart": "GoogleWebComponents/google-chart#^1.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
@@ -31,6 +31,7 @@
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0",
-    "platinum-https-redirect": "PolymerElements/platinum-https-redirect#^1.0.0"
+    "platinum-https-redirect": "PolymerElements/platinum-https-redirect#^1.0.0",
+    "nprogress": "~0.2.0"
   }
 }

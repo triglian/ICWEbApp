@@ -63,10 +63,12 @@
 
     <script>
         (function () {
-            'use strict';
+            'use strict',
 
             Polymer({
                 is: 'web-contact',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     position: {
                         type: String,

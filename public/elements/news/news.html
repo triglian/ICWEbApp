@@ -85,6 +85,8 @@
 
             Polymer({
                 is: 'web-news',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
 
                     twitter: {

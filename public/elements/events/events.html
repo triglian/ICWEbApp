@@ -128,6 +128,8 @@
 
             Polymer({
                 is: 'web-events',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     selected: {
                         notify: true,
