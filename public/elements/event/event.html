@@ -1,0 +1,184 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-button/paper-button.html">
+
+<link rel="import" href="../../components/iron-image/iron-image.html">
+<link rel="import" href="../../elements/event/feedback-form.html">
+<link rel="import" href="../../elements/event/feedback-review.html">
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="web-event">
+    <style>
+        /** {*/
+            /*border: 1px solid black;*/
+        /*}*/
+        .event-content {
+            display: flex;
+        }
+        paper-card {
+            flex: 1 1 auto;
+            margin: 20px;
+        }
+        .card-content {
+            display: flex;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
+        .card-content + .card-content {
+            border-top: 1px solid #e8e8e8;
+        }
+        template + .card-content {
+            border-top: 1px solid #e8e8e8;
+        }
+        .event-info-box {
+            display: flex;
+            flex-flow: row wrap;
+            flex: 1 1 auto;
+            padding-bottom: 10px;
+        }
+        .event-name {
+            flex: 1 1 auto;
+            font-size: 250%;
+            font-weight: bold;
+            padding: 5px 15px 5px 5px;
+        }
+        .event-info-box-small {
+            display: flex;
+            flex-flow: row wrap;
+            flex: 0 1 auto;
+            padding: 5px 5px 5px 0px;
+        }
+        .event-info-box-small > div {
+            display: flex;
+            flex-flow: column wrap;
+            flex: 1 1 auto;
+            padding: 5px 20px 5px 5px;
+        }
+        .event-kind, .event-pdf, .event-date, .event-place {
+            flex: 0 1 auto;
+            font-weight: bold;
+        }
+        .event-abstract {
+            flex: 0 1 auto;
+            padding: 5px;
+        }
+        .event-speaker {
+            display: flex;
+            flex-flow: row wrap;
+            flex: 0 1 auto;
+            text-decoration: none;
+            color: black;
+        }
+        .event-speaker-img {
+            height: 50px;
+            width: 50px;
+            flex: 0 1 auto;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .event-speaker-info {
+            display: flex;
+            flex-flow: column wrap;
+            flex: 0 1 auto;
+        }
+        .event-speaker-name, .event-speaker-org {
+            flex: 0 1 auto;
+        }
+        .event-speaker-org {
+            color: #a5a5a5;
+        }
+        h2{
+            text-decoration: underline;
+        }
+
+    </style>
+    <template>
+        <div class="event-content">
+            <paper-card>
+                <div class="card-content">
+                    <div class="event-info-box">
+                        <div class="event-name">[[event.name]]</div>
+                        <div class="event-info-box-small">
+                            <div>
+                                <div class="event-kind">[[event.kind]]</div>
+                                <div class="event-date">[[_formatDate(event.date)]]</div>
+                            </div>
+                            <div>
+                                <div class="event-place">[[event.place]]</div>
+                                <template id="event-pdf-if" is="dom-if" if="{{event.pdf}}">
+                                    <template is="dom-repeat" items="{{event.pdf}}" as="pdf">
+                                        <a class="event-pdf" href="[[pdf]]">PDF {{index}}</a>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="event-abstract">[[event.abstract]]</div>
+                </div>
+                <template is="dom-repeat" items="[[event.speakers]]" as="speaker">
+                    <div class="card-content">
+                        <a href="/#!speakers/[[speaker._id]]" class="event-speaker">
+                            <iron-image class="event-speaker-img" sizing="contain" src$="[[speaker.picture]]"></iron-image>
+                            <div class="event-speaker-info">
+                                <div class="event-speaker-name">[[speaker.name]]</div>
+                                <div class="event-speaker-org">[[speaker.organisation]]</div>
+                            </div>
+                        </a>
+                    </div>
+                </template>
+
+                <template id="form_template" is="dom-if" if="{{_feedbackIsOpen(event.date)}}">
+                    <div class="card-content">
+                        <feedback-form _id="[[_id]]"></feedback-form>
+                    </div>
+                </template>
+                <div class="card-content">
+                    <h2>Feedbacks Review</h2>
+                    <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
+                </div>
+            </paper-card>
+        </div>
+
+        <iron-ajax
+                auto
+                url="/events/{{_id}}"
+                handle-as="json"
+                last-response="{{event}}">
+            ></iron-ajax>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-event',
+                properties: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    },
+                    event: {
+                        type: Object,
+                        notify: true
+                    }
+                },
+                _formatDate: formatDateSingle,
+                _feedbackIsOpen: function(date) {
+                    var now = Date.now();
+                    var evt = new Date(date).getTime();
+//                    return evt < now && now < evt + 86400000 * 3;
+                    return true;
+                },
+
+            });
+
+
+        })();
+    </script>
+
+</dom-module>

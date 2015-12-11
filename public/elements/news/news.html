@@ -1,0 +1,107 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
+
+<script src="../../js/utils.js"></script>
+
+<dom-module id="web-news">
+    <style>
+        :host{
+            @apply(--layout-horizontal);
+            @apply(--layout-wrap);
+            @apply(--flex-auto);
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        #cards {
+            @apply(--layout-vertical);
+            @apply(--center-justified);
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            justify-items: left;
+        }
+        paper-card {
+            width: 350px;
+            margin-bottom: 16px;
+            margin-left: 16px;
+            margin-right: 16px;
+
+        }
+        .avatar {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+            color: white;
+            line-height: 64px;
+            font-size: 30px;
+            text-align: center;
+        }
+        .fancy .title {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            color: var(--paper-indigo-500);
+        }
+        .card-text{
+            font-size: medium;
+            margin-bottom: 16px;
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+        .hour{
+            color: var(--secondary-text-color);
+        }
+        .tag{
+            font-size: small;
+        }
+        b{
+            color: #0b97c4;
+        }
+
+    </style>
+    <template>
+        <template is="dom-repeat" items="{{twitter}}"  as='twitt' sort="_sort">
+            <paper-card class='block fancy'>
+                <div class="card-content">
+                        <div class="hour">{{_toDateString(twitt.date)}}</div>
+
+                </div>
+                <div class="card-text">
+                    <div>{{twitt.text}}</div>
+                </div>
+            </paper-card>
+        </template>
+
+
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'web-news',
+                properties: {
+
+                    twitter: {
+                        type: Array,
+                        notify: true
+                    }
+                },
+                _sort: sortDatesDescending,
+                _toDateString: function(date){
+
+                    var date = new Date(date);
+                    return date.toDateString() + ' ' + date.toTimeString().slice(0,5)
+                }
+            });
+
+
+        })();
+    </script>
+
+</dom-module>

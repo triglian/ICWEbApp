@@ -1,0 +1,84 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/iron-icons/iron-icons.html">
+<link rel="import" href="../../components/iron-icon/iron-icon.html">
+<link rel="import" href="../../components/iron-input/iron-input.html">
+<link rel="import" href="../../components/iron-form-element-behavior/iron-form-element-behavior.html">
+
+
+<dom-module id="star-rating">
+    <style>
+        .star {
+            cursor: pointer;
+        }
+        .star-rating-label {
+            color: #757575;
+            font-size: 12px;
+            white-space: nowrap;
+            font-family: 'Roboto', 'Noto', sans-serif
+        }
+        input {
+            display: none;
+        }
+    </style>
+    <template>
+        <span class="star-rating-label">[[label]]</span><br>
+        <span class="star-container">
+            <template is="dom-repeat" items="[[stars]]" as="star">
+                <iron-icon id="[[star]]" class="star" icon="[[_starIcon(star, value)]]" on-tap="_updateValue"></iron-icon>
+            </template>
+        </span>
+        <input is="iron-input" id="input" type="text" name$="[[name]]" bind-value="[[value]]">
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'star-rating',
+                properties: {
+                    quantity: {
+                        type: Number,
+                        value: 5
+                    },
+                    stars: {
+                        type: Array,
+                        computed: "_computeStars(quantity)"
+                    },
+                    label: {
+                        type: String,
+                        value: ""
+                    },
+                    value: {
+                        type: String,
+                        value: "0",
+                        notify: true
+                    }
+                },
+                behaviors: [
+                    Polymer.IronFormElementBehavior
+                ],
+                _updateValue: function(evt) {
+                    this.value = (evt.model.index + 1).toString();
+                },
+                _starIcon: function(star, value) {
+                    return (star <= Number(value)) ? "icons:star" : "icons:star-border";
+                },
+                _computeStars: function(quantity) {
+                    var stars = [];
+
+                    for(var i = 1; i <= quantity; i++) {
+                        stars.push(i);
+                    }
+
+                    return stars;
+                }
+
+            });
+
+
+        })();
+    </script>
+
+</dom-module>
