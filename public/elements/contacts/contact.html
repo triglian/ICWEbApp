@@ -47,7 +47,7 @@
         <paper-card>
             <div class="card-content">
                 <div class="horizontal-section">
-                    <form is="iron-form" id="formPost" method="post" action="/">
+                    <form is="iron-form" id="formPost" method="post" action="/contacts">
                         <paper-input name="name" label="Name" required></paper-input>
                         <paper-input name="name" label="Email" required></paper-input>
                         <paper-textarea label="Text" name="comment"></paper-textarea>
@@ -80,6 +80,9 @@
                 },
                 log:function(a){
                     console.log(a)
+                },
+                _submitForm: function(evt){
+                    this.$.formPost.submit();
                 }
             })
             ;
