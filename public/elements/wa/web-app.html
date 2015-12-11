@@ -150,7 +150,7 @@
         }
     </style>
     <template>
-        <paper-drawer-panel left-drawer drawer-toggle-attribute="left-drawer-toggle" force-narrow="true">
+        <paper-drawer-panel left-drawer drawer-toggle-attribute="left-drawer-toggle" force-narrow="true" style$="display: {{visibility}}">
             <paper-scroll-header-panel fixed drawer id="drawerLeft">
                 <paper-toolbar>
                     <div>MENU</div>
@@ -287,9 +287,12 @@
 
             Polymer({
                 is: 'web-app',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 ready: function () {
                     window.webApp = this;
                     this.readyFlag = true
+
                 },
                 properties: {
                     selected: {
@@ -320,6 +323,11 @@
                     newsTweet: {
                         type: Array,
                         notify: true
+                    },
+                    visibility: {
+                        type: String,
+                        notify:true,
+                        value: 'none'
                     }
                 },
                 afterInfoSetSocket: function () {

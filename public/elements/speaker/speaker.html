@@ -118,6 +118,8 @@
 
             Polymer({
                 is: 'web-speaker',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     _id: {
                         type: String,

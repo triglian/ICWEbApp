@@ -43,11 +43,11 @@
         }
 
     </style>
-    <template>
+    <template items="{{info-event}}" as="info">
         <paper-card>
             <div class="card-content">
                 <div class="horizontal-section">
-                    <form is="iron-form" id="formPost" method="post" action="/contacts">
+                    <form is="iron-form" id="formPost" method="post" action="/">
                         <paper-input name="name" label="Name" required></paper-input>
                         <paper-input name="name" label="Email" required></paper-input>
                         <paper-textarea label="Text" name="comment"></paper-textarea>
@@ -57,35 +57,29 @@
             </div>
         </paper-card>
         <paper-card>
-            <google-map latitude="{{_get(position, 0)}}" longitude="{{_get(position, 1)}}" min-zoom="18" max-zoom="40"></google-map>
+            <google-map latitude="46.010852" longitude="8.958419" min-zoom="18" max-zoom="40"></google-map>
         </paper-card>
+        <iron-ajax
+                auto
+                url="/info/"
+                handle-as="json"
+                last-response="{{info-event}}">
+            ></iron-ajax>
     </template>
 
     <script>
         (function () {
-            'use strict',
+            'use strict';
 
             Polymer({
                 is: 'web-contact',
                 created: webComponentLoading.elementInit,
                 attached: webComponentLoading.elementAttached,
                 properties: {
-                    position: {
-                        type: String,
-                        value: "[0, 0]",
-                        notify: true
-                    }
-                },
-                _get:function(arr,ind){
-                    arr = JSON.parse(arr);
-                    return arr[ind]
-                },
-                log:function(a){
-                    console.log(a)
-                },
-                _submitForm: function(evt){
-                    this.$.formPost.submit();
+
                 }
+
+
             })
             ;
 

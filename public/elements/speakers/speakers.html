@@ -120,6 +120,8 @@
 
             Polymer({
                 is: 'web-speakers',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     selected: {
                         notify: true,
