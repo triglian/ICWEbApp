@@ -117,6 +117,10 @@
             Polymer({
                 is: 'feedback-review',
                 properties: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    },
                     feedbacks: {
                         type: Array,
                         notify: true

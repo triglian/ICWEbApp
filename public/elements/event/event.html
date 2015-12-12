@@ -136,10 +136,10 @@
                         <feedback-form _id="[[_id]]"></feedback-form>
                     </div>
                 </template>
-                <div class="card-content">
-                    <h2>Feedbacks Review</h2>
-                    <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
-                </div>
+                <!--<div class="card-content">-->
+                    <!--<h2>Feedbacks Review</h2>-->
+                    <!--<feedback-review feedbacks="[[event.feedback]]"></feedback-review>-->
+                <!--</div>-->
             </paper-card>
         </div>
 
@@ -175,8 +175,7 @@
                     var evt = new Date(date).getTime();
 //                    return evt < now && now < evt + 86400000 * 3;
                     return true;
-                },
-
+                }
             });
 
 

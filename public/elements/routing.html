@@ -47,6 +47,11 @@
             webApp.$.event._id = data.params.id;
             webApp.selected = 7;
         });
+
+        page('/events/:id/feedback', nothingDoNext, function(data) {
+            webApp.$.feedback._id = data.params.id;
+            webApp.selected = 8;
+        });
         page('/contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
 //            page.redirect('/#!contact');
@@ -85,6 +90,12 @@
             webApp.$.event._id = data.params.id;
             webApp.selected = 7;
         });
+
+        page('events/:id/feedback', nothingDoNext, function(data) {
+            webApp.$.feedback._id = data.params.id;
+            webApp.selected = 8;
+        });
+
         page('contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
         });
