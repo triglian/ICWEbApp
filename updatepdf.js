@@ -5,6 +5,7 @@
 'use strict';
 
 var config = require('./config');
+var utils = require('./models/functions');
 
 //load model
 var mongoose = require('mongoose');
@@ -25,6 +26,7 @@ var updateModel = function(done){
     var object = data[i];
     delete object._id;
 
+
     var callback = function() {
         ++i;
         if(i == data.length) {
@@ -33,11 +35,15 @@ var updateModel = function(done){
         else {
             var object = data[i];
             delete object._id;
-            models["Event"].update({ name: object.name }, {pdf: object.pdf || []}, callback);
+            utils.cachePdfs(object, recall);
         }
     };
+    var recall = function(event) {
+        models["Event"].update({ name: event.name }, {pdf: event.pdf || []}, callback)
+    };
 
-    models["Event"].update({ name: object.name }, {pdf: object.pdf || []}, callback)
+    utils.cachePdfs(object, recall);
+
 };
 
 /**
