@@ -34,14 +34,14 @@ function checkComment(obj) {
 
 //routes
 router.get('/', function(req, res, next) {
-    Event.find({}, fieldsFilter).populate("speakers", "picture name organisation").exec(function (err, talks) {
+    Event.find({}, fieldsFilter).populate("speakers", "picture name organisation linkName").exec(function (err, talks) {
         if (err) return next(err);
         res.json(talks);
     });
 });
 
 router.get('/:eventid', function(req, res, next) {
-    Event.findById(req.params.eventid, fieldsFilter).populate("speakers", "picture name organisation").exec(function(err, talk) {
+    Event.findById(req.params.eventid, fieldsFilter).populate("speakers", "picture name organisation linkName").exec(function(err, talk) {
         if (err) return next(err);
         if (!talk) {
             res.status(404);

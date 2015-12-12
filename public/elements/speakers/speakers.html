@@ -99,11 +99,11 @@
 
                 </div>
                 <div class="info">
-                    <h3 class="name"><a href="/#!speakers/[[speaker._id]]">[[speaker.name]]</a></h3>
+                    <h3 class="name"><a href="/#!speakers/[[speaker.linkName]]">[[speaker.name]]</a></h3>
 
                     <div class="talks">
                         <template is="dom-repeat" items="{{speaker.events}}" as="event">
-                            <a class="event" href="/#!events/[[event._id]]">[[event.name]]</a>
+                            <a class="event" href="/#!events/[[event.linkName]]">[[event.name]]</a>
                         </template>
                     </div>
                     <div class="end">

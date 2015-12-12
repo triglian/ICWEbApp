@@ -129,7 +129,6 @@
     <template>
         <span id="title">[[info.title]]</span>
         <span id="completeName">[[info.name]]</span>
-        <paper-toggle-button active="{{toggle}}"></paper-toggle-button>
         <template is="dom-if" if="{{toggle}}">
             <web-events events="{{eventsToVisualize}}"></web-events>
         </template>
@@ -195,14 +194,19 @@
                 },
                 _sort: sortDatesDescending,
                 _visualize: function () {
-                    var arr = []
-                    var date = "2015-11-25";
+                    var arr = [];
+                    var date = new Date();
+                    date = date.toJSON().slice(0, 10)
                     for (var i in this.events) {
                         if (this.events[i].date.slice(0, 10) == date) {
                             arr.push(this.events[i])
                         }
                     }
+                    if (arr.length != 0){
+                        this.toggle = true;
+                    }
                     this.eventsToVisualize = arr
+
                 },
                 _index: function (value) {
                     return value < 3;

@@ -26,11 +26,11 @@ var program = {
     },
     {
       name     : "USI Big Brother",
-      date     : new Date('Wed Nov 25 2015 08:40:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 25 2015 08:50:00 GMT+0100 (CET)'),
+      date     : new Date(),
+      endDate  : new Date(),
       place    : "USI auditorium",
         speakers  : [{
-                name          : "Francesco Zuppichini",
+                name          : "Francesco Zoppichino",
                 organisation  : "USI",
                 bio           : "In lacus est, lobortis nec suscipit a, imperdiet nec libero. Nulla a nibh tincidunt, placerat justo nec, maximus ante. Cras eget mi augue. Vestibulum blandit interdum velit, vitae egestas nisl euismod quis. In vitae velit sit amet odio suscipit finibus sit amet quis urna. Aenean feugiat erat quis varius cursus",
                 website       : "www.fz.ch",
