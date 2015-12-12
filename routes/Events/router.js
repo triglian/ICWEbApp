@@ -151,7 +151,7 @@ new CronJob('*/10 * * * * *', function() {
                 var speaker = evt.speakers
                 for(var i = 0 ; i < speaker.length;i++) {
                     if(evt.sent == "no") {
-                        sendMail(speaker[i].email, evt.name)
+                        sendMail(speaker[i].email, [evt.name,evt.id])
                         evt.sent = "yes"
                         //console.log('sending message')
                     }else{
@@ -176,16 +176,16 @@ var transporter = nodemailer.createTransport({
 function sendMail(receiver,event) {
     var mailOptions = {
         from: 'icwe16cform@gmail.com', // sender address
-        to: ''+receiver+'', // list of receivers
-        subject: 'Your Feedback for '+ event +' is ready', // Subject line
-        html: '<b>You can find your feedback at</b>' // html body
+        to: 'icwe16cform@gmail.com', // list of receivers
+        subject: 'Your Feedback for '+ event[0] +' is ready', // Subject line
+        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b>' // html body
     };
-    //
-    //transporter.sendMail(mailOptions, function (error, info) {
-    //    if (error) {
-    //        return console.log(error);
-    //    }
-    //});
+    console.log(mailOptions)
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+    });
 }
 
 

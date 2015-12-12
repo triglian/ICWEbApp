@@ -10,12 +10,24 @@
 <link rel="import" href="../../components/google-chart/google-chart.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
 
 
 <script src="../../js/utils.js"></script>
 
 <dom-module id="feedback-review">
     <style>
+        paper-card {
+            flex: 0 0 auto;
+            margin: 0px;
+            width: 100% !important;
+            padding: 40px;
+        }
+        .card-content {
+            display: flex;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
         .container {
             @apply(--layout-horizontal);
         }
@@ -27,6 +39,7 @@
         }
         .flex3child {
             @apply(--layout-flex-3);
+            margin-top: 10px;
         }
         code {
             color: #007000;
@@ -64,8 +77,17 @@
             border: 1px solid #f4f4f4;
             padding: 10px;
         }
+        .title{
+            -webkit-font-smoothing: antialiased;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 40px;
+        }
     </style>
     <template>
+        <paper-card>
+            <span class="title">Feedbacks Review</span>
         <div class="container">
             <div class="flex3child">
                 <h3>Ratings Chart</h3>
@@ -83,7 +105,7 @@
                 </google-chart>
             </div>
                 <div class="flex3child">
-                    <h3>Ratings Details</h3>
+                    <span>Ratings Details</span>
                     <div class="comment2">
                         <p>Total number of feedbacks:</p>
                         <div>Number of 5 stars: {{No5}}</div>
@@ -108,12 +130,18 @@
                         <p class="comment">{{feeds.comment}}</p>
                     </div>
             </template>
+        </paper-card>
+        <iron-ajax
+                auto
+                url="/events/{{_id}}"
+                handle-as="json"
+                last-response="{{event}}">
+            ></iron-ajax>
     </template>
 
     <script>
         (function () {
             'use strict';
-
             Polymer({
                 is: 'feedback-review',
                 properties: {
@@ -121,9 +149,13 @@
                         type: String,
                         notify: true
                     },
+                    event: {
+                        type: Object,
+                        notify: true
+                    },
                     feedbacks: {
                         type: Array,
-                        notify: true
+                        computed:'_arrToOB(event)'
                     },
                     defi:{
                         type : Array,
@@ -189,6 +221,9 @@
                         arrToReturn[j].push(occurencies[j])
                     }
                     return arrToReturn;
+                },
+                _arrToOB:function(t){
+                    return t.feedback
                 },
                 _computeStarsArrNoSel: function(arr){
                     var occurencies = [0,0,0,0,0];
