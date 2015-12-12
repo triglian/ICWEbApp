@@ -13,6 +13,7 @@ var http = require('http');
 var fs = require('fs');
 var stream = require('stream');
 var mongoose = require('mongoose');
+var utils = require('./functions');
 var pdfPath = "pdfs/";
 var commentSchema = require('./Comment');
 var ObjectId = mongoose.Schema.Types.ObjectId;
@@ -25,11 +26,14 @@ var eventSchema = new mongoose.Schema({
     abstract : { type : String, required: true },
     kind     : { type : String, default: "" },
     pdf      : { type: Array, default: [] },
-    feedback : { type : [commentSchema], default: [] }
+    feedback : { type : [commentSchema], default: [] },
+    linkName : { type : String }
 });
 
 
 eventSchema.pre('save', function (next) {
+    this.linkName = utils.makeLinkName(this.name);
+
     if(this.pdf && this.pdf.length > 0) {
         var pdfs = this.pdf;
 
