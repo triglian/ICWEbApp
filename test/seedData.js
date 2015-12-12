@@ -55,7 +55,8 @@ var program = {
                 bio           : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim. Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
                 website       : "www.paoloau.ch",
                 twitter       : "@paoloau",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png",
+                email         : "au@usi.ch"
       }]
     },
     {
@@ -92,7 +93,8 @@ var program = {
                 bio           : "Dummy",
                 website       : "www.luigifrunzio.ch",
                 twitter       : "@luigifrunzio",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png"
+                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png",
+                email         : "Zau@usi.ch"
       }],
       abstract : "Dummy Dummy",
       kind     : "Talk"

@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 //var ObjectId = mongoose.Types.ObjectId;
 var Event = mongoose.model('Event');
 var Comment = mongoose.model('Comment');
+var CronJob = require('cron').CronJob;
+var Speaker = mongoose.model('Speaker');
 
 
 var config = require("../../config");
@@ -138,9 +140,53 @@ router.post('/:eventid/feedback', function(req, res, next){
             });
         });
     })
-
-
 });
+
+new CronJob('*/10 * * * * *', function() {
+
+    Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
+        var actualDate = new Date();
+        event.forEach(function(evt) {
+            if(+actualDate >= +evt.date){
+                var speaker = evt.speakers
+                for(var i = 0 ; i < speaker.length;i++) {
+                    if(evt.sent == "no") {
+                        sendMail(speaker[i].email, evt.name)
+                        evt.sent = "yes"
+                        //console.log('sending message')
+                    }else{
+                        //console.log("already sent")
+                    }
+                }
+            }
+        })
+    })
+}, null, true);
+
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'icwe16cform@gmail.com',
+        pass: 'atelierbeats'
+    }
+});
+
+function sendMail(receiver,event) {
+    var mailOptions = {
+        from: 'icwe16cform@gmail.com', // sender address
+        to: ''+receiver+'', // list of receivers
+        subject: 'Your Feedback for '+ event +' is ready', // Subject line
+        html: '<b>You can find your feedback at</b>' // html body
+    };
+    //
+    //transporter.sendMail(mailOptions, function (error, info) {
+    //    if (error) {
+    //        return console.log(error);
+    //    }
+    //});
+}
 
 
 

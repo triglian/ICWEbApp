@@ -27,7 +27,6 @@ function sendMail(obj) {
     var info = obj.name.split(',')
     var email =  info[1]
     var name = info[0]
-    console.log(email)
     var mailOptions = {
         from: 'icwe16cform@gmail.com', // sender address
         to: 'icwe16cform@gmail.com', // list of receivers

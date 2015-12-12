@@ -9,12 +9,12 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var speakerImagePath = "imgs/speakers/";
 
 var speakerSchema = new mongoose.Schema({
-    name            : { type : String, default: "" },
+    name            : { type : String, required: true },
     organisation    : { type : String, default: "" },
-    bio             : { type : String, default: "" },
+    bio             : { type : String, required: true },
     picture         : { type : String, default: "" },
     website         : { type : String, default: "" },
-    email           : { type : String, default: "" },
+    email           : { type : String, required: true },
     twitter         : { type : String, default: "" },
     events          : [{ type : ObjectId, ref: "Event" }],
     linkName : { type : String }
