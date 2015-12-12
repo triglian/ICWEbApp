@@ -23,11 +23,8 @@ var eventSchema = new mongoose.Schema({
     kind     : { type : String, default: "" },
     pdf      : { type: Array, default: [] },
     feedback : { type : [commentSchema], default: [] },
-<<<<<<< Updated upstream
-    linkName : { type : String }
-=======
+    linkName : { type : String },
     sent     : { type: String, default:'yes'}
->>>>>>> Stashed changes
 });
 
 
