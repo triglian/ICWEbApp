@@ -12,7 +12,7 @@ var speakerSchema = new mongoose.Schema({
     name            : { type : String, required: true },
     organisation    : { type : String, default: "" },
     bio             : { type : String, required: true },
-    picture         : { type : String, default: "" },
+    picture         : { type : String, default: "imgs/speakers/default_profile_1_normal.png" },
     website         : { type : String, default: "" },
     email           : { type : String, required: true },
     twitter         : { type : String, default: "" },
