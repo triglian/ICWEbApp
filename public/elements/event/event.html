@@ -117,7 +117,9 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="event-abstract">[[event.abstract]]</div>
+                    <template is="dom-repeat" items="[[abb(event.abstract)]]" as="ab">
+                        <div class="event-abstract">[[ab]]</div>
+                    </template>
                 </div>
                 <template is="dom-repeat" items="[[event.speakers]]" as="speaker">
                     <div class="card-content">
@@ -167,6 +169,10 @@
                     event: {
                         type: Object,
                         notify: true
+                    },
+                    ab : {
+                        type: Array
+
                     }
                 },
                 _formatDate: formatDateSingle,
@@ -175,6 +181,10 @@
                     var evt = new Date(date).getTime();
 //                    return evt < now && now < evt + 86400000 * 3;
                     return true;
+                },
+                abb: function(a){
+                    var content = a.split('\n')
+                    return content
                 }
             });
 

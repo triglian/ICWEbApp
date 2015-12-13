@@ -85,9 +85,11 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="speaker-bio">
-                        [[speaker.bio]]
-                    </div>
+                    <template is="dom-repeat" items="[[abb(speaker.bio)]]" as="bio">
+                        <div class="speaker-bio">
+                            [[bio]]
+                        </div>
+                    </template>
                 </div>
                 <div class="card-content">
                     <ul>
@@ -128,11 +130,19 @@
                     speaker: {
                         type: Object,
                         notify: true
+                    },
+                    bio: {
+                        type: Array
                     }
                 },
                 _formatDate: formatDateSingle,
                 _parseTwitter: function(t) {
                     return t ? t.slice(1, t.length) : "";
+                },
+                abb: function(a){
+                    console.log(a)
+                    var content = a.split('\n')
+                    return content
                 }
 
             });
