@@ -5,7 +5,7 @@
 <link rel="import" href="../../components/iron-form/iron-form.html">
 <link rel="import" href="../../components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
-
+<link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../../components/re-captcha/re-captcha.html">
 
 <script src="../../js/utils.js"></script>
@@ -44,6 +44,9 @@
                 },
                 _submitForm: function(evt){
                     this.$.form.submit();
+                    var old_item = localStorage.getItem('icwe-web-app')
+                    var new_item = JSON.stringify(this._id)
+                    localStorage.setItem('icwe-web-app', old_item+','+new_item);
                 },
                 _computeAction: function(id){
                     return "/events/"+id+'/feedback';
