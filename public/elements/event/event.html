@@ -8,8 +8,6 @@
 <link rel="import" href="../../elements/event/feedback-review.html">
 <link rel="import" href="../../elements/event/feedback-update.html">
 
-<script src="../../js/utils.js"></script>
-
 <dom-module id="web-event">
     <style>
         /** {*/
@@ -178,10 +176,6 @@
                     event: {
                         type: Object,
                         notify: true
-                    },
-                    ab : {
-                        type: Array
-
                     }
                 },
                 _formatDate: formatDateSingle,
@@ -195,8 +189,8 @@
 //                            }
 //                        }
 //                    }
-                    //                    return evt < now && now < evt + 86400000 * 3;
-                    return true;
+                    return evt < now && now < evt + 86400000 * 3;
+//                    return true;
                 },
 //                _hasFeedback: function(id) {
 //                    var items0 = localStorage.getItem("icwe-web-app")

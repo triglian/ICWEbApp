@@ -9,8 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-      date     : new Date('Wed Nov 25 2015 08:30:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 25 2015 08:40:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
       speakers  : [{
                 name          : "Marco Calzana",
@@ -25,8 +25,8 @@ var program = {
     },
     {
       name     : "USI Big Brother",
-      date     : new Date(),
-      endDate  : new Date(),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Francesco Zoppichino",
@@ -42,8 +42,8 @@ var program = {
     },
     {
       name     : "EZ-Stats",
-      date     : new Date('Wed Nov 25 2015 08:50:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 25 2015 09:00:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
       abstract : "Curabitur eu odio nec massa elementum ultrices egestas a sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec et ipsum ut nisl efficitur congue.\n Praesent elementum, ligula quis euismod maximus, tellus ipsum dignissim lacus, at tincidunt erat diam quis tortor.",
       kind     : "Talk",
@@ -60,8 +60,8 @@ var program = {
     },
     {
       name     : "ASQ-PDF Import",
-      date     : new Date('Thurs Nov 26 2015 08:10:10 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 26 2015 09:00:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Alexander North",
@@ -83,8 +83,8 @@ var program = {
     ,
     {
       name     : "ICWE Mobile Web App",
-      date     : new Date('Thurs Nov 26 2015 09:10:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 26 2015 10:00:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Luigi Frunzio",
@@ -100,8 +100,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-      date     : new Date('Fri Nov 28 2015 10:10:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 28 2015 10:20:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Davide Cammarata",
@@ -117,8 +117,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-      date     : new Date('Fri Nov 29 2015 10:10:00 GMT+0100 (CET)'),
-      endDate  : new Date('Wed Nov 29 2015 10:50:00 GMT+0100 (CET)'),
+        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        endDate  : new Date(Date.now() + 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
       place    : "USI auditorium",
         speakers  : [{
                 ref: "Davide Cammarata"},

@@ -81,8 +81,9 @@ router.post('/:eventid/feedback', function(req, res, next){
         res.status(400);
         res.json({
             statusCode: 400,
-            message: "Bad request"
+            message: "Bad request: invalid comment."
         });
+        return;
     }
 
     comment = new Comment(comment);
@@ -90,50 +91,52 @@ router.post('/:eventid/feedback', function(req, res, next){
     Event.findById(id, fieldsFilter, function(err, event) {
         if (err) return next(err);
 
-        //var now = Date.now();
-        //var evt = new Date(event.date).getTime();
-        //var allowed = evt < now && now < evt + 86400000 * 3;
-        //if(!allowed) {
-        //    res.status(400);
-        //    res.json({
-        //        statusCode: 400,
-        //        message: "Bad request"
-        //    });
-        //    return;
-        //}
+        var now = Date.now();
+        var evt = new Date(event.date).getTime();
+        var allowed = evt < now && now < evt + 86400000 * 3;
+        if(!allowed) {
+            res.status(400);
+            res.json({
+                statusCode: 400,
+                message: "Bad request: comments are not allowed at this time."
+            });
+            return;
+        }
 
-        //var i = 0;
-        //var found = false;
-        //while(i < event.feedback.length && !found) {
-        //    if(event.feedback[i] === comment.email) {
-        //        found = true;
-        //    }
-        //    ++i;
-        //}
-        //if(found) {
-        //    res.status(400);
-        //    res.json({
-        //        statusCode: 400,
-        //        message: "Bad request"
-        //    });
-        //    return;
-        //}
+        var i = 0;
+        var found = false;
+        while(i < event.feedback.length && !found) {
+            if(event.feedback[i].email === comment.email) {
+                found = true;
+            }
+            else ++i;
+        }
+        if(found) {
+            event.feedback[i] = comment;
+        }
+        else {
+            event.feedback.push(comment);
+        }
 
-        event.feedback.push(comment);
-
-        console.log("Save");
         Event.findByIdAndUpdate({_id: event._id }, { feedback: event.feedback }, function(err, changed) {
             if (err) return next(err);
             if(!changed) {
-                res.status(400);
+                res.status(404);
                 res.json({
-                    statusCode: 400,
-                    message: "Bad request"
+                    statusCode: 404,
+                    message: "Event not found."
                 });
                 return;
             }
 
             res.status(201);
+            if(found) {
+                res.json({
+                    statusCode: 200,
+                    message: "Ok: Updated"
+                });
+                return;
+            }
             res.json({
                 statusCode: 201,
                 message: "Created"

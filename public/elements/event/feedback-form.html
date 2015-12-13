@@ -21,9 +21,9 @@
     <template>
 
         <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
-            <star-rating label="Rating" name="stars"></star-rating>
-            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email"></gold-email-input>
-            <paper-textarea label="Comments" name="comment"></paper-textarea>
+            <star-rating label="Rating" name="stars" id="rating"></star-rating>
+            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email" id="email"></gold-email-input>
+            <paper-textarea label="Comments" name="comment" id="comment"></paper-textarea>
                 <!--<re-captcha sitekey="6LeR4xITAAAAAMXbydtT0bTJi_PqkIWrfUxivz8F" theme="dark"></re-captcha>-->
             <paper-button raised on-click="_submitForm">Submit</paper-button>
         </form>
@@ -43,9 +43,20 @@
                     }
                 },
                 _submitForm: function(evt){
-                    var form = this.$.form;
-                    console.log(form);
-                    var data = JSON.stringify({});
+                    evt.preventDefault();
+                    var rating = this.$.rating.value;
+                    var email = this.$.email.value;
+                    var comment = this.$.comment.value;
+                    console.log(rating);
+                    console.log(email);
+                    console.log(comment);
+                    var data = { email: email, comment: comment, stars: rating };
+                    $.post(this._computeAction(this._id), data, function(res){
+                        webApp.$.toast.text = res.message;
+                        webApp.$.toast.show();
+                    });
+
+
 
 
 //                    this.$.form.submit();
