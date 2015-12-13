@@ -81,7 +81,7 @@ router.post('/:eventid/feedback', function(req, res, next){
         res.status(400);
         res.json({
             statusCode: 400,
-            message: "Bad request: invalid comment."
+            message: "Invalid comment."
         });
         return;
     }
@@ -98,7 +98,7 @@ router.post('/:eventid/feedback', function(req, res, next){
             res.status(400);
             res.json({
                 statusCode: 400,
-                message: "Bad request: comments are not allowed at this time."
+                message: "Comments are not allowed at this time."
             });
             return;
         }
@@ -133,13 +133,13 @@ router.post('/:eventid/feedback', function(req, res, next){
             if(found) {
                 res.json({
                     statusCode: 200,
-                    message: "Ok: Updated"
+                    message: "Feedback updated."
                 });
                 return;
             }
             res.json({
                 statusCode: 201,
-                message: "Created"
+                message: "Feedback submitted."
             });
         });
     })

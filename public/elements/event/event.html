@@ -111,7 +111,7 @@
                                 <div class="event-place">[[event.place]]</div>
                                 <template id="event-pdf-if" is="dom-if" if="{{event.pdf}}">
                                     <template is="dom-repeat" items="{{event.pdf}}" as="pdf">
-                                        <a class="event-pdf" href="[[pdf]]">PDF {{index}}</a>
+                                        <a class="event-pdf" href="[[pdf]]">PDF {{_nicerIndex(index)}}</a>
                                     </template>
                                 </template>
                             </div>
@@ -204,7 +204,10 @@
 //                        }
 //                    }
 //                },
-                _breakLines: breakLines
+                _breakLines: breakLines,
+                _nicerIndex: function(i) {
+                    return this.event.pdf.length > 1 ? Number(i) + 1 : "";
+                }
             });
 
 
