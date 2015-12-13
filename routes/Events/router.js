@@ -141,21 +141,17 @@ router.post('/:eventid/feedback', function(req, res, next){
         });
     })
 });
+var idSent = []
 
-new CronJob('*/60 * * * * *', function() {
-
+new CronJob('*/10 * * * * *', function() {
     Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
         var actualDate = new Date();
         event.forEach(function(evt) {
-            if(+actualDate >= +evt.date){
+            if(idSent.indexOf(evt.id) == -1){
                 var speaker = evt.speakers
                 for(var i = 0 ; i < speaker.length;i++) {
-                    if(evt.sent == "no") {
-                        sendMail(speaker[i].email, [evt.name,evt.id])
-                        evt.sent = "yes"
-                        //console.log('sending message')
-                    }else{
-                        //console.log("already sent")
+                    if(+actualDate >= +evt.date) {
+                        idSent.push(evt.id)
                     }
                 }
             }
@@ -175,12 +171,11 @@ var transporter = nodemailer.createTransport({
 
 function sendMail(receiver,event) {
     var mailOptions = {
-        from: 'icwe16cform@gmail.com', // sender address
-        to: 'icwe16cform@gmail.com', // list of receivers
-        subject: 'Your Feedback for '+ event[0] +' is ready', // Subject line
-        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b>' // html body
+        from: 'icwe16cform@gmail.com',
+        to: 'icwe16cform@gmail.com',
+        subject: 'Your Feedback for '+ event[0] +' is ready',
+        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b>'
     };
-    console.log(mailOptions)
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             return console.log(error);
