@@ -3,3 +3,5 @@ node_modules/
 public/components/
 public/views/
 *.pdf
+
+npm-debug.log
