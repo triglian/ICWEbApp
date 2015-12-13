@@ -30,7 +30,11 @@ var updateModel = function(done){
     var callback = function() {
         ++i;
         if(i == data.length) {
-            done();
+            i = 0;
+            data = seedData[0].data;
+            var object = data[i];
+            delete object._id;
+            updateSpeakers();
         }
         else {
             var object = data[i];
@@ -39,7 +43,36 @@ var updateModel = function(done){
         }
     };
     var recall = function(event) {
-        models["Event"].update({ name: event.name }, {pdf: event.pdf || []}, callback)
+        models["Event"].update({ name: event.name },
+            {
+                pdf: event.pdf || [],
+                date: event.date,
+                place: event.place,
+                abstract: event.abstract,
+                kind: event.kind
+            },
+            callback)
+    };
+
+
+    var updateSpeakers = function() {
+        ++i;
+        if(i == data.length) {
+            done();
+        }
+        else {
+            var object = data[i];
+            delete object._id;
+            models["Speaker"].update({name: object.name},
+                {
+                    organisation: object.organisation,
+                    bio: object.bio,
+                    website: object.website,
+                    email: object.email,
+                    twitter: object.twitter
+                },
+                updateSpeakers);
+        }
     };
 
     utils.cachePdfs(object, recall);
