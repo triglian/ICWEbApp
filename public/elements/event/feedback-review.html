@@ -47,6 +47,7 @@
         google-chart {
             height: 300px;
             width: 400px;
+            margin-left: -50px;
         }
         .card-content {
             display: flex;
@@ -84,6 +85,42 @@
             letter-spacing: -.01em;
             line-height: 40px;
         }
+        @media screen and (max-width: 780px) {
+            .flexchild {
+            }
+
+            .flex2child {
+            }
+
+            .flex3child {
+                margin-top: 10px;
+
+            }
+
+            paper-card {
+                flex: 0 0 auto;
+                margin: 0px;
+                width: 100% !important;
+                padding: 40px;
+            }
+
+            .card-content {
+
+                padding: 5px;
+            }
+
+            .container {
+            }
+
+            #details1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 780px) {
+            #details2 {
+                display: none !important;
+            }
+        }
     </style>
     <template>
         <paper-card>
@@ -104,8 +141,8 @@
                             rows='{{defi2}}'>
                 </google-chart>
             </div>
-                <div class="flex3child">
-                    <span>Ratings Details</span>
+                <div id="details1" class="flex3child">
+                    <h3>Ratings Details</h3>
                     <div class="comment2">
                         <p>Total number of feedbacks:</p>
                         <div>Number of 5 stars: {{No5}}</div>
@@ -118,6 +155,22 @@
                         <div>Average words per feedback: {{avgW}}</div>
 
                     </div>
+                </div>
+
+            </div>
+            <div id="details2" class="flex3child">
+                <h3>Ratings Details</h3>
+                <div class="comment2">
+                    <p>Total number of feedbacks:</p>
+                    <div>Number of 5 stars: {{No5}}</div>
+                    <div>Number of 4 stars: {{No4}}</div>
+                    <div>Number of 3 stars: {{No3}}</div>
+                    <div>Number of 2 stars: {{No2}}</div>
+                    <div>Number of 1 stars: {{No1}}</div>
+                    <div>Not set: {{No0}}</div>
+                    <br>
+                    <div>Average words per feedback: {{avgW}}</div>
+
                 </div>
         </div>
 

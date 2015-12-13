@@ -142,7 +142,7 @@ router.post('/:eventid/feedback', function(req, res, next){
     })
 });
 
-new CronJob('*/10 * * * * *', function() {
+new CronJob('*/60 * * * * *', function() {
 
     Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
         var actualDate = new Date();
