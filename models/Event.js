@@ -16,7 +16,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var eventSchema = new mongoose.Schema({
     name     : { type : String, required: true },
-    date     : { type : Date, default: Date.now() },
+    date     : { type : Date, required: true },
+    endDate     : { type : Date, required: true },
     place    : { type : String, required: true },
     speakers  : [{ type : ObjectId, ref: "Speaker" }],
     abstract : { type : String, required: true },
