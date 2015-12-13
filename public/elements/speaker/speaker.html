@@ -85,11 +85,11 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <template is="dom-repeat" items="[[abb(speaker.bio)]]" as="bio">
-                        <div class="speaker-bio">
-                            [[bio]]
-                        </div>
-                    </template>
+                    <div class="speaker-bio">
+                        <template is="dom-repeat" items="[[_breakLines(speaker.bio)]]" as="line">
+                                [[line]]<br>
+                        </template>
+                    </div>
                 </div>
                 <div class="card-content">
                     <ul>
@@ -139,11 +139,7 @@
                 _parseTwitter: function(t) {
                     return t ? t.slice(1, t.length) : "";
                 },
-                abb: function(a){
-                    console.log(a)
-                    var content = a.split('\n')
-                    return content
-                }
+                _breakLines: breakLines
 
             });
 

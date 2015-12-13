@@ -118,9 +118,11 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <template is="dom-repeat" items="[[abb(event.abstract)]]" as="ab">
-                        <div class="event-abstract">[[ab]]</div>
-                    </template>
+                    <div class="event-abstract">
+                        <template is="dom-repeat" items="[[_breakLines(event.abstract)]]" as="line">
+                            [[line]]<br>
+                        </template>
+                    </div>
                 </div>
                 <template is="dom-repeat" items="[[event.speakers]]" as="speaker">
                     <div class="card-content">
@@ -141,16 +143,16 @@
                 </template>
             </paper-card>
         </div>
-        <div class="event-content">
-            <template id="form_update" is="dom-if" if="{{_hasFeedback(_id)}}">
-                <paper-card>
-                        <div class="card-content">
-                                <feedback-update></feedback-update>
-                        </div>
-                </paper-card>
-            </template>
+        <!--<div class="event-content">-->
+            <!--<template id="form_update" is="dom-if" if="{{_hasFeedback(_id)}}">-->
+                <!--<paper-card>-->
+                        <!--<div class="card-content">-->
+                                <!--<feedback-update></feedback-update>-->
+                        <!--</div>-->
+                <!--</paper-card>-->
+            <!--</template>-->
 
-        </div>
+        <!--</div>-->
         <iron-ajax
                 auto
                 url="/events/{{_id}}"
@@ -163,7 +165,7 @@
     <script>
         (function () {
             'use strict';
-            var items = localStorage.getItem("icwe-web-app").split(',')
+//            var items = localStorage.getItem("icwe-web-app").split(',')
             Polymer({
                 is: 'web-event',
                 created: webComponentLoading.elementInit,
@@ -186,29 +188,26 @@
                 _feedbackIsOpen: function(date) {
                     var now = Date.now();
                     var evt = new Date(date).getTime();
-                    if (localStorage.getItem("icwe-web-app") !== null) {
-                        for(var i = 0 ; i < items.length;i++) {
-                            if (items[i] == JSON.stringify(this._id)) {
-                                return false;
-                            }
-                        }
-                    }
+//                    if (localStorage.getItem("icwe-web-app") !== null) {
+//                        for(var i = 0 ; i < items.length;i++) {
+//                            if (items[i] == JSON.stringify(this._id)) {
+//                                return false;
+//                            }
+//                        }
+//                    }
                     //                    return evt < now && now < evt + 86400000 * 3;
                     return true;
                 },
-                _hasFeedback: function(id) {
-                    var items0 = localStorage.getItem("icwe-web-app")
-                    var items = items0.split(",")
-                    for(var i = 0; i <items.length;i++) {
-                        if(items[i] == JSON.stringify(id)) {
-                            return true
-                        }
-                    }
-                },
-                abb: function(a){
-                    var content = a.split('\n')
-                    return content
-                }
+//                _hasFeedback: function(id) {
+//                    var items0 = localStorage.getItem("icwe-web-app")
+//                    var items = items0.split(",")
+//                    for(var i = 0; i <items.length;i++) {
+//                        if(items[i] == JSON.stringify(id)) {
+//                            return true
+//                        }
+//                    }
+//                },
+                _breakLines: breakLines
             });
 
 

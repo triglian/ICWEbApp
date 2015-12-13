@@ -43,10 +43,15 @@
                     }
                 },
                 _submitForm: function(evt){
-                    this.$.form.submit();
-                    var old_item = localStorage.getItem('icwe-web-app')
-                    var new_item = JSON.stringify(this._id)
-                    localStorage.setItem('icwe-web-app', old_item+','+new_item);
+                    var form = this.$.form;
+                    console.log(form);
+                    var data = JSON.stringify({});
+
+
+//                    this.$.form.submit();
+//                    var old_item = localStorage.getItem('icwe-web-app')
+//                    var new_item = JSON.stringify(this._id)
+//                    localStorage.setItem('icwe-web-app', old_item+','+new_item);
                 },
                 _computeAction: function(id){
                     return "/events/"+id+'/feedback';
