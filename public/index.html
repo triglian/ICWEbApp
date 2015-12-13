@@ -30,7 +30,16 @@
 
 </head>
 <body>
-<script>NProgress.start()</script>
+<script>
+    NProgress.start();
+    $('body').flowtype({
+        minimum   : 500,
+        maximum   : 1200,
+        minFont   : 14,
+        maxFont   : 20,
+        fontRatio : 30
+    });
+</script>
 
 <web-app></web-app>
 
