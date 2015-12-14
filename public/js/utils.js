@@ -8,3 +8,7 @@ function sortDatesDescending(a, b) {
     var dateB = new Date(b.date);
     return dateB.getTime() - dateA.getTime()
 }
+
+function breakLines(text){
+    return text ? text.split('\n') : [];
+}

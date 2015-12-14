@@ -245,6 +245,9 @@
                     <section>
                         <web-event id="event"></web-event>
                     </section>
+                    <section>
+                        <feedback-review id="feedback"></feedback-review>
+                    </section>
                 </iron-pages>
             </paper-scroll-header-panel>
             <paper-scroll-header-panel fixed drawer>
@@ -306,11 +309,13 @@
                     },
                     speakers: {
                         type: Array,
-                        notify: true
+                        notify: true,
+                        observer: ['_setSpeakersReady']
                     },
                     events: {
                         type: Array,
-                        notify: true
+                        notify: true,
+                        observer: ['_setEventsReady']
                     },
                     readyFlag: {
                         type: Boolean,
@@ -328,8 +333,61 @@
                         type: String,
                         notify:true,
                         value: 'none'
+                    },
+                    map: {
+                        type: Object,
+                        value: {events: {}, speakers: {}}
+                    },
+                    eventsReady: {
+                        type: Boolean,
+                        value: false
+                    },
+                    speakersReady: {
+                        type: Boolean,
+                        value: false
+                    },
+                    eventNameToView: {
+                        type: String,
+                        observer: ["_eventChanged"]
+                    },
+                    speakerNameToView: {
+                        type: String,
+                        observer: ["_speakerChanged"]
                     }
                 },
+                _mapReady: function () {
+                    if (this.eventNameToView) {
+                        this.$.event._id = this.map.events[this.eventNameToView]
+                    }
+                    else if (this.speakerNameToView) {
+                        this.$.speaker._id = this.map.speakers[this.speakerNameToView]
+                    }
+                },
+                _eventChanged: function(){
+                    if (this.eventsReady){
+                        this.$.event._id = this.map.events[this.eventNameToView]
+                    }
+                },
+                _speakerChanged: function(){
+                    if (this.speakersReady){
+                        this.$.speaker._id = this.map.speakers[this.speakerNameToView]
+                    }
+                },
+                _toMap: function (arr, map) {
+                    arr.forEach(function (item) {
+                        map[item.linkName] = item._id
+                    });
+                    this._mapReady()
+                },
+                _setEventsReady: function () {
+                    this._toMap(this.events, this.map.events);
+                    this.eventsReady = true
+                },
+                _setSpeakersReady: function () {
+                    this._toMap(this.speakers, this.map.speakers);
+                    this.speakersReady = true
+                },
+
                 afterInfoSetSocket: function () {
                     var socket = io.connect()
 

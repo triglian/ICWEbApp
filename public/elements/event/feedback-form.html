@@ -5,18 +5,26 @@
 <link rel="import" href="../../components/iron-form/iron-form.html">
 <link rel="import" href="../../components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
-
+<link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../../components/re-captcha/re-captcha.html">
 
 <script src="../../js/utils.js"></script>
 
 <dom-module id="feedback-form">
-    <style></style>
+    <style>
+        re-captcha{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+    </style>
     <template>
 
         <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
-            <star-rating label="Rating" name="stars"></star-rating>
-            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email"></gold-email-input>
-            <paper-textarea label="Comments" name="comment"></paper-textarea>
+            <star-rating label="Rating" name="stars" id="rating"></star-rating>
+            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email" id="email"></gold-email-input>
+            <paper-textarea label="Comments" name="comment" id="comment"></paper-textarea>
+                <!--<re-captcha sitekey="6LeR4xITAAAAAMXbydtT0bTJi_PqkIWrfUxivz8F" theme="dark"></re-captcha>-->
             <paper-button raised on-click="_submitForm">Submit</paper-button>
         </form>
 
@@ -35,7 +43,26 @@
                     }
                 },
                 _submitForm: function(evt){
-                    this.$.form.submit();
+                    evt.preventDefault();
+                    var rating = this.$.rating.value;
+                    var email = this.$.email.value;
+                    var comment = this.$.comment.value;
+                    console.log(rating);
+                    console.log(email);
+                    console.log(comment);
+                    var data = { email: email, comment: comment, stars: rating };
+                    $.post(this._computeAction(this._id), data, function(res){
+                        webApp.$.toast.text = res.message;
+                        webApp.$.toast.show();
+                    });
+
+
+
+
+//                    this.$.form.submit();
+//                    var old_item = localStorage.getItem('icwe-web-app')
+//                    var new_item = JSON.stringify(this._id)
+//                    localStorage.setItem('icwe-web-app', old_item+','+new_item);
                 },
                 _computeAction: function(id){
                     return "/events/"+id+'/feedback';

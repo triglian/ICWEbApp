@@ -34,7 +34,7 @@
         });
 
         page('/speakers/:id', nothingDoNext, function(data) {
-            webApp.$.speaker._id = data.params.id;
+            webApp.speakerNameToView = data.params.id;
             webApp.selected = 6;
         });
 
@@ -44,8 +44,13 @@
         });
 
         page('/events/:id', nothingDoNext, function(data) {
-            webApp.$.event._id = data.params.id;
+            webApp.eventNameToView = data.params.id;
             webApp.selected = 7;
+        });
+
+        page('/events/:id/feedback', nothingDoNext, function(data) {
+            webApp.$.feedback._id = data.params.id;
+            webApp.selected = 8;
         });
         page('/contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
@@ -72,7 +77,7 @@
         });
 
         page('speakers/:id', nothingDoNext, function(data) {
-            webApp.$.speaker._id = data.params.id;
+            webApp.speakerNameToView = data.params.id;
             webApp.selected = 6;
         });
 
@@ -82,9 +87,15 @@
         });
 
         page('events/:id', nothingDoNext, function(data) {
-            webApp.$.event._id = data.params.id;
+            webApp.eventNameToView = data.params.id;
             webApp.selected = 7;
         });
+
+        page('events/:id/feedback', nothingDoNext, function(data) {
+            webApp.$.feedback._id = data.params.id;
+            webApp.selected = 8;
+        });
+
         page('contacts', nothingDoNext, function(data) {
             webApp.selected = 5;
         });

@@ -18,6 +18,8 @@
             margin-left: 10px;
             margin-top: 5px;
             margin-bottom: 5px;
+            color: #000;
+            text-decoration: none;
         }
         figcaption{
             text-align: center;
@@ -29,21 +31,38 @@
                 visibility: hidden;
                 display: none;
             }
-
+            iron-image{
+                width:220px;
+                height:95px;
+            }
+            figcaption{
+                width:220px;
+            }
         }
         @media (max-width: 900px) {
+            :host{
+                @apply(--layout-vertical);
+            }
             paper-tooltip{
                 visibility: hidden;
                 display: none;
             }
+            iron-image{
+                width:300px;
+                height:95px;
+            }
+            figcaption{
+                width:300px;
+            }
         }
+
     </style>
     <template>
         <template is="dom-repeat" items="[[sponsor]]"  as='sponsor'>
-            <a href="{{sponsor.website}}" target="_blank"><iron-image style="width:180px; height:95px; background-color: lightgray;"
+            <a href="{{sponsor.website}}" target="_blank"><iron-image class="sized" style="background-color: transparent;"
                     sizing="contain" preload src="{{sponsor.logo_url}}"></iron-image>
                 <paper-tooltip position="bottom" offset="-1"><h1>{{sponsor.company_name}}</h1></paper-tooltip>
-                <figcaption style="width:180px">{{sponsor.company_name}}</figcaption>
+                <figcaption >{{sponsor.company_name}}</figcaption>
             </a>
         </template>
         <iron-ajax

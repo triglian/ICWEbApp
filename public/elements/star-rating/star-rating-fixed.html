@@ -2,8 +2,6 @@
 
 <link rel="import" href="../../components/iron-icons/iron-icons.html">
 <link rel="import" href="../../components/iron-icon/iron-icon.html">
-<link rel="import" href="../../components/iron-input/iron-input.html">
-<link rel="import" href="../../components/iron-form-element-behavior/iron-form-element-behavior.html">
 
 
 <dom-module id="star-rating-fixed">
@@ -25,7 +23,6 @@
                 <iron-icon id="[[star]]" class="star" icon="[[_starIcon(star, value)]]"></iron-icon>
             </template>
         </span>
-        <input is="iron-input" id="input" type="text" name$="[[name]]" bind-value="[[value]]">
     </template>
 
     <script>
@@ -52,12 +49,6 @@
                         value: "0",
                         notify: true
                     }
-                },
-                behaviors: [
-                    Polymer.IronFormElementBehavior
-                ],
-                _updateValue: function(evt) {
-                    this.value = (evt.model.index + 1).toString();
                 },
                 _starIcon: function(star, value) {
                     return (star <= Number(value)) ? "icons:star" : "icons:star-border";

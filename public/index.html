@@ -3,6 +3,9 @@
 <head>
     <script src='components/nprogress/nprogress.js'></script>
     <link rel='stylesheet' href='components/nprogress/nprogress.css'/>
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/Flowtype.js/flowtype.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/loading.js"></script>
 
     <meta charset="utf-8">
@@ -27,7 +30,16 @@
 
 </head>
 <body>
-<script>NProgress.start()</script>
+<script>
+    NProgress.start();
+    $('body').flowtype({
+        minimum   : 500,
+        maximum   : 1200,
+        minFont   : 13,
+        maxFont   : 16,
+        fontRatio : 30
+    });
+</script>
 
 <web-app></web-app>
 
