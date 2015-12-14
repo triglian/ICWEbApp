@@ -61,13 +61,13 @@ var updateModel = function(done){
         else {
             var object = data[i];
             delete object._id;
-            models["Speaker"].update({name: object.name},
+            models["Speaker"].update({email: object.email},
                 {
                     organisation: object.organisation,
                     bio: object.bio,
                     website: object.website,
-                    email: object.email,
-                    twitter: object.twitter
+                    twitter: object.twitter,
+                    name: object.name
                 },
                 updateSpeakers);
         }
