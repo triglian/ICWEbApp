@@ -199,9 +199,7 @@
                     return a.getDay() == new Date(b).getDay()
                 },
                 _hour: function (a) {
-                    var date = new Date(a)
-                    var hour = date.getHours() + ':' + date.getMinutes()
-                    return hour
+                    return new Date(a).toTimeString().slice(0, 5);
                 },
                 _dayToPrint: function (day) {
                     var day = day.getDate()

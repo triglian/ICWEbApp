@@ -23,9 +23,9 @@ var fieldsFilter = { '__v': 0 };
 
 //utils
 
-function checkComment(obj) {
-    if(obj.stars && obj.email && obj.comment) {
-        return { stars: obj.stars, email: obj.email, comment: obj.comment };
+function checkComment(req) {
+    if(req.body.stars && req.body.comment && req.session._id) {
+        return { stars: req.body.stars, comment: req.body.comment, cookie: req.session._id};
     }
     else {
         return undefined;
@@ -74,7 +74,7 @@ router.get('/:eventid/feedback', function(req, res, next) {
 });
 
 router.post('/:eventid/feedback', function(req, res, next){
-    var comment = checkComment(req.body);
+    var comment = checkComment(req);
     var id = req.params.eventid;
 
     if(!comment) {
@@ -106,7 +106,7 @@ router.post('/:eventid/feedback', function(req, res, next){
         var i = 0;
         var found = false;
         while(i < event.feedback.length && !found) {
-            if(event.feedback[i].email === comment.email) {
+            if(event.feedback[i].cookie === comment.cookie) {
                 found = true;
             }
             else ++i;
