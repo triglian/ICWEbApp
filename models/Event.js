@@ -24,12 +24,11 @@ var eventSchema = new mongoose.Schema({
     kind     : { type : String, default: "" },
     pdf      : { type: Array, default: [] },
     feedback : { type : [commentSchema], default: [] },
-    linkName : { type : String }
+    linkName : { type : String, required: true }
 });
 
 
 eventSchema.pre('save', function (next) {
-    this.linkName = utils.makeLinkName(this.name);
 
     utils.cachePdfs(this, next);
 

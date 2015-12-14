@@ -4,7 +4,6 @@ var http = require('http');
 var fs = require('fs');
 var stream = require('stream');
 var mongoose = require('mongoose');
-var utils = require('./functions');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var speakerImagePath = "imgs/speakers/";
 
@@ -17,11 +16,10 @@ var speakerSchema = new mongoose.Schema({
     email           : { type : String, required: true },
     twitter         : { type : String, default: "" },
     events          : [{ type : ObjectId, ref: "Event" }],
-    linkName : { type : String }
+    linkName : { type : String, required: true }
 });
 
 speakerSchema.pre('save', function (next) {
-    this.linkName = utils.makeLinkName(this.name);
     var speaker = this;
 
     function job() {

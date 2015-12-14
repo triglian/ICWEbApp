@@ -46,8 +46,6 @@ var updateModel = function(done){
         models["Event"].update({ name: event.name },
             {
                 pdf: event.pdf || [],
-                date: event.date,
-                place: event.place,
                 abstract: event.abstract,
                 kind: event.kind
             },

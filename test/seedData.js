@@ -134,7 +134,26 @@ var speakers = {
   data : []
 };
 
+var speakerLinkNames = {};
+var eventLinkNames = {};
+
+function makeLinkName(object, names) {
+    var name = object.name.replace(/ /g, '-');
+    var count = 0;
+    while(names[name] !== undefined) {
+        console.log(name + " already exists!");
+        count += 1;
+        name = name.replace(/_[0-9]+$/g, '');
+        name += "_" + count;
+    }
+    names[name] = null;
+
+    return name;
+}
+
+
 program.events.forEach(function (e){
+    e.linkName = makeLinkName(e, eventLinkNames);
     e.endDate = new Date(e.date.valueOf() + 1800000); // TODO remove, it's only for the test !!!!
     e._id = ObjectId();
     for(var i = 0; i < e.speakers.length; i++){
@@ -159,7 +178,11 @@ program.events.forEach(function (e) {
         }
     }
         events.data.push(e)
-})
+});
+
+speakers.data.forEach(function(s) {
+    s.linkName =  makeLinkName(s, speakerLinkNames);
+});
 
 var tweets = {
   name : 'Twitter',

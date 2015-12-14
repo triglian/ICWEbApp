@@ -2,10 +2,6 @@ var http = require('http');
 var fs = require('fs');
 var stream = require('stream');
 
-function makeLinkName(name) {
-    return name.replace(/ /g, "-");
-}
-
 
 function cachePdfs(event, done) {
     var pdfPath = "pdfs/";
@@ -84,6 +80,5 @@ function cachePdfs(event, done) {
 
 
 module.exports = {
-    makeLinkName: makeLinkName,
     cachePdfs: cachePdfs
 };
