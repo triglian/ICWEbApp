@@ -51,14 +51,17 @@ function cachePdfs(event, done) {
                 i += 1;
                 if( i < pdfs.length) {
                     pdf = pdfs[i];
-                    http.get(pdf, callback).on('error', errorCallback);
+                    if(pdf.match(/^http:\/\//)) http.get(pdf, callback).on('error', errorCallback);
+                    else recall();
                 }
                 else {
                     cleanup();
                 }
             };
 
-            http.get(pdf, callback).on('error', errorCallback);
+            if (pdf.match(/^http:\/\//)) http.get(pdf, callback).on('error', errorCallback);
+            else recall();
+
         }
 
 

@@ -23,34 +23,37 @@ speakerSchema.pre('save', function (next) {
     var speaker = this;
 
     function job() {
+        if(speaker.picture.match(/^http:\/\//)) {
 
-        var picture = speaker.picture.split("/");
-        var path = "public/" + speakerImagePath + picture[picture.length - 1];
+            var picture = speaker.picture.split("/");
+            var path = "public/" + speakerImagePath + picture[picture.length - 1];
 
-        http.get(speaker.picture, function (res) {
-            if (res.statusCode != 200) {
+            http.get(speaker.picture, function (res) {
+                if (res.statusCode != 200) {
+                    console.log(speaker.picture + " not found. Set to default picture.");
+                    speaker.picture = speakerImagePath + "default.png";
+                    return next();
+                }
+
+                var data = new stream.Transform();
+
+                res.on('data', function (chunk) {
+                    data.push(chunk);
+                });
+
+                res.on('end', function () {
+                    fs.writeFile(path, data.read(), function () {
+                        speaker.picture = speakerImagePath + picture[picture.length - 1];
+                        return next();
+                    });
+                });
+            }).on('error', function () {
                 console.log(speaker.picture + " not found. Set to default picture.");
                 speaker.picture = speakerImagePath + "default.png";
                 return next();
-            }
-
-            var data = new stream.Transform();
-
-            res.on('data', function (chunk) {
-                data.push(chunk);
             });
-
-            res.on('end', function () {
-                fs.writeFile(path, data.read(), function () {
-                    speaker.picture = speakerImagePath + picture[picture.length - 1];
-                    return next();
-                });
-            });
-        }).on('error', function() {
-            console.log(speaker.picture + " not found. Set to default picture.");
-            speaker.picture = speakerImagePath + "default.png";
-            return next();
-        });
+        }
+        else return next();
     }
 
     fs.stat("public/imgs/speakers", function(err, stat) {
