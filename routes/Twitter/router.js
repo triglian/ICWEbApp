@@ -22,11 +22,23 @@ var T = new Twit({
 
 var stream = T.stream('statuses/filter', { track: config.twitterFeeds });
 
+stream.on('error', function(error){console.log("Stream error"); console.log(error);});
+stream.on('connect', function(){console.log("Stream connecting...");});
+stream.on('connected', function(){console.log("Stream connected");});
+stream.on('reconnect', function(request, response, connectInterval){console.log("There is some problem with the Twitter Authentication, the server will retry in " + String(connectInterval/1000) + " seconds");});
+stream.on('warning', function(error){console.log("Stream warning"); console.log(error);});
+
 stream.on('tweet', newTweet);
 
 stream.on('delete', removeTweet);
 
 var newsStream = T.stream('statuses/filter', { follow: config.twitterMainID });
+
+newsStream.on('error', function(error){console.log("News stream error"); console.log(error);});
+newsStream.on('connect', function(){console.log("News stream connecting..." );});
+newsStream.on('connected', function(){console.log("News stream connected");});
+newsStream.on('reconnect', function(request, response, connectInterval){console.log("There is some problem with the Twitter Authentication, the server will retry in " + String(connectInterval/1000) + " seconds");});
+newsStream.on('warning', function(error){console.log("News stream warning"); console.log(error);});
 
 newsStream.on('tweet', newNewsTweet);
 
@@ -47,6 +59,7 @@ function addTweet(tweet){
 }
 
 function newTweet(tweet){
+    console.log(tweet);
     if (tweet && tweet.user.id != config.twitterMainID) {
         var newTweet = addTweet(tweet);
         eventEmitter.emit('newTweet', newTweet)
@@ -54,6 +67,7 @@ function newTweet(tweet){
 }
 
 function newNewsTweet(tweet){
+    console.log(tweet);
     if (tweet) {
         var newTweet = addTweet(tweet);
         eventEmitter.emit('newTweet', newTweet)

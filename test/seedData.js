@@ -9,7 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() - 3600000 ),
+        endDate     : new Date(Date.now()),
       place    : "USI auditorium",
       speakers  : [{
                 name          : "Marco Calzana",
@@ -24,7 +25,8 @@ var program = {
     },
     {
       name     : "USI Big Brother",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 2),
+        endDate     : new Date(Date.now() + 3600000 * 2 + 1800000),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Francesco Zoppichino",
@@ -40,7 +42,8 @@ var program = {
     },
     {
       name     : "EZ-Stats",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 7),
+        endDate     : new Date(Date.now() + 3600000 * 7 + 1800000 * 3),
       place    : "USI auditorium",
       abstract : "Curabitur eu odio nec massa elementum ultrices egestas a sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec et ipsum ut nisl efficitur congue.\n Praesent elementum, ligula quis euismod maximus, tellus ipsum dignissim lacus, at tincidunt erat diam quis tortor.",
       kind     : "Talk",
@@ -57,7 +60,8 @@ var program = {
     },
     {
       name     : "ASQ-PDF Import",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 27),
+        endDate     : new Date(Date.now() + 3600000 * 27 + 1800000 * 2),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Alexander North",
@@ -79,7 +83,8 @@ var program = {
     ,
     {
       name     : "ICWE Mobile Web App",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 30),
+        endDate     : new Date(Date.now() + 3600000 * 30 + 1800000 * 4),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Luigi Frunzio",
@@ -95,7 +100,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 34),
+        endDate     : new Date(Date.now() + 3600000 * 34 + 1800000),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Davide Cammarata",
@@ -111,7 +117,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-        date     : new Date(Date.now() - 86400000 * 2 + Math.floor(Math.random() * 86400000 * 4)),
+        date     : new Date(Date.now() + 3600000 * 39),
+        endDate     : new Date(Date.now() + 3600000 * 39 + 1800000 * 3),
       place    : "USI auditorium",
         speakers  : [{
                 ref: "camma@usi.ch"},
@@ -154,7 +161,6 @@ function makeLinkName(object, names) {
 
 program.events.forEach(function (e){
     e.linkName = makeLinkName(e, eventLinkNames);
-    e.endDate = new Date(e.date.valueOf() + 1800000); // TODO remove, it's only for the test !!!!
     e._id = ObjectId();
     for(var i = 0; i < e.speakers.length; i++){
         e.speakers[i].events = [];
