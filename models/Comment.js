@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var commentSchema = new mongoose.Schema({
     cookie    : { type : String, required: true },
     comment  : { type : String, required: true },
+    email   : { type: String, default: "" },
     time     : { type : Date, default: Date.now() },
     stars    : { type : Number, required: true }
 });

@@ -3,7 +3,7 @@
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/paper-input/paper-textarea.html">
 <link rel="import" href="../../components/iron-form/iron-form.html">
-<!--<link rel="import" href="../../components/gold-email-input/gold-email-input.html">-->
+<link rel="import" href="../../components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
 <link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
 <!--<link rel="import" href="../../components/re-captcha/re-captcha.html">-->
@@ -22,7 +22,7 @@
 
         <form is="iron-form" id="form" method="post" action="[[_computeAction(_id)]]">
             <star-rating label="Rating" name="stars" id="rating"></star-rating>
-            <!--<gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email" id="email"></gold-email-input>-->
+            <gold-email-input required auto-validate error-message="Enter a valid email" label="Email Address" name="email" id="email"></gold-email-input>
             <paper-textarea label="Comments" name="comment" id="comment"></paper-textarea>
                 <!--<re-captcha sitekey="6LeR4xITAAAAAMXbydtT0bTJi_PqkIWrfUxivz8F" theme="dark"></re-captcha>-->
             <paper-button raised on-click="_submitForm">Submit</paper-button>
@@ -45,10 +45,10 @@
                 _submitForm: function(evt){
                     evt.preventDefault();
                     var rating = this.$.rating.value;
-//                    var email = this.$.email.value;
+                    var email = this.$.email.value;
                     var comment = this.$.comment.value;
 
-                    var data = { comment: comment, stars: rating };
+                    var data = { comment: comment, stars: rating, email: email };
                     $.post(this._computeAction(this._id), data, function(res){
                         webApp.$.toast.text = res.message;
                         webApp.$.toast.show();

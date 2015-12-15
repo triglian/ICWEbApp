@@ -25,7 +25,7 @@ var fieldsFilter = { '__v': 0 };
 
 function checkComment(req) {
     if(req.body.stars && req.body.comment && req.session._id) {
-        return { stars: req.body.stars, comment: req.body.comment, cookie: req.session._id};
+        return { stars: req.body.stars, comment: req.body.comment, cookie: req.session._id, email: req.body.email };
     }
     else {
         return undefined;
