@@ -6,7 +6,6 @@
 <link rel="import" href="../../components/iron-image/iron-image.html">
 <link rel="import" href="../../elements/event/feedback-form.html">
 <link rel="import" href="../../elements/event/feedback-review.html">
-<link rel="import" href="../../elements/event/feedback-update.html">
 
 <dom-module id="web-event">
     <style>
@@ -111,7 +110,7 @@
                                 <div class="event-place">[[event.place]]</div>
                                 <template id="event-pdf-if" is="dom-if" if="{{event.pdf}}">
                                     <template is="dom-repeat" items="{{event.pdf}}" as="pdf">
-                                        <a class="event-pdf" href="[[pdf]]">PDF {{_nicerIndex(index)}}</a>
+                                        <a class="event-pdf" href="/[[pdf]]" target="_blank">PDF {{_nicerIndex(index)}}</a>
                                     </template>
                                 </template>
                             </div>
@@ -144,16 +143,7 @@
                 </template>
             </paper-card>
         </div>
-        <!--<div class="event-content">-->
-            <!--<template id="form_update" is="dom-if" if="{{_hasFeedback(_id)}}">-->
-                <!--<paper-card>-->
-                        <!--<div class="card-content">-->
-                                <!--<feedback-update></feedback-update>-->
-                        <!--</div>-->
-                <!--</paper-card>-->
-            <!--</template>-->
 
-        <!--</div>-->
         <iron-ajax
                 auto
                 url="/events/{{_id}}"

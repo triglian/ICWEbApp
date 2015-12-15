@@ -8,102 +8,103 @@
 
         // Middleware
         function nothingDoNext(ctx, next) {
-//            webApp.scrollPageToTop();
             next();
         }
 
         // Routes
+        /** We had to use a workaround to solve a known issue of page.js
+         *
+         * Basically links with #!/ work from outside the website, while links with #! don't (and vice versa).
+         * As a workaround we have two versions of every route, which makes #! always work.
+         *
+         * There is another possible workaround, which uses a redirect from the server, but this seems to be
+         * incompatible with html imports (like polymer), since they are all html requests and would be redirected.
+         */
+
+        function home() { webApp.selected = 0; }
         page('/', nothingDoNext, function() {
-            webApp.selected = 0;
+            home();
         });
-
-        page('/social', nothingDoNext, function() {
-            webApp.selected = 1;
-//            page.redirect('/#!social');
-
-        });
-
-        page('/sponsors', nothingDoNext, function(data) {
-            webApp.selected = 2;
-//            page.redirect('/#!sponsors');
-        });
-
-        page('/speakers', nothingDoNext, function() {
-            webApp.selected = 3;
-//            page.redirect('/#!speakers');
-        });
-
-        page('/speakers/:id', nothingDoNext, function(data) {
-            webApp.speakerNameToView = data.params.id;
-            webApp.selected = 6;
-        });
-
-        page('/events', nothingDoNext, function(data) {
-            webApp.selected = 4;
-//            page.redirect('/#!events');
-        });
-
-        page('/events/:id', nothingDoNext, function(data) {
-            webApp.eventNameToView = data.params.id;
-            webApp.selected = 7;
-        });
-
-        page('/events/:id/feedback', nothingDoNext, function(data) {
-            webApp.$.feedback._id = data.params.id;
-            webApp.selected = 8;
-        });
-        page('/contacts', nothingDoNext, function(data) {
-            webApp.selected = 5;
-//            page.redirect('/#!contact');
-        });
-
         page('', nothingDoNext, function() {
-            webApp.selected = 0;
+            home();
         });
 
+
+        function social() { webApp.selected = 1; }
+        page('/social', nothingDoNext, function() {
+            social();
+        });
         page('social', nothingDoNext, function() {
-            webApp.selected = 1;
-//            page.redirect('/#!social');
+            social();
         });
 
+
+        function sponsors() { webApp.selected = 2; }
+        page('/sponsors', nothingDoNext, function(data) {
+            sponsors();
+        });
         page('sponsors', nothingDoNext, function(data) {
-            webApp.selected = 2;
-//            page.redirect('/#!sponsors');
+            sponsors();
         });
 
+
+        function speakers() { webApp.selected = 3; }
+        page('/speakers', nothingDoNext, function() {
+            speakers();
+        });
         page('speakers', nothingDoNext, function() {
-            webApp.selected = 3;
-//            page.redirect('/#!speakers');
+            speakers();
         });
 
+
+        function singleSpeakers(id) { webApp.speakerNameToView = id; webApp.selected = 6; }
+        page('/speakers/:id', nothingDoNext, function(data) {
+            singleSpeakers(data.params.id);
+        });
         page('speakers/:id', nothingDoNext, function(data) {
-            webApp.speakerNameToView = data.params.id;
-            webApp.selected = 6;
+            singleSpeakers(data.params.id);
         });
 
+
+        function events() { webApp.selected = 4; }
+        page('/events', nothingDoNext, function(data) {
+            events();
+        });
         page('events', nothingDoNext, function(data) {
-            webApp.selected = 4;
-//            page.redirect('/#!events');
+            events();
         });
 
+
+        function singleEvent(id) { webApp.eventNameToView = id; webApp.selected = 7; }
+        page('/events/:id', nothingDoNext, function(data) {
+            singleEvent(data.params.id);
+        });
         page('events/:id', nothingDoNext, function(data) {
-            webApp.eventNameToView = data.params.id;
-            webApp.selected = 7;
+            singleEvent(data.params.id);
         });
 
+
+        function feedback(id) { webApp.$.feedback._id = id; webApp.selected = 8; }
+        page('/events/:id/feedback', nothingDoNext, function(data) {
+            feedback(data.params.id);
+        });
         page('events/:id/feedback', nothingDoNext, function(data) {
-            webApp.$.feedback._id = data.params.id;
-            webApp.selected = 8;
+            feedback(data.params.id);
         });
 
-        page('contacts', nothingDoNext, function(data) {
-            webApp.selected = 5;
+
+        function contacts() { webApp.selected = 5; }
+        page('/contacts', nothingDoNext, function(data) {
+            contacts();
         });
+        page('contacts', nothingDoNext, function(data) {
+            contacts();
+        });
+
 
         page('*', function() {
             webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
             webApp.$.toast.show();
-//            page.redirect('/');
         });
 
         // add #! before urls
