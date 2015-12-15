@@ -190,12 +190,7 @@
     </style>
 
     <template>
-        <script>
-            var _addFilter = function(evt){
-                webApp.$.events._filter = evt
-            };
 
-        </script>
         <paper-toggle-button id="viewSwitcher" checked="{{toggle}}">Change View</paper-toggle-button>
         <template is="dom-if" if="{{_filter}}"><paper-button id="filter" raised on-click="_removeFilter">Remove Filter</paper-button></template>
         <template is="dom-if" if="{{!toggle}}">

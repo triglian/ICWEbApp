@@ -12,3 +12,8 @@ function sortDatesDescending(a, b) {
 function breakLines(text){
     return text ? text.split('\n') : [];
 }
+
+function _addFilter(evt){
+    webApp.$.events._filter = evt
+}
+
