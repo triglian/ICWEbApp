@@ -1,5 +1,5 @@
 'use strict';
-var config = require('../../config')
+var config = require('../../config');
 var express = require('express');
 var router = express.Router();
 var middleware =  require('../middleware');
@@ -21,12 +21,12 @@ var transporter = nodemailer.createTransport({
 router.post('/', function(req, res, next) {
     var comment = req.body;
     sendMail(comment)
-})
+});
 
 function sendMail(obj) {
-    var info = obj.name.split(',')
-    var email =  info[1]
-    var name = info[0]
+    var info = obj.name.split(',');
+    var email =  info[1];
+    var name = info[0];
     var mailOptions = {
         from: 'icwe16cform@gmail.com', // sender address
         to: 'icwe16cform@gmail.com', // list of receivers

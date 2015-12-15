@@ -1,7 +1,7 @@
 'use strict';
 
 var config = require('../config');
-var utis = require('./utils')
+var utis = require('./utils');
 
 //load model
 var mongoose = require('mongoose');
@@ -12,7 +12,7 @@ var totalCbs = 1;
 var cbCnt = 0;
 
 //seedData
-var seedData = require('./seedData')
+var seedData = require('./seedData');
 
 /**
 * Recursive function that goes through 
@@ -30,7 +30,7 @@ var seedModel = function(idx, done){
     //seed next model
     seedModel(++idx, done)
   });
-}
+};
 
 /**
 * This is where everything starts
@@ -40,4 +40,4 @@ module.exports.seed = function (done){
     if(err) return done(err);
     seedModel(0, done);
   });
-}
+};

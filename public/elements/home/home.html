@@ -197,7 +197,7 @@
                 _visualize: function () {
                     var arr = [];
                     var date = new Date();
-                    date = date.toJSON().slice(0, 10)
+                    date = date.toJSON().slice(0, 10);
                     for (var i in this.events) {
                         if (this.events[i].date.slice(0, 10) == date) {
                             arr.push(this.events[i])

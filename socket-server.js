@@ -12,7 +12,7 @@ var Twitter = mongoose.model('Twitter');
 
 
 module.exports = function(httpServer) {
-    var io = socketIo(httpServer)
+    var io = socketIo(httpServer);
     // Socket.io server
 
     io.on('connection', function(socket){

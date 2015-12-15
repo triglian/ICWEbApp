@@ -1,6 +1,10 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../components/paper-material/paper-material.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
+<link rel="import" href="../../components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../components/paper-dialog/paper-dialog.html">
+<link rel="import" href="otherView.html">
 
 <dom-module id="web-events">
     <style>
@@ -89,46 +93,162 @@
             text-decoration: none;
             color: inherit;
         }
+
         .talk {
             @apply(--layout-horizontal);
             @apply(--layout-justified);
             font-size: 0.9em;
             text-decoration: none;
         }
+
+        .otherViewEvent {
+            position: absolute;
+            border: 1px solid lightgray;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .otherViewContainer {
+            @apply(--layout-horizontal)
+        }
+
+        .firstColumn {
+            padding-right: 5px;
+        }
+
+        .firstColumn, .otherViewRoom {
+            @apply(--layout-vertical)
+        }
+
+        .hours {
+            @apply(--layout-vertical)
+        }
+
+        .hours > span {
+            height: 35px;
+            border-right: 1px solid darkgray;
+            text-align: center;
+        }
+
+        .hours > span:first-child {
+            padding-top: 5px;
+        }
+
+        .otherViewRoom {
+            position: relative;
+            flex: 1;
+            -webkit-flex: 1;
+            margin-right: 10px;
+        }
+
+        .otherViewEvent {
+            width: 100%;
+        }
+
+        .otherViewDate, .otherViewHead {
+            height: 30px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+
+        .otherViewHead {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .otherView {
+            padding-top: 10px;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        #viewSwitcher {
+            padding-bottom: 5px
+        }
+
+        @media (max-width: 880px) {
+            #viewSwitcher {
+                display: none;
+            }
+        }
     </style>
+
     <template>
-        <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
+        <paper-toggle-button id="viewSwitcher" checked="{{toggle}}">Change View</paper-toggle-button>
+        <template is="dom-if" if="{{!toggle}}">
+            <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
 
-            <div class="day">
-                <div class="date">
-                    <span class="number">[[ _dayToPrint(day.value.date) ]]</span>
-                    <span class="month">[[ _monthToPrint(day.value.date) ]]</span>
-                </div>
-                <div class="event">
-                    <template is="dom-repeat" items="{{day.value.events}}" as="event" sort="_sort">
+                <div class="day">
+                    <div class="date">
+                        <span class="number">[[ _dayToPrint(day.value.date) ]]</span>
+                        <span class="month">[[ _monthToPrint(day.value.date) ]]</span>
+                    </div>
+                    <div class="event">
+                        <template is="dom-repeat" items="{{day.value.events}}" as="event" sort="_sort">
 
-                        <paper-material elevation="1" class="info">
-                            <div class="layout vertical flex-2 center-justified">
-                                <div class="talk"><span
-                                        class="hour">[[ _hour(event.date) ]]</span></div>
-                                <div class="name"><a href="#!events/{{event.linkName}}" class="eventLink">{{event.name}}</a>
+                            <paper-material elevation="1" class="info">
+                                <div class="layout vertical flex-2 center-justified">
+                                    <div class="talk"><span
+                                            class="hour">[[ _hour(event.date) ]]</span></div>
+                                    <div class="name"><a href="#!events/{{event.linkName}}"
+                                                         class="eventLink">{{event.name}}</a>
+                                    </div>
+                                    <div class="talk"><span>{{event.kind}}</span>
+                                        <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
+                                            <span><a href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
+                                        </template>
+                                        <span>{{event.place}}</span>
+                                    </div>
                                 </div>
-                                <div class="talk"><span>{{event.kind}}</span>
-                                    <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
-                                        <span><a href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
-                                    </template>
-                                    <span>{{event.place}}</span>
-                                </div>
-                            </div>
-                        </paper-material>
+                            </paper-material>
 
-                    </template>
+                        </template>
+                    </div>
                 </div>
-            </div>
+            </template>
         </template>
 
 
+        <!-- --- --- ---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- -->
+
+        <template is="dom-if" if="{{toggle}}">
+            <template is="dom-repeat" items="{{_toArray(otherView.dates)}}" as="day">
+                <paper-material class="otherView">
+                    <div class="otherViewContainer">
+                        <div class="firstColumn">
+                            <div class="otherViewDate">[[_otherViewDate(day.name)]]</div>
+                            <div class="hours">
+                                <template is="dom-repeat" items="{{_computeHour}}" as="hour">
+                                    <span>[[hour]]</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="otherViewRoom">
+                            <template is="dom-repeat" items="{{_toArray(day.value)}}" as="room">
+                                <div class="otherViewHead">
+                                    [[room.name]]
+                                </div>
+                                <div class="otherViewEvents">
+                                    <template is="dom-repeat" items="[[room.value.events]]" as="event">
+                                        <other-view-event event="[[event]]" class="otherViewEvent"
+                                                          style$="top:[[_computeTop(event.date)]]; height: [[_computeHeight(event.date,event.endDate)]];">
+                                        </other-view-event>
+
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </paper-material>
+
+
+            </template>
+        </template>
+
         <!--<a on-click="onClick" href="#speaker">speakers</a>-->
+
     </template>
 
     <script>
@@ -139,27 +259,57 @@
                 is: 'web-events',
                 created: webComponentLoading.elementInit,
                 attached: webComponentLoading.elementAttached,
+                ready: function () {
+                    var that = this
+                    $(window).resize(function () {
+                        if (window.matchMedia("(max-width: 880px)").matches) {
+                            that.toggle = false;
+                        }
+                    })
+                },
                 properties: {
                     selected: {
                         notify: true,
                         type: Number
                     },
+                    toggle: {
+                        type: Boolean,
+                        notify: true
+                    },
                     events: {
-                        type: Object,
-                        observer: 'getDays'
+                        type: Object
                     },
                     days: {
                         type: Array
                     },
                     month: {
                         type: Array
+                    },
+                    otherView: {
+                        type: Object,
+                        notify: true
+                    },
+                    minHour: {
+                        type: Number,
+                        value: 24,
+                        notify: true
+                    },
+                    maxHour: {
+                        type: Number,
+                        value: 0,
+                        notify: true
+                    },
+                    _computeHour: {
+                        type: Array,
+                        computed: "_spanHours(maxHour, minHour)"
                     }
                 },
+                observers: ["getDays(events)", 'otherViewObj(events)'],
                 onClick: function () {
                     this.selected = 6;
                 },
                 getDays: function () {
-                    var month = new Array();
+                    var month = [];
                     month[0] = "Jan";
                     month[1] = "Feb";
                     month[2] = "Mar";
@@ -173,12 +323,12 @@
                     month[10] = "Nov";
                     month[11] = "Dec";
 
-                    var days = {}
+                    var days = {};
                     for (var i in this.events) {
                         var day = this.events[i].date.slice(0, 10);
                         if (!days[day]) {
-                            days[day] = {}
-                            days[day]['events'] = [this.events[i]]
+                            days[day] = {};
+                            days[day]['events'] = [this.events[i]];
                             days[day]['date'] = new Date(this.events[i].date)
                         }
                         else {
@@ -186,7 +336,7 @@
                         }
 
                     }
-                    this.month = month
+                    this.month = month;
                     this.days = days
                 },
                 _sort: function (a, b) {
@@ -199,10 +349,15 @@
                     return a.getDay() == new Date(b).getDay()
                 },
                 _hour: function (a) {
+<<<<<<< Updated upstream
                     return new Date(a).toTimeString().slice(0, 5);
+=======
+                    return new Date(a).toTimeString().slice(0, 5)
+
+>>>>>>> Stashed changes
                 },
                 _dayToPrint: function (day) {
-                    var day = day.getDate()
+                    var day = day.getDate();
                     if (Number(day) < 10) {
                         day = '0' + day
                     }
@@ -220,9 +375,68 @@
                     });
                     return arr
                 },
+                _otherViewDate: function (dateString) {
+                    var date = new Date(dateString);
+                    var day = date.toDateString().slice(8, 10);
+                    var month = date.toDateString().slice(4, 7);
+                    return day + ' ' + month
+                },
                 _log: function (e) {
                     console.log(e)
-                    return 'bla'
+                },
+                otherViewObj: function () {
+                    var otherView = {};
+                    var rooms = {};
+                    var that = this
+                    this.events.forEach(function (item) {
+                        var day = new Date(item.date).toDateString();
+                        if (otherView[day]) {
+                            if (!otherView[day][item.place]) {
+                                room[item.place] = null;
+                                otherView[day][item.place] = {};
+                                otherView[day][item.place]['events'] = [];
+                            }
+                            otherView[day][item.place]['events'].push(item);
+                            that.minHour = Math.min(that.minHour, (Number(item.date.slice(11, 13)) - new Date().getTimezoneOffset() / 60));
+                            that.maxHour = Math.max(that.maxHour, (Number(item.endDate.slice(11, 13)) - new Date().getTimezoneOffset() / 60));
+                        }
+                        else {
+                            otherView[day] = {};
+                            rooms[item.place] = null;
+                            otherView[day][item.place] = {};
+                            otherView[day][item.place]['events'] = [];
+                            otherView[day][item.place]['events'].push(item);
+                            that.minHour = Math.min(that.minHour, (Number(item.date.slice(11, 13)) - new Date().getTimezoneOffset() / 60));
+                            that.maxHour = Math.max(that.maxHour, (Number(item.endDate.slice(11, 13)) - new Date().getTimezoneOffset() / 60));
+                        }
+                    });
+                    var obj = {};
+                    obj.dates = otherView;
+                    obj.rooms = Object.keys(rooms);
+                    this.otherView = obj
+                },
+                _computeTop: function (dateString) {
+                    dateString = dateString;
+                    var percentageOfOneHour = 35;
+                    var zero = this.minHour;
+                    var startingHour = dateString.slice(11, 13);
+                    var startingMinute = dateString.slice(14, 16);
+                    return String((((Number(startingHour) * 60 + Number(startingMinute)) - zero * 60) - (new Date().getTimezoneOffset())) / 60 * percentageOfOneHour + 30) + 'px'
+                },
+                _computeHeight: function (startDateString, endDateString) {
+                    var percentageOfOneHour = (1 / (this.maxHour - this.minHour)) * 100;
+                    var startingHour = startDateString.slice(11, 13);
+                    var startingMinute = startDateString.slice(14, 16);
+                    var endingHour = endDateString.slice(11, 13);
+                    var endingMinute = endDateString.slice(14, 16);
+                    return String((((Number(endingHour) * 60) + Number(endingMinute)) - ((Number(startingHour) * 60) + Number(startingMinute))) / 60 * percentageOfOneHour) + '%'
+                },
+                _spanHours: function () {
+                    var html = [];
+                    for (var i = this.minHour; i <= this.maxHour + 1; i++) {
+                        html.push(i)
+                    }
+                    return html
                 }
             });
 

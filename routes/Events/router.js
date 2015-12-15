@@ -144,14 +144,14 @@ router.post('/:eventid/feedback', function(req, res, next){
         });
     })
 });
-var idSent = []
+var idSent = [];
 
 new CronJob('*/10 * * * * *', function() {
     Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
         var actualDate = new Date();
         event.forEach(function(evt) {
             if(idSent.indexOf(evt.id) == -1){
-                var speaker = evt.speakers
+                var speaker = evt.speakers;
                 for(var i = 0 ; i < speaker.length;i++) {
                     if(+actualDate >= +evt.date) {
                         idSent.push(evt.id)

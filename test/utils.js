@@ -2,7 +2,7 @@
 * Utilities for the model tests
 */
 
-var config = require('../config')
+var config = require('../config');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 
@@ -20,7 +20,7 @@ module.exports.dropDbAndCloseConnection = function dropDbAndCloseConnection(done
       done();
     });
   });
-}
+};
 
 /** 
 * Drops the database
@@ -31,7 +31,7 @@ var dropDb = module.exports.dropDb = function dropDb(done){
     if(err) return done(err);
     done();
   });
-}
+};
 
 /** 
 * Connects to mongo and drops the database.
@@ -54,4 +54,4 @@ module.exports.connectAndDropDb = function connectAndDropDb(done){
       dropDb(done);
     });
   } 
-}
+};

@@ -1,5 +1,5 @@
 'use strict';
-var config = require('../../config')
+var config = require('../../config');
 var express = require('express');
 var router = express.Router();
 var middleware =  require('../middleware');

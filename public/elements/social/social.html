@@ -100,16 +100,10 @@
 
                     twitter: {
                         type: Object,
-                        notify: true,
-                        observer: 'log'
+                        notify: true
                     }
                 },
-                _sort: sortDatesDescending,
-                log:function(evt){
-                    console.log(this.twitter);
-                    console.log('observer');
-
-                }
+                _sort: sortDatesDescending
             });
 
 

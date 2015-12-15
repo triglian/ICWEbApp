@@ -250,7 +250,7 @@
                 },
                 _computeStarsArr: function(arr){
                     var occurencies = [0,0,0,0,0,0];
-                    var arrToReturn = [['0 stars'],['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']]
+                    var arrToReturn = [['0 stars'],['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']];
                     for(var i = 0 ; i < arr.length; i++){
                         if(arr[i].stars==0) {
                             occurencies[0]++
@@ -280,7 +280,7 @@
                 },
                 _computeStarsArrNoSel: function(arr){
                     var occurencies = [0,0,0,0,0];
-                    var arrToReturn = [['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']]
+                    var arrToReturn = [['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']];
                     for(var i = 0 ; i < arr.length; i++){
                         if(arr[i].stars==1) {
                             occurencies[0]++
@@ -357,7 +357,7 @@
                     return tot;
                 },
                 _computeAvgWords: function(ob) {
-                    var tempo = []
+                    var tempo = [];
                     for (var i = 0; i < ob.length; i++) {
                         tempo.push(ob[i].comment.split(/\s+/).length);
                     }

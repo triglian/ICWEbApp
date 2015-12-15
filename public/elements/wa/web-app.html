@@ -68,7 +68,7 @@
             }
         }
 
-        @media (max-width: 990px) {
+        @media (max-width: 1035px) {
             #ending {
                 /*display: inline-flex !important;*/
                 -webkit-flex-grow: 1;
@@ -182,7 +182,7 @@
                 </paper-item>
                 </paper-menu>
             </paper-scroll-header-panel>
-        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="990px" main drawer-toggle-attribute="right-drawer-toggle" >
+        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="1035px" main drawer-toggle-attribute="right-drawer-toggle" >
             <paper-scroll-header-panel fixed main>
                 <paper-toolbar>
 
@@ -389,7 +389,7 @@
                 },
 
                 afterInfoSetSocket: function () {
-                    var socket = io.connect()
+                    var socket = io.connect();
 
 
                     socket.on('initialData', function (data) {
