@@ -4,6 +4,8 @@
 <link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../../components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/paper-styles/color.html">
 <link rel="import" href="otherView.html">
 
 <dom-module id="web-events">
@@ -173,10 +175,29 @@
                 display: none;
             }
         }
+        #filter{
+            margin: 10px;
+            width: 200px;
+        }
+        .speaker{
+            text-decoration: none;
+            color: #880000;
+        }
+        .radius{
+             border-radius: 5px;
+             padding: 5px;
+         }
     </style>
 
     <template>
+        <script>
+            var _addFilter = function(evt){
+                webApp.$.events._filter = evt
+            };
+
+        </script>
         <paper-toggle-button id="viewSwitcher" checked="{{toggle}}">Change View</paper-toggle-button>
+        <template is="dom-if" if="{{_filter}}"><paper-button id="filter" raised on-click="_removeFilter">Remove Filter</paper-button></template>
         <template is="dom-if" if="{{!toggle}}">
             <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
 
@@ -191,13 +212,13 @@
                             <paper-material elevation="1" class="info">
                                 <div class="layout vertical flex-2 center-justified">
                                     <div class="talk"><span
-                                            class="hour">[[ _hour(event.date) ]]</span></div>
+                                            class="hour">[[ _hour(event.date) ]] - [[_hour(event.endDate)]]</span></div>
                                     <div class="name"><a href="#!events/{{event.linkName}}"
                                                          class="eventLink">{{event.name}}</a>
                                     </div>
-                                    <div class="talk"><span>{{event.kind}}</span>
+                                    <div class="talk"><span class="radius" style$="background-color:[[_colorFilter(event.kind)]]" onclick$="_addFilter('[[event.kind]]')">{{event.kind}}</span>
                                         <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
-                                            <span><a href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
+                                            <span><a class="speaker" href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
                                         </template>
                                         <span>{{event.place}}</span>
                                     </div>
@@ -277,7 +298,13 @@
                         notify: true
                     },
                     events: {
-                        type: Object
+                        type: Object,
+                        notify: true
+                    },
+                    allEvents: {
+                        type: Object,
+                        notify: true,
+                        observer: ['_setEvents']
                     },
                     days: {
                         type: Array
@@ -302,12 +329,60 @@
                     _computeHour: {
                         type: Array,
                         computed: "_spanHours(maxHour, minHour)"
+                    },
+                    _filter: {
+                        type: String,
+                        notify: true,
+                        value: '',
+                        obsever: ['_eventFilter']
                     }
                 },
                 observers: ["getDays(events)", 'otherViewObj(events)'],
                 onClick: function () {
                     this.selected = 6;
                 },
+                _setEvents: function(){
+                    this.events = this.allEvents
+                },
+                _removeFilter: function(){
+                  this._filter = ''
+                },
+                _eventFilter: function(){
+                    var eventsToShow = [];
+                    var that = this;
+                    if (that._filter == ''){
+                        this.events = this.allEvents
+                    }
+                    else {
+                        this.allEvents.forEach(function (event) {
+                            if (that._filter == event.kind) {
+                                eventsToShow.push(event)
+                            }
+                        });
+                        this.events = eventsToShow;
+                    }
+                },
+                _colorFilter: function(){
+                    var colors = [  "#f48fb1",
+                                    "#3f51b5",
+                                    "#0f9d58",
+                                    "#f7cb4d",
+                                    "#b71c1c",
+                                    "#7b1fa2",
+                                    "#283593",
+                                    "#004d40",
+                                    "#ff6f00",
+                                    "#607d8b"];
+                    var filters = [];
+                    return function(kind){
+                        var index = filters.indexOf(kind);
+                        if (index == -1){
+                            filters.push(kind)
+                            index = filters.length -1;
+                        }
+                        return colors[index]
+                    }
+                }(),
                 getDays: function () {
                     var month = [];
                     month[0] = "Jan";
