@@ -59,7 +59,6 @@ function addTweet(tweet){
 }
 
 function newTweet(tweet){
-    console.log(tweet);
     if (tweet && tweet.user.id != config.twitterMainID) {
         var newTweet = addTweet(tweet);
         eventEmitter.emit('newTweet', newTweet)
@@ -67,7 +66,6 @@ function newTweet(tweet){
 }
 
 function newNewsTweet(tweet){
-    console.log(tweet);
     if (tweet) {
         var newTweet = addTweet(tweet);
         eventEmitter.emit('newTweet', newTweet)
