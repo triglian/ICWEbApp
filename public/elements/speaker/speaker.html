@@ -10,14 +10,18 @@
         /*}*/
         .event-content {
             display: flex;
+            display: -webkit-flex;
         }
         paper-card {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin: 20px;
         }
         .card-content {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             padding: 5px;
         }
         .card-content + .card-content {
@@ -25,13 +29,17 @@
         }
         .speaker-info-box {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
         }
         .speaker-picture {
             height: 75px;
             width: 75px;
             flex: 0 0 auto;
+            -webkit-flex: 0 0 auto;
             border-radius: 50%;
             margin-right: 15px;
             margin-bottom: 10px;
@@ -40,31 +48,40 @@
             font-size: 1.5em;
             font-weight: bold;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin-right: 15px;
             margin-bottom: 10px;
         }
         .speaker-info-subbox {
             display: flex;
+            display: -webkit-flex;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
         }
         .speaker-info-subbox > * {
             font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .speaker-event {
             font-size: 0.9em;
             display: inline-flex;
+            display: -webkit-inline-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             text-decoration: none;
             color: black;
             padding-bottom: 5px;
         }
         .speaker-event-name {
             flex: 0 1 100%;
+            -webkit-flex: 0 1 100%;
         }
         .speaker-event-date-place {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             color: #9b9b9b;
         }
         .speaker-bio {

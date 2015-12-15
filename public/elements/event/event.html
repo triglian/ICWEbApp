@@ -14,14 +14,18 @@
         /*}*/
         .event-content {
             display: flex;
+            display: -webkit-flex;
         }
         paper-card {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin: 20px;
         }
         .card-content {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             padding: 5px;
         }
         .card-content + .card-content {
@@ -32,42 +36,57 @@
         }
         .event-info-box {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             padding-bottom: 10px;
         }
         .event-name {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             font-size: 2em;
             font-weight: bold;
             padding: 5px 15px 5px 5px;
         }
         .event-info-box-small {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             padding: 5px 5px 5px 0px;
         }
         .event-info-box-small > div {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             padding: 5px 20px 5px 5px;
         }
         .event-kind, .event-pdf, .event-date, .event-place {
             font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             font-weight: bold;
         }
         .event-abstract {
             font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             padding: 5px;
         }
         .event-speaker {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             text-decoration: none;
             color: black;
         }
@@ -75,17 +94,22 @@
             height: 50px;
             width: 50px;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             border-radius: 50%;
             margin-right: 10px;
         }
         .event-speaker-info {
             font-size: 0.9em;
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .event-speaker-name, .event-speaker-org {
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .event-speaker-org {
             color: #a5a5a5;
