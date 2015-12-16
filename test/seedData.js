@@ -9,8 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date("Thurs Dec 17 2015 14:40:00"),
-        endDate     : new Date("Thurs Dec 17 2015 14:43:30"),
+        date     : new Date("Thurs Dec 17 2015 14:53:30"),
+        endDate     : new Date("Thurs Dec 17 2015 14:57:00"),
       place    : "USI auditorium",
       speakers  : [
           {
@@ -107,8 +107,8 @@ var program = {
     ,
     {
       name     : "ICWE Mobile Web App",
-        date     : new Date("Thurs Dec 17 2015 14:53:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:57:00"),
+        date     : new Date("Thurs Dec 17 2015 14:40:00"),
+        endDate     : new Date("Thurs Dec 17 2015 14:43:30"),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Samuele Decarli",
