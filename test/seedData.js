@@ -224,8 +224,8 @@ var program = {
       ,
       {
           name     : "Artificial IntellIgence Cup ",
-          date     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
-          endDate     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
+          date     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 16:00:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Luca Gambardella",
