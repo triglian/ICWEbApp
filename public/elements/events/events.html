@@ -175,24 +175,30 @@
                 display: none;
             }
         }
-        #filter{
+
+        #filter {
             margin: 10px;
             width: 200px;
         }
-        .speaker{
+
+        .speaker {
             text-decoration: none;
             color: #880000;
         }
-        .radius{
-             border-radius: 5px;
-             padding: 5px;
-         }
+
+        .radius {
+            border-radius: 5px;
+            padding: 5px;
+        }
     </style>
 
     <template>
-
-        <paper-toggle-button id="viewSwitcher" checked="{{toggle}}">Change View</paper-toggle-button>
-        <template is="dom-if" if="{{_filter}}"><paper-button id="filter" raised on-click="_removeFilter">Remove Filter</paper-button></template>
+        <template is="dom-if" if="{{!ishome}}">
+            <paper-toggle-button id="viewSwitcher" checked="{{toggle}}">Switch to [[differentViewName]]</paper-toggle-button>
+        </template>
+        <template is="dom-if" if="{{_filter}}">
+            <paper-button id="filter" raised on-click="_removeFilter">Remove Filter</paper-button>
+        </template>
         <template is="dom-if" if="{{!toggle}}">
             <template is="dom-repeat" items="{{_toArray(days)}}" as="day" sort="_sortDate">
 
@@ -211,7 +217,9 @@
                                     <div class="name"><a href="#!events/{{event.linkName}}"
                                                          class="eventLink">{{event.name}}</a>
                                     </div>
-                                    <div class="talk"><span class="radius" style$="background-color:[[_colorFilter(event.kind)]]" onclick$="_addFilter('[[event.kind]]')">{{event.kind}}</span>
+                                    <div class="talk"><span class="radius"
+                                                            style$="background-color:[[_colorFilter(event.kind)]]"
+                                                            onclick$="_addFilter('[[event.kind]]')">{{event.kind}}</span>
                                         <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
                                             <span><a class="speaker" href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
                                         </template>
@@ -248,7 +256,7 @@
                                 </div>
                                 <div class="otherViewEvents">
                                     <template is="dom-repeat" items="[[room.value.events]]" as="event">
-                                        <other-view-event  event="[[event]]" class="otherViewEvent"
+                                        <other-view-event event="[[event]]" class="otherViewEvent"
                                                           style$="background-color:[[_colorFilter(event.kind)]];top:[[_computeTop(event.date)]]; height: [[_computeHeight(event.date,event.endDate)]];">
                                         </other-view-event>
 
@@ -290,7 +298,9 @@
                     },
                     toggle: {
                         type: Boolean,
-                        notify: true
+                        value: false,
+                        notify: true,
+                        observer: '_changeToggle'
                     },
                     events: {
                         type: Object,
@@ -334,22 +344,34 @@
                     height: {
                         type: Number,
                         value: 2000
+                    },
+                    ishome: {
+                        type: String,
+                        value: ''
+                    },
+                    differentViewName: {
+                        type: String,
+                        value: 'Switch to timeline view',
+                        notify:true
                     }
                 },
                 observers: ["getDays(events)", 'otherViewObj(events)'],
                 onClick: function () {
                     this.selected = 6;
                 },
-                _setEvents: function(){
+                _changeToggle: function(){
+                    this.differentViewName = this.toggle ? 'list view' : 'timesheet view'
+                },
+                _setEvents: function() {
                     this.events = this.allEvents
                 },
-                _removeFilter: function(){
-                  this._filter = ''
+                _removeFilter: function () {
+                    this._filter = ''
                 },
-                _eventFilter: function(){
+                _eventFilter: function () {
                     var eventsToShow = [];
                     var that = this;
-                    if (that._filter == ''){
+                    if (that._filter == '') {
                         this.events = this.allEvents
                     }
                     else {
@@ -361,23 +383,23 @@
                         this.events = eventsToShow;
                     }
                 },
-                _colorFilter: function(){
-                    var colors = [  "#f48fb1",
-                                    "#3f51b5",
-                                    "#0f9d58",
-                                    "#f7cb4d",
-                                    "#b71c1c",
-                                    "#7b1fa2",
-                                    "#283593",
-                                    "#004d40",
-                                    "#ff6f00",
-                                    "#607d8b"];
+                _colorFilter: function () {
+                    var colors = ["#f48fb1",
+                        "#3f51b5",
+                        "#0f9d58",
+                        "#f7cb4d",
+                        "#b71c1c",
+                        "#7b1fa2",
+                        "#283593",
+                        "#004d40",
+                        "#ff6f00",
+                        "#607d8b"];
                     var filters = [];
-                    return function(kind){
+                    return function (kind) {
                         var index = filters.indexOf(kind);
-                        if (index == -1){
+                        if (index == -1) {
                             filters.push(kind)
-                            index = filters.length -1;
+                            index = filters.length - 1;
                         }
                         return colors[index]
                     }
@@ -485,7 +507,7 @@
                     this.otherView = obj
                 },
                 _computeTop: function (dateString) {
-                    var percentageOfOneHour = (this.height)/(this.maxHour-this.minHour+2);
+                    var percentageOfOneHour = (this.height) / (this.maxHour - this.minHour + 2);
                     var zero = this.minHour;
                     var startingHour = dateString.slice(11, 13);
                     var startingMinute = dateString.slice(14, 16);
@@ -506,8 +528,8 @@
                     }
                     return html
                 },
-                _hourHeight: function(){
-                    return String((this.height)/(this.maxHour-this.minHour+2)) + 'px';
+                _hourHeight: function () {
+                    return String((this.height) / (this.maxHour - this.minHour + 2)) + 'px';
                 }
             });
 

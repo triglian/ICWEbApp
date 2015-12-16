@@ -416,12 +416,12 @@
                     socket.on('deletedTweet', function(data){
                         webApp.newsTweet.forEach(function(item, index){
                             if (item.tweetId == data.tweetId && item.textId == data.textId){
-                                webApp.splice('newsTweet', index)
+                                webApp.splice('newsTweet', index, 1)
                             }
                         });
                         webApp.tweet.forEach(function(item, index){
                             if (item.tweetId == data.tweetId && item.textId == data.textId){
-                                webApp.splice('tweet', index)
+                                webApp.splice('tweet', index, 1)
                             }
                         })
                     })
