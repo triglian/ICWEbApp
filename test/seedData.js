@@ -9,8 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
-        endDate     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
+        date     : new Date("Thurs Dec 16 2015 15:20:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 15:30:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
       speakers  : [
           {
