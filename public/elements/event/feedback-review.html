@@ -179,7 +179,7 @@
                     <div class="card-content">
                         <star-rating-fixed label="Rating"  value="{{feeds.stars}}"></star-rating-fixed>
                         <a class="sub-ti" href="mailto:{{feeds.email}}">{{feeds.email}}</a>
-                        <div class="sub-ti2">{{feeds.time}}</div>
+                        <div class="sub-ti2">{{formatDate(feeds.time)}}</div>
                         <p class="comment">{{feeds.comment}}</p>
                     </div>
             </template>
@@ -367,7 +367,8 @@
                     }
                     var rest = sum / tempo.length;
                     return Math.floor(rest);
-                }
+                },
+                formatDate: formatDateSingle
             })
         })();
     </script>
