@@ -5,3 +5,5 @@ public/views/
 *.pdf
 
 npm-debug.log
+
+*.jpg

@@ -9,8 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date("Thurs Dec 17 2015 14:40:00"),
-        endDate     : new Date("Thurs Dec 17 2015 14:43:30"),
+        date     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
       speakers  : [
           {
@@ -18,6 +18,7 @@ var program = {
               organisation  : "Web Atelier - Final Project",
               bio           : "Samuel is a nice guy from Mexico",
               website       : "atelier.inf.usi.ch/~cruzas/",
+              picture       : "http://i.imgur.com/XYCafWa.jpg",
               twitter       : "@cruzas",
               email         : "cruzas@usi.ch"
           }],
@@ -26,8 +27,8 @@ var program = {
     },
     {
       name     : "USI Big Brother",
-        date     : new Date("Thurs Dec 17 2015 14:43:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:47:00"),
+        date     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [ {
                 name          : "Andrea Vicari ",
@@ -43,8 +44,8 @@ var program = {
     },
     {
       name     : "EZ-Stats",
-        date     : new Date("Thurs Dec 17 2015 14:47:00"),
-        endDate     : new Date("Thurs Dec 17 2015 14:50:30"),
+        date     : new Date("Thurs Dec 17 2015 14:43:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:47:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
       abstract : "The Goal of EZ-Stats has created a collaborative framework for visual and numerical data regarding Basketball. The basic idea is to simplify the submission of data after a match.",
       kind     : "Talk",
@@ -62,8 +63,8 @@ var program = {
     },
     {
       name     : "ASQ-PDF Import",
-        date     : new Date("Thurs Dec 17 2015 14:50:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:53:30"),
+        date     : new Date("Thurs Dec 17 2015 14:47:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [
             {
@@ -83,8 +84,8 @@ var program = {
     ,
     {
       name     : "ICWE Mobile Web App",
-        date     : new Date("Thurs Dec 17 2015 14:53:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:57:00"),
+        date     : new Date("Thurs Dec 17 2015 14:40:00 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:43:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Samuele Decarli",
@@ -100,8 +101,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-        date     : new Date("Thurs Dec 17 2015 14:57:00"),
-        endDate     : new Date("Thurs Dec 17 2015 15:00:00"),
+        date     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 15:00:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Davide Cammarata",
@@ -117,8 +118,8 @@ var program = {
     },
       {
           name     : "Introduction",
-          date     : new Date("Thurs Dec 17 2015 14:00:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:05:00"),
+          date     : new Date("Thurs Dec 17 2015 14:00:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               ref: "kai.hormann@usi.ch"
@@ -128,15 +129,15 @@ var program = {
       },
       {
           name     : "Programming Fundamentals I",
-          date     : new Date("Thurs Dec 17 2015 14:05:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:25:00"),
+          date     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:25:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Nate Nystrom",
               organisation  : "USI - Final Projects",
               bio           : "His research interests include programming languages, compilers, tools, and methodologies for constructing safe, secure, and efficient systems.",
               website       : "www.inf.usi.ch/faculty/nystrom",
-              picture       : "http://www.inf.usi.ch/nystrom/images/nate-2011-small.jpg",
+              picture       : "http://i.imgur.com/Rtevr9L.jpg",
               email         : "nate.nystrom@usi.ch"
           }],
           abstract : "PF1 final projects presentations",
@@ -145,8 +146,8 @@ var program = {
       ,
       {
           name     : "Software Atelier I ",
-          date     : new Date("Thurs Dec 17 2015 14:25:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:35:00"),
+          date     : new Date("Thurs Dec 17 2015 14:25:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:35:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name: "Michele Lanza",
@@ -169,8 +170,8 @@ var program = {
       },
       {
           name     : "Software Atelier V",
-          date     : new Date("Thurs Dec 17 2015 15:00:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:10:00"),
+          date     : new Date("Thurs Dec 17 2015 15:00:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:10:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               ref : "michele.lanza@usi.ch"
@@ -189,8 +190,8 @@ var program = {
       },
       {
           name     : "Computer Graphics",
-          date     : new Date("Thurs Dec 17 2015 15:10:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:30:00"),
+          date     : new Date("Thurs Dec 17 2015 15:10:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Kai Hormann",
@@ -206,15 +207,16 @@ var program = {
       ,
       {
           name     : "Human-Computer Interaction Design ",
-          date     : new Date("Thurs Dec 17 2015 15:30:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:50:00"),
+          date     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Monica Landoni",
               organisation  : "USI - Final Projects",
               bio           : "Dr Monica Landoni is a senior research fellow at the Faculty of Informatics since January 2007. Previously, she was a lecturer in the Department of Computer and Information Sciences of the University of Strathclyde since 1998 and spent 2005 on a sabbatical position at PARC (formerly Xerox Parc) in Palo Alto, USA. She holds a PhD in Information Science, Department of Information Science, University of Strathclyde, 1997 and a Laurea in Scienze dell´Informazione from Università degli Studi of Milan.",
               website       : "http://usi.to/f7f",
-              email         : "monica.landoni@usi.ch"
+              email         : "monica.landoni@usi.ch",
+              picture       : "http://www.ebooklabitalia.com/wp-content/uploads/monica-landoni-100x100.jpg"
           }],
           abstract : "Human-Computer Interaction Design projects presentations",
           kind     : "Intro"
@@ -222,8 +224,8 @@ var program = {
       ,
       {
           name     : "Artificial IntellIgence Cup ",
-          date     : new Date("Thurs Dec 17 2015 15:30:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:50:00"),
+          date     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Luca Gambardella",
@@ -239,8 +241,8 @@ var program = {
       ,
       {
           name     : "Web Atelier ",
-          date     : new Date("Thurs Dec 17 2015 14:35:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:40:00"),
+          date     : new Date("Thurs Dec 17 2015 14:35:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:40:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Cesare Pautasso",
@@ -334,7 +336,7 @@ var tweets = {
         "textId"    : "12344",
       name          : "Person1",
       username      : "USI",
-      text          : "#ICWE webApp is.UP()",
+      text          : "Our webApp is.UP()",
       profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png'
     },
     {
@@ -352,7 +354,7 @@ var tweets = {
       "textId"      : "12234",
       name          : "Person3",
       username      : "USI",
-      text          : "#ICWE16 love what is doing on!",
+      text          : "#ICWE16 !",
       profile_image : 'http://ecx.images-amazon.com/images/I/5113ZN8zXeL._AC_UL320_SR218,320_.jpg'
     }
   ]
