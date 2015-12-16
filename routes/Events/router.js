@@ -155,6 +155,7 @@ new CronJob('*/10 * * * * *', function() {
                 for(var i = 0 ; i < speaker.length;i++) {
                     if(+actualDate >= +evt.date) {
                         idSent.push(evt.id)
+                        sendMail(speaker[i].email, [evt.name, evt.id])
                     }
                 }
             }
@@ -173,11 +174,12 @@ var transporter = nodemailer.createTransport({
 });
 
 function sendMail(receiver,event) {
+    console.log(event)
     var mailOptions = {
         from: 'icwe16cform@gmail.com',
         to: 'icwe16cform@gmail.com',
         subject: 'Your Feedback for '+ event[0] +' is ready',
-        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b>'
+        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b><p> to be forwarded to '+receiver+'</p>'
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
