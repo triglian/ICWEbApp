@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="otherViewEvents">
                                     <template is="dom-repeat" items="[[room.value.events]]" as="event">
-                                        <other-view-event event="[[event]]" class="otherViewEvent"
+                                        <other-view-event _colorFilter="{{_colorFilter}}" event="[[event]]" class="otherViewEvent"
                                                           style$="top:[[_computeTop(event.date)]]; height: [[_computeHeight(event.date,event.endDate)]];">
                                         </other-view-event>
 
@@ -485,10 +485,7 @@
                     this.otherView = obj
                 },
                 _computeTop: function (dateString) {
-                    console.log(this.maxHour);
-                    console.log(this.minHour)
                     var percentageOfOneHour = (this.height)/(this.maxHour-this.minHour+2);
-                    console.log(percentageOfOneHour);
                     var zero = this.minHour;
                     var startingHour = dateString.slice(11, 13);
                     var startingMinute = dateString.slice(14, 16);

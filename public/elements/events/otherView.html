@@ -59,7 +59,7 @@
                     <div class="name"><a href="#!events/{{event.linkName}}"
                                          class="eventLink">{{event.name}}</a>
                     </div>
-                    <div class="talk"><div class='radius' style$="background-color:[[_colorFilter(event.kind)]];" >{{event.kind}}</div>
+                    <div class="talk"><div class='radius'>{{event.kind}}</div>
                         <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
                             <span><a class="speaker" href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
                         </template>
@@ -99,37 +99,12 @@
                         value: 455
                     }
                 },
-                _colorFilter: function(){
-                    var colors = [  "#f48fb1",
-                        "#3f51b5",
-                        "#0f9d58",
-                        "#f7cb4d",
-                        "#b71c1c",
-                        "#7b1fa2",
-                        "#283593",
-                        "#004d40",
-                        "#ff6f00",
-                        "#607d8b"];
-                    var filters = [];
-                    return function(kind){
-                        var index = filters.indexOf(kind);
-                        if (index == -1){
-                            filters.push(kind)
-                            index = filters.length -1;
-                        }
-                        return colors[index]
-                    }
-                }(),
                 _hour: function (a) {
                     return new Date(a).toTimeString().slice(0, 5)
 
                 },
                 _computeTop: function (dateString) {
-                    console.log(this.maxHour);
-                    console.log(this.minHour)
-                    dateString = dateString;
                     var percentageOfOneHour = this.height/(this.maxHour+1-this.minHour);
-                    console.log(percentageOfOneHour);
                     var zero = this.minHour;
                     var startingHour = dateString.slice(11, 13);
                     var startingMinute = dateString.slice(14, 16);
