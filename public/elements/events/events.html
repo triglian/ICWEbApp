@@ -248,8 +248,8 @@
                                 </div>
                                 <div class="otherViewEvents">
                                     <template is="dom-repeat" items="[[room.value.events]]" as="event">
-                                        <other-view-event event="[[event]]" class="otherViewEvent"
-                                                          style$="top:[[_computeTop(event.date)]]; height: [[_computeHeight(event.date,event.endDate)]];">
+                                        <other-view-event  event="[[event]]" class="otherViewEvent"
+                                                          style$="background-color:[[_colorFilter(event.kind)]];top:[[_computeTop(event.date)]]; height: [[_computeHeight(event.date,event.endDate)]];">
                                         </other-view-event>
 
                                     </template>
