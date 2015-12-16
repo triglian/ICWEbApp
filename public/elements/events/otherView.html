@@ -93,6 +93,10 @@
                         type: Number,
                         value: 0,
                         notify: true
+                    },
+                    height: {
+                        type: Number,
+                        value: 455
                     }
                 },
                 _colorFilter: function(){
@@ -121,8 +125,11 @@
 
                 },
                 _computeTop: function (dateString) {
+                    console.log(this.maxHour);
+                    console.log(this.minHour)
                     dateString = dateString;
-                    var percentageOfOneHour = 35;
+                    var percentageOfOneHour = this.height/(this.maxHour+1-this.minHour);
+                    console.log(percentageOfOneHour);
                     var zero = this.minHour;
                     var startingHour = dateString.slice(11, 13);
                     var startingMinute = dateString.slice(14, 16);
