@@ -348,7 +348,7 @@ var tweets = {
       "tweetId"     : 1234,
       "textId"      : "1234",
       name          : "Dart",
-      username      : "@DartV",
+      username      : "DartV",
       text          : "#USI is doing the finals project presentations #USI",
       profile_image : 'http://nst.sky.it/content/dam/static/contentimages/original/sezioni/cinema/news/2014/01/02/darth-vader.jpeg'
     },
