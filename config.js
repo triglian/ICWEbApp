@@ -8,7 +8,7 @@ module.exports = {
     // Database name
     mongoDbName: "ICWEbApp",
     //Server URL
-    url: "http://localhost:3000",
+    url: "http://icwe.frunzio.it",
 
 
     /**
