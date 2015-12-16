@@ -9,8 +9,8 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date("Thurs Dec 16 2015 15:20:30 GMT+0100 (CET)"),
-        endDate     : new Date("Thurs Dec 17 2015 15:30:30 GMT+0100 (CET)"),
+        date     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
       speakers  : [
           {
@@ -97,23 +97,6 @@ var program = {
                 email         : "decars@usi.ch"
       }],
       abstract : "The aim of this project is to create a web application for the ICWE 2016 web conference.",
-      kind     : "Talk"
-    },
-    {
-      name     : "Atelier Beats Group Project",
-        date     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
-        endDate     : new Date("Thurs Dec 17 2015 15:00:00 GMT+0100 (CET)"),
-      place    : "USI auditorium",
-        speakers  : [{
-                name          : "Davide Cammarata",
-                organisation  : "Web Atelier - Final Project",
-                bio           : " Davide Cammarata is a Bachelor student in the Faculty of Informatics at the Università della Svizzera italiana (USI) in Lugano, Switzerlad.",
-                website       : "http://atelier.inf.unisi.ch/~cammad",
-                twitter       : "@dcamma",
-                picture       : "http://i.imgur.com/J8OgvqR.jpg",
-                email         : "cammad@usi.ch"
-      }],
-      abstract : "Atelier Beats Group Project is based on the work done in class, but with many additional features.",
       kind     : "Talk"
     },
       {
