@@ -8,45 +8,63 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var speakerImagePath = "imgs/speakers/";
 
 var speakerSchema = new mongoose.Schema({
-    name            : { type : String, default: "" },
+    name            : { type : String, required: true },
     organisation    : { type : String, default: "" },
-    bio             : { type : String, default: "" },
-    picture         : { type : String, default: "" },
+    bio             : { type : String, required: true },
+    picture         : { type : String, default: "imgs/speakers/default_profile_1_normal.png" },
     website         : { type : String, default: "" },
-    email           : { type : String, default: "" },
+    email           : { type : String, required: true },
     twitter         : { type : String, default: "" },
-    events          : [{ type : ObjectId, ref: "Event" }]
+    events          : [{ type : ObjectId, ref: "Event" }],
+    linkName : { type : String, required: true }
 });
 
 speakerSchema.pre('save', function (next) {
-    var picture = this.picture.split("/");
-    var path = "public/" + speakerImagePath + picture[picture.length - 1];
     var speaker = this;
 
-    http.get(this.picture, function (res) {
-        if (res.statusCode != 200) {
-            console.log(speaker.picture + " not found. Set to default picture.");
-            speaker.picture = speakerImagePath + "default.png";
-            return next();
-        }
+    function job() {
+        if(speaker.picture.match(/^http:\/\//)) {
 
-        var data = new stream.Transform();
+            var picture = speaker.picture.split("/");
+            var path = "public/" + speakerImagePath + picture[picture.length - 1];
 
-        res.on('data', function (chunk) {
-            data.push(chunk);
-        });
+            http.get(speaker.picture, function (res) {
+                if (res.statusCode != 200) {
+                    console.log(speaker.picture + " not found. Set to default picture.");
+                    speaker.picture = speakerImagePath + "default.png";
+                    return next();
+                }
 
-        res.on('end', function () {
-            fs.writeFile(path, data.read(), function () {
-                speaker.picture = speakerImagePath + picture[picture.length - 1];
+                var data = new stream.Transform();
+
+                res.on('data', function (chunk) {
+                    data.push(chunk);
+                });
+
+                res.on('end', function () {
+                    fs.writeFile(path, data.read(), function () {
+                        speaker.picture = speakerImagePath + picture[picture.length - 1];
+                        return next();
+                    });
+                });
+            }).on('error', function () {
+                console.log(speaker.picture + " not found. Set to default picture.");
+                speaker.picture = speakerImagePath + "default.png";
                 return next();
             });
-        });
-    }).on('error', function() {
-        console.log(speaker.picture + " not found. Set to default picture.");
-        speaker.picture = speakerImagePath + "default.png";
-        return next();
-    });
+        }
+        else return next();
+    }
+
+    fs.stat("public/imgs/speakers", function(err, stat) {
+        if(err || !stat) {
+            fs.mkdir("public/imgs/speakers", job);
+        }
+        else {
+            job();
+        }
+    })
+
 });
 
 mongoose.model('Speaker', speakerSchema);

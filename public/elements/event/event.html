@@ -7,8 +7,6 @@
 <link rel="import" href="../../elements/event/feedback-form.html">
 <link rel="import" href="../../elements/event/feedback-review.html">
 
-<script src="../../js/utils.js"></script>
-
 <dom-module id="web-event">
     <style>
         /** {*/
@@ -16,14 +14,18 @@
         /*}*/
         .event-content {
             display: flex;
+            display: -webkit-flex;
         }
         paper-card {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin: 20px;
         }
         .card-content {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             padding: 5px;
         }
         .card-content + .card-content {
@@ -34,40 +36,57 @@
         }
         .event-info-box {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             padding-bottom: 10px;
         }
         .event-name {
             flex: 1 1 auto;
-            font-size: 250%;
+            -webkit-flex: 1 1 auto;
+            font-size: 2em;
             font-weight: bold;
             padding: 5px 15px 5px 5px;
         }
         .event-info-box-small {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             padding: 5px 5px 5px 0px;
         }
         .event-info-box-small > div {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             padding: 5px 20px 5px 5px;
         }
         .event-kind, .event-pdf, .event-date, .event-place {
+            font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             font-weight: bold;
         }
         .event-abstract {
+            font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             padding: 5px;
         }
         .event-speaker {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             text-decoration: none;
             color: black;
         }
@@ -75,16 +94,22 @@
             height: 50px;
             width: 50px;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             border-radius: 50%;
             margin-right: 10px;
         }
         .event-speaker-info {
+            font-size: 0.9em;
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .event-speaker-name, .event-speaker-org {
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .event-speaker-org {
             color: #a5a5a5;
@@ -108,18 +133,24 @@
                             <div>
                                 <div class="event-place">[[event.place]]</div>
                                 <template id="event-pdf-if" is="dom-if" if="{{event.pdf}}">
-                                    <a class="event-pdf" href="http://[[event.pdf]]">Event pdf</a>
+                                    <template is="dom-repeat" items="{{event.pdf}}" as="pdf">
+                                        <a class="event-pdf" href="/[[pdf]]" target="_blank">PDF {{_nicerIndex(index)}}</a>
+                                    </template>
                                 </template>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="event-abstract">[[event.abstract]]</div>
+                    <div class="event-abstract">
+                        <template is="dom-repeat" items="[[_breakLines(event.abstract)]]" as="line">
+                            [[line]]<br>
+                        </template>
+                    </div>
                 </div>
                 <template is="dom-repeat" items="[[event.speakers]]" as="speaker">
                     <div class="card-content">
-                        <a href="/#!speakers/[[speaker._id]]" class="event-speaker">
+                        <a href="/#!speakers/[[speaker.linkName]]" class="event-speaker">
                             <iron-image class="event-speaker-img" sizing="contain" src$="[[speaker.picture]]"></iron-image>
                             <div class="event-speaker-info">
                                 <div class="event-speaker-name">[[speaker.name]]</div>
@@ -134,10 +165,6 @@
                         <feedback-form _id="[[_id]]"></feedback-form>
                     </div>
                 </template>
-                <div class="card-content">
-                    <h2>Feedbacks Review</h2>
-                    <feedback-review feedbacks="[[event.feedback]]"></feedback-review>
-                </div>
             </paper-card>
         </div>
 
@@ -147,14 +174,17 @@
                 handle-as="json"
                 last-response="{{event}}">
             ></iron-ajax>
+
     </template>
 
     <script>
         (function () {
             'use strict';
-
+//            var items = localStorage.getItem("icwe-web-app").split(',')
             Polymer({
                 is: 'web-event',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     _id: {
                         type: String,
@@ -169,10 +199,29 @@
                 _feedbackIsOpen: function(date) {
                     var now = Date.now();
                     var evt = new Date(date).getTime();
-//                    return evt < now && now < evt + 86400000 * 3;
-                    return true;
+//                    if (localStorage.getItem("icwe-web-app") !== null) {
+//                        for(var i = 0 ; i < items.length;i++) {
+//                            if (items[i] == JSON.stringify(this._id)) {
+//                                return false;
+//                            }
+//                        }
+//                    }
+                    return evt < now && now < evt + 86400000 * 3;
+//                    return true;
                 },
-
+//                _hasFeedback: function(id) {
+//                    var items0 = localStorage.getItem("icwe-web-app")
+//                    var items = items0.split(",")
+//                    for(var i = 0; i <items.length;i++) {
+//                        if(items[i] == JSON.stringify(id)) {
+//                            return true
+//                        }
+//                    }
+//                },
+                _breakLines: breakLines,
+                _nicerIndex: function(i) {
+                    return this.event.pdf.length > 1 ? Number(i) + 1 : "";
+                }
             });
 
 

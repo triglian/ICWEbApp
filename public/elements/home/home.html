@@ -29,6 +29,7 @@
 
         :host {
             @apply(--layout-vertical);
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
             margin: 0 auto;
             margin-top: 30px;
@@ -37,7 +38,7 @@
 
         #title {
             -webkit-font-smoothing: antialiased;
-            font-size: 34px;
+            font-size: 1.7em;
             font-weight: 400;
             letter-spacing: -.01em;
             line-height: 40px;
@@ -52,6 +53,7 @@
         }
 
         .container {
+            font-size: 1em;
             @apply(--layout-horizontal);
             margin-left: 10px;
             margin-right: 10px;
@@ -59,6 +61,7 @@
         }
 
         .block {
+            -webkit-flex: 1;
             flex: 1;
             /*@apply(--layout-flex);*/
             margin-bottom: 15px;
@@ -107,7 +110,7 @@
             color: var(--paper-indigo-500);
         }
         #completeName {
-            font-size: 28px;
+            font-size: 1.5em;
             font-weight: 400;
             letter-spacing: -.01em;
             line-height: 40px;
@@ -115,7 +118,7 @@
             margin-bottom: 15px;
         }
         .paperTitle {
-            font-size: 18px;
+            font-size: 1.1em;
             font-weight: 400;
             letter-spacing: -.01em;
             line-height: 40px;
@@ -127,9 +130,8 @@
     <template>
         <span id="title">[[info.title]]</span>
         <span id="completeName">[[info.name]]</span>
-        <paper-toggle-button active="{{toggle}}"></paper-toggle-button>
         <template is="dom-if" if="{{toggle}}">
-            <web-events events="{{eventsToVisualize}}"></web-events>
+            <web-events all-events="{{eventsToVisualize}}"></web-events>
         </template>
 
         <paper-card>
@@ -167,6 +169,8 @@
 
             Polymer({
                 is: 'web-home',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     toggle: {
                         notify: true,
@@ -191,14 +195,19 @@
                 },
                 _sort: sortDatesDescending,
                 _visualize: function () {
-                    var arr = []
-                    var date = "2015-11-25";
+                    var arr = [];
+                    var date = new Date();
+                    date = date.toJSON().slice(0, 10);
                     for (var i in this.events) {
                         if (this.events[i].date.slice(0, 10) == date) {
                             arr.push(this.events[i])
                         }
                     }
+                    if (arr.length != 0){
+                        this.toggle = true;
+                    }
                     this.eventsToVisualize = arr
+
                 },
                 _index: function (value) {
                     return value < 3;

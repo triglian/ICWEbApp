@@ -3,8 +3,6 @@
 <link rel="import" href="../../components/paper-card/paper-card.html">
 <link rel="import" href="../../components/iron-image/iron-image.html">
 
-<script src="../../js/utils.js"></script>
-
 <dom-module id="web-speaker">
     <style>
         /** {*/
@@ -12,14 +10,18 @@
         /*}*/
         .event-content {
             display: flex;
+            display: -webkit-flex;
         }
         paper-card {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin: 20px;
         }
         .card-content {
             display: flex;
+            display: -webkit-flex;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
             padding: 5px;
         }
         .card-content + .card-content {
@@ -27,45 +29,63 @@
         }
         .speaker-info-box {
             display: flex;
+            display: -webkit-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
         }
         .speaker-picture {
             height: 75px;
             width: 75px;
             flex: 0 0 auto;
+            -webkit-flex: 0 0 auto;
             border-radius: 50%;
             margin-right: 15px;
             margin-bottom: 10px;
         }
         .speaker-name {
-            font-size: 200%;
+            font-size: 1.5em;
             font-weight: bold;
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             margin-right: 15px;
             margin-bottom: 10px;
         }
         .speaker-info-subbox {
             display: flex;
+            display: -webkit-flex;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
             flex-flow: column wrap;
+            -webkit-flex-flow: column wrap;
         }
         .speaker-info-subbox > * {
+            font-size: 0.9em;
             flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
         }
         .speaker-event {
+            font-size: 0.9em;
             display: inline-flex;
+            display: -webkit-inline-flex;
             flex-flow: row wrap;
+            -webkit-flex-flow: row wrap;
             text-decoration: none;
             color: black;
             padding-bottom: 5px;
         }
         .speaker-event-name {
             flex: 0 1 100%;
+            -webkit-flex: 0 1 100%;
         }
         .speaker-event-date-place {
             flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
             color: #9b9b9b;
+        }
+        .speaker-bio {
+            font-size: 0.9em;
         }
 
     </style>
@@ -86,14 +106,16 @@
                 </div>
                 <div class="card-content">
                     <div class="speaker-bio">
-                        [[speaker.bio]]
+                        <template is="dom-repeat" items="[[_breakLines(speaker.bio)]]" as="line">
+                                [[line]]<br>
+                        </template>
                     </div>
                 </div>
                 <div class="card-content">
                     <ul>
                         <template is="dom-repeat" items="[[speaker.events]]" as="event">
                             <li>
-                                <a href="/#!events/[[event._id]]" class="speaker-event">
+                                <a href="/#!events/[[event.linkName]]" class="speaker-event">
                                     <div class="speaker-event-name">[[event.name]]</div>
                                     <div class="speaker-event-date-place">[[_formatDate(event.date)]] in [[event.place]]</div>
                                 </a>
@@ -118,6 +140,8 @@
 
             Polymer({
                 is: 'web-speaker',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     _id: {
                         type: String,
@@ -131,7 +155,8 @@
                 _formatDate: formatDateSingle,
                 _parseTwitter: function(t) {
                     return t ? t.slice(1, t.length) : "";
-                }
+                },
+                _breakLines: breakLines
 
             });
 

@@ -10,12 +10,24 @@
 <link rel="import" href="../../components/google-chart/google-chart.html">
 <link rel="import" href="../../elements/star-rating/star-rating.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../components/paper-card/paper-card.html">
 
 
 <script src="../../js/utils.js"></script>
 
 <dom-module id="feedback-review">
     <style>
+        paper-card {
+            flex: 0 0 auto;
+            margin: 0px;
+            width: 100% !important;
+            padding: 40px;
+        }
+        .card-content {
+            display: flex;
+            flex-flow: column wrap;
+            padding: 5px;
+        }
         .container {
             @apply(--layout-horizontal);
         }
@@ -27,6 +39,7 @@
         }
         .flex3child {
             @apply(--layout-flex-3);
+            margin-top: 10px;
         }
         code {
             color: #007000;
@@ -34,6 +47,7 @@
         google-chart {
             height: 300px;
             width: 400px;
+            margin-left: -50px;
         }
         .card-content {
             display: flex;
@@ -64,8 +78,53 @@
             border: 1px solid #f4f4f4;
             padding: 10px;
         }
+        .title{
+            -webkit-font-smoothing: antialiased;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            line-height: 40px;
+        }
+        @media screen and (max-width: 780px) {
+            .flexchild {
+            }
+
+            .flex2child {
+            }
+
+            .flex3child {
+                margin-top: 10px;
+
+            }
+
+            paper-card {
+                flex: 0 0 auto;
+                margin: 0px;
+                width: 100% !important;
+                padding: 40px;
+            }
+
+            .card-content {
+
+                padding: 5px;
+            }
+
+            .container {
+            }
+
+            #details1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 780px) {
+            #details2 {
+                display: none !important;
+            }
+        }
     </style>
     <template>
+        <paper-card>
+            <span class="title">Feedbacks Review</span>
         <div class="container">
             <div class="flex3child">
                 <h3>Ratings Chart</h3>
@@ -82,7 +141,7 @@
                             rows='{{defi2}}'>
                 </google-chart>
             </div>
-                <div class="flex3child">
+                <div id="details1" class="flex3child">
                     <h3>Ratings Details</h3>
                     <div class="comment2">
                         <p>Total number of feedbacks:</p>
@@ -97,6 +156,22 @@
 
                     </div>
                 </div>
+
+            </div>
+            <div id="details2" class="flex3child">
+                <h3>Ratings Details</h3>
+                <div class="comment2">
+                    <p>Total number of feedbacks:</p>
+                    <div>Number of 5 stars: {{No5}}</div>
+                    <div>Number of 4 stars: {{No4}}</div>
+                    <div>Number of 3 stars: {{No3}}</div>
+                    <div>Number of 2 stars: {{No2}}</div>
+                    <div>Number of 1 stars: {{No1}}</div>
+                    <div>Not set: {{No0}}</div>
+                    <br>
+                    <div>Average words per feedback: {{avgW}}</div>
+
+                </div>
         </div>
 
         <h3>Feedbacks</h3>
@@ -104,22 +179,36 @@
                     <div class="card-content">
                         <star-rating-fixed label="Rating"  value="{{feeds.stars}}"></star-rating-fixed>
                         <a class="sub-ti" href="mailto:{{feeds.email}}">{{feeds.email}}</a>
-                        <div class="sub-ti2">{{feeds.time}}</div>
+                        <div class="sub-ti2">{{formatDate(feeds.time)}}</div>
                         <p class="comment">{{feeds.comment}}</p>
                     </div>
             </template>
+        </paper-card>
+        <iron-ajax
+                auto
+                url="/events/{{_id}}"
+                handle-as="json"
+                last-response="{{event}}">
+            ></iron-ajax>
     </template>
 
     <script>
         (function () {
             'use strict';
-
             Polymer({
                 is: 'feedback-review',
                 properties: {
+                    _id: {
+                        type: String,
+                        notify: true
+                    },
+                    event: {
+                        type: Object,
+                        notify: true
+                    },
                     feedbacks: {
                         type: Array,
-                        notify: true
+                        computed:'_arrToOB(event)'
                     },
                     defi:{
                         type : Array,
@@ -161,7 +250,7 @@
                 },
                 _computeStarsArr: function(arr){
                     var occurencies = [0,0,0,0,0,0];
-                    var arrToReturn = [['0 stars'],['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']]
+                    var arrToReturn = [['0 stars'],['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']];
                     for(var i = 0 ; i < arr.length; i++){
                         if(arr[i].stars==0) {
                             occurencies[0]++
@@ -186,9 +275,12 @@
                     }
                     return arrToReturn;
                 },
+                _arrToOB:function(t){
+                    return t.feedback
+                },
                 _computeStarsArrNoSel: function(arr){
                     var occurencies = [0,0,0,0,0];
-                    var arrToReturn = [['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']]
+                    var arrToReturn = [['1 stars'],['2 stars'],['3 stars'],['4 stars'],['5 stars']];
                     for(var i = 0 ; i < arr.length; i++){
                         if(arr[i].stars==1) {
                             occurencies[0]++
@@ -265,7 +357,7 @@
                     return tot;
                 },
                 _computeAvgWords: function(ob) {
-                    var tempo = []
+                    var tempo = [];
                     for (var i = 0; i < ob.length; i++) {
                         tempo.push(ob[i].comment.split(/\s+/).length);
                     }
@@ -275,7 +367,8 @@
                     }
                     var rest = sum / tempo.length;
                     return Math.floor(rest);
-                }
+                },
+                formatDate: formatDateSingle
             })
         })();
     </script>

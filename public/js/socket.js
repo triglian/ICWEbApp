@@ -1,7 +1,7 @@
 /**
  * Created by Giggiux on 05/12/15.
  */
-var socket = io.connect()
+var socket = io.connect();
 
 
 socket.on('initialData', function (data) {

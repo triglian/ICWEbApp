@@ -12,11 +12,11 @@ var Twitter = mongoose.model('Twitter');
 
 
 module.exports = function(httpServer) {
-    var io = socketIo(httpServer)
+    var io = socketIo(httpServer);
     // Socket.io server
 
     io.on('connection', function(socket){
-        console.log('Connected');
+        console.log('Socket client connected');
 
         Twitter.find({}, {}, function(err, twitters) {
             if (err) return next(err);
@@ -29,9 +29,6 @@ module.exports = function(httpServer) {
         io.emit('newTweet', data);
     });
 
-    eventBus.on('newsTweet', function(data){
-        io.emit('newsTweet', data);
-    });
 
     eventBus.on('deletedTweet', function(data){
         io.emit('deletedTweet', data);

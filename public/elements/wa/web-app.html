@@ -23,7 +23,7 @@
 <link rel="import" href="../../elements/news/news.html">
 <link rel="import" href="../../elements/speakers/speakers.html">
 <link rel="import" href="../../elements/sponsors/sponsors.html">
-<link rel="import" href="../../elements/contact/contact.html">
+<link rel="import" href="../../elements/contacts/contact.html">
 <link rel="import" href="../event/event.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../elements/events/events.html">
@@ -50,6 +50,7 @@
         }
 
         .menu {
+            -webkit-flex-grow: 2;
             flex-grow: 2;
         }
 
@@ -67,9 +68,10 @@
             }
         }
 
-        @media (max-width: 990px) {
+        @media (max-width: 1035px) {
             #ending {
                 /*display: inline-flex !important;*/
+                -webkit-flex-grow: 1;
                 flex-grow: 1;
                 @apply(--layout-flex-1);
                 @apply(--layout-horizontal);
@@ -148,7 +150,7 @@
         }
     </style>
     <template>
-        <paper-drawer-panel left-drawer drawer-toggle-attribute="left-drawer-toggle" force-narrow="true">
+        <paper-drawer-panel left-drawer drawer-toggle-attribute="left-drawer-toggle" force-narrow="true" style$="display: {{visibility}}">
             <paper-scroll-header-panel fixed drawer id="drawerLeft">
                 <paper-toolbar>
                     <div>MENU</div>
@@ -180,7 +182,7 @@
                 </paper-item>
                 </paper-menu>
             </paper-scroll-header-panel>
-        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="990px" main drawer-toggle-attribute="right-drawer-toggle" >
+        <paper-drawer-panel right-drawer id="paperDrawerPanel" responsive-width="1035px" main drawer-toggle-attribute="right-drawer-toggle" >
             <paper-scroll-header-panel fixed main>
                 <paper-toolbar>
 
@@ -232,16 +234,19 @@
                         <web-speakers id="speakers" speakers="[[speakers]]"></web-speakers>
                     </section>
                     <section>
-                        <web-events id="events" events="[[events]]"></web-events>
+                        <web-events id="events" all-events="[[events]]"></web-events>
                     </section>
                     <section>
-                        <web-contact id="contact"></web-contact>
+                        <web-contact id="contact" position="[[info.location]]"></web-contact>
                     </section>
                     <section>
                         <web-speaker id="speaker"></web-speaker>
                     </section>
                     <section>
                         <web-event id="event"></web-event>
+                    </section>
+                    <section>
+                        <feedback-review id="feedback"></feedback-review>
                     </section>
                 </iron-pages>
             </paper-scroll-header-panel>
@@ -285,9 +290,12 @@
 
             Polymer({
                 is: 'web-app',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 ready: function () {
                     window.webApp = this;
                     this.readyFlag = true
+
                 },
                 properties: {
                     selected: {
@@ -301,11 +309,13 @@
                     },
                     speakers: {
                         type: Array,
-                        notify: true
+                        notify: true,
+                        observer: ['_setSpeakersReady']
                     },
                     events: {
                         type: Array,
-                        notify: true
+                        notify: true,
+                        observer: ['_setEventsReady']
                     },
                     readyFlag: {
                         type: Boolean,
@@ -318,10 +328,68 @@
                     newsTweet: {
                         type: Array,
                         notify: true
+                    },
+                    visibility: {
+                        type: String,
+                        notify:true,
+                        value: 'none'
+                    },
+                    map: {
+                        type: Object,
+                        value: {events: {}, speakers: {}}
+                    },
+                    eventsReady: {
+                        type: Boolean,
+                        value: false
+                    },
+                    speakersReady: {
+                        type: Boolean,
+                        value: false
+                    },
+                    eventNameToView: {
+                        type: String,
+                        observer: ["_eventChanged"]
+                    },
+                    speakerNameToView: {
+                        type: String,
+                        observer: ["_speakerChanged"]
                     }
                 },
+                _mapReady: function () {
+                    if (this.eventNameToView) {
+                        this.$.event._id = this.map.events[this.eventNameToView]
+                    }
+                    else if (this.speakerNameToView) {
+                        this.$.speaker._id = this.map.speakers[this.speakerNameToView]
+                    }
+                },
+                _eventChanged: function(){
+                    if (this.eventsReady){
+                        this.$.event._id = this.map.events[this.eventNameToView]
+                    }
+                },
+                _speakerChanged: function(){
+                    if (this.speakersReady){
+                        this.$.speaker._id = this.map.speakers[this.speakerNameToView]
+                    }
+                },
+                _toMap: function (arr, map) {
+                    arr.forEach(function (item) {
+                        map[item.linkName] = item._id
+                    });
+                    this._mapReady()
+                },
+                _setEventsReady: function () {
+                    this._toMap(this.events, this.map.events);
+                    this.eventsReady = true
+                },
+                _setSpeakersReady: function () {
+                    this._toMap(this.speakers, this.map.speakers);
+                    this.speakersReady = true
+                },
+
                 afterInfoSetSocket: function () {
-                    var socket = io.connect()
+                    var socket = io.connect();
 
 
                     socket.on('initialData', function (data) {
@@ -335,21 +403,27 @@
                         webApp.newsTweet = newsTweetArr;
                     });
 
-                    socket.on('newsTweet', function (data) {
 
-                        webApp.push('tweet',data);
-                        webApp.push('newsTweet',data);
-
-
-                    });
 
                     socket.on('newTweet', function (data) {
+                        if (webApp.info.twitterMain.indexOf('@' + data.username) != -1) {
+                            webApp.push('newsTweet',data);
+                        }
                         webApp.push('tweet',data);
 
                     });
 
                     socket.on('deletedTweet', function(data){
-
+                        webApp.newsTweet.forEach(function(item, index){
+                            if (item.tweetId == data.tweetId && item.textId == data.textId){
+                                webApp.splice('newsTweet', index)
+                            }
+                        });
+                        webApp.tweet.forEach(function(item, index){
+                            if (item.tweetId == data.tweetId && item.textId == data.textId){
+                                webApp.splice('tweet', index)
+                            }
+                        })
                     })
                 },
                 _changeURLClosure: function () {

@@ -1,5 +1,5 @@
 'use strict';
-var config = require('../../config')
+var config = require('../../config');
 var express = require('express');
 var router = express.Router();
 var middleware =  require('../middleware');
@@ -19,17 +19,19 @@ var transporter = nodemailer.createTransport({
 });
 
 router.post('/', function(req, res, next) {
-    var comment = checkComment(req.body);
-    console.log(comment)
-})
+    var comment = req.body;
+    sendMail(comment)
+});
 
-function sendMail() {
+function sendMail(obj) {
+    var info = obj.name.split(',');
+    var email =  info[1];
+    var name = info[0];
     var mailOptions = {
         from: 'icwe16cform@gmail.com', // sender address
         to: 'icwe16cform@gmail.com', // list of receivers
-        subject: 'Email from contacts form', // Subject line
-        text: 'Hello world ✔', // plaintext body
-        html: '<b>Hello world ✔</b>' // html body
+        subject: ''+ name +' has contacted you on ICWE WebApp', // Subject line
+        html: '<b>From</b><p>'+email+'</p><b>Comment</b><p>'+obj.comment+'</p>' // html body
     };
 
 
@@ -37,8 +39,6 @@ function sendMail() {
         if (error) {
             return console.log(error);
         }
-        console.log('Message sent: ' + info.response);
-
     });
 }
 

@@ -20,10 +20,17 @@
         input {
             display: none;
         }
+        #reset {
+            fill: #aaaaaa;
+        }
+        #reset:hover {
+            fill: black;
+        }
     </style>
     <template>
         <span class="star-rating-label">[[label]]</span><br>
         <span class="star-container">
+            <iron-icon id="reset" class="star" icon="icons:clear" on-tap="_reset"></iron-icon>
             <template is="dom-repeat" items="[[stars]]" as="star">
                 <iron-icon id="[[star]]" class="star" icon="[[_starIcon(star, value)]]" on-tap="_updateValue"></iron-icon>
             </template>
@@ -73,6 +80,9 @@
                     }
 
                     return stars;
+                },
+                _reset: function() {
+                    this.value = 0;
                 }
 
             });

@@ -30,6 +30,7 @@
             width: 90%;
         }
         .card-content {
+            font-size: 0.9em;
             display: flex;
             flex-flow: column wrap;
             padding: 5px;
@@ -47,7 +48,7 @@
         <paper-card>
             <div class="card-content">
                 <div class="horizontal-section">
-                    <form is="iron-form" id="formPost" method="post" action="/">
+                    <form is="iron-form" id="formPost" method="post" action="/contacts">
                         <paper-input name="name" label="Name" required></paper-input>
                         <paper-input name="name" label="Email" required></paper-input>
                         <paper-textarea label="Text" name="comment"></paper-textarea>
@@ -63,10 +64,12 @@
 
     <script>
         (function () {
-            'use strict';
+            'use strict',
 
             Polymer({
                 is: 'web-contact',
+                created: webComponentLoading.elementInit,
+                attached: webComponentLoading.elementAttached,
                 properties: {
                     position: {
                         type: String,
@@ -80,6 +83,9 @@
                 },
                 log:function(a){
                     console.log(a)
+                },
+                _submitForm: function(evt){
+                    this.$.formPost.submit();
                 }
             })
             ;

@@ -1,5 +1,5 @@
 'use strict';
-var config = require('../../config')
+var config = require('../../config');
 var express = require('express');
 var router = express.Router();
 var middleware =  require('../middleware');
@@ -18,21 +18,37 @@ var T = new Twit({
     , access_token_secret:  'bk6ajH0LRp6OoX1PaHS4UHD5FHAqqa1wbKo3cz7kC0SId'
 });
 
+
+
 var stream = T.stream('statuses/filter', { track: config.twitterFeeds });
+
+stream.on('error', function(error){console.log("Stream error"); console.log(error);});
+stream.on('connect', function(){console.log("Stream connecting...");});
+stream.on('connected', function(){console.log("Stream connected");});
+stream.on('reconnect', function(request, response, connectInterval){console.log("There is some problem with the Twitter Authentication, the server will retry in " + String(connectInterval/1000) + " seconds");});
+stream.on('warning', function(error){console.log("Stream warning"); console.log(error);});
 
 stream.on('tweet', newTweet);
 
-//stream.on('delete', removeTweet);
+stream.on('delete', removeTweet);
 
 var newsStream = T.stream('statuses/filter', { follow: config.twitterMainID });
 
+newsStream.on('error', function(error){console.log("News stream error"); console.log(error);});
+newsStream.on('connect', function(){console.log("News stream connecting..." );});
+newsStream.on('connected', function(){console.log("News stream connected");});
+newsStream.on('reconnect', function(request, response, connectInterval){console.log("There is some problem with the Twitter Authentication, the server will retry in " + String(connectInterval/1000) + " seconds");});
+newsStream.on('warning', function(error){console.log("News stream warning"); console.log(error);});
+
 newsStream.on('tweet', newNewsTweet);
 
-//newsStream.on('delete', removeTweet);
+newsStream.on('delete', removeTweet);
 
 
 function addTweet(tweet){
     var newTweet = new Twitter();
+    newTweet.tweetId = tweet.id;
+    newTweet.textId = tweet.id_str;
     newTweet.text = tweet.text;
     newTweet.name = tweet.user.name;
     newTweet.username = tweet.user.screen_name;
@@ -43,26 +59,25 @@ function addTweet(tweet){
 }
 
 function newTweet(tweet){
-    console.log(tweet)
-    var newTweet = addTweet(tweet);
-    eventEmitter.emit('newTweet', newTweet)
+    if (tweet && tweet.user.id != config.twitterMainID) {
+        var newTweet = addTweet(tweet);
+        eventEmitter.emit('newTweet', newTweet)
+    }
 }
 
 function newNewsTweet(tweet){
-    console.log(tweet)
-    var newTweet = addTweet(tweet);
-    eventEmitter.emit('newsTweet', newTweet)
+    if (tweet) {
+        var newTweet = addTweet(tweet);
+        eventEmitter.emit('newTweet', newTweet)
+    }
 }
 
 function removeTweet(tweet){
-    var newTweet = {};
-    newTweet.text = tweet.text;
-    newTweet.name = tweet.user.name;
-    newTweet.username = tweet.user.screen_name;
-    newTweet.profile_image = tweet.user.profile_image_url;
-    newTweet.date = new Date(tweet.created_at);
-    Twitter.find(newTweet).remove(function(err,deleted){
-        eventEmitter.emit('deletedTweet', newTweet)
+    var tweetData = {};
+    tweetData.textId = tweet.delete.status.id_str;
+    tweetData.tweetId = tweet.delete.status.id;
+    Twitter.find(tweetData).remove(function(err,deleted){
+        eventEmitter.emit('deletedTweet', tweetData)
     })
 }
 
