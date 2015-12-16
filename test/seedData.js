@@ -9,15 +9,16 @@ var program = {
   events: [
     {
       name     : "USI Social Web",
-        date     : new Date("Thurs Dec 17 2015 14:53:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:57:00"),
+        date     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
       speakers  : [
           {
               name          : "Samuel Adolfo Cruz Alegría",
               organisation  : "Web Atelier - Final Project",
               bio           : "Samuel is a nice guy from Mexico",
-              website       : "www.atelier.inf.usi.ch/~cruzas/",
+              website       : "atelier.inf.usi.ch/~cruzas/",
+              picture       : "http://i.imgur.com/XYCafWa.jpg",
               twitter       : "@cruzas",
               email         : "cruzas@usi.ch"
           }],
@@ -26,14 +27,14 @@ var program = {
     },
     {
       name     : "USI Big Brother",
-        date     : new Date("Thurs Dec 17 2015 14:43:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:47:00"),
+        date     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [ {
                 name          : "Andrea Vicari ",
                 organisation  : "Web Atelier - Final Project",
                 bio           : "Andrea Vicari was born on March 10th 1995 in Enna, which is a small town in the middle of the Sicily, in the Southern part of Italy. He has been living there for 19 years. After having attended the Liceo Classico in Enna, he finally decided to move to Lugano in order to join the faculty of informatics at USI. The Liceo Classico is school with an emphasy on humanities, so he is not used to scientific subjects but he is really motivated in reaching my aims and do all my best. He has been interested in Informatics since 2004, when my parents first bought me a Personal Computer. He used to spent my days trying to figure out how this incredible machine worked and maybe, some day, be able to create programs all by myself. In his family he is regarded as the one who can do everything with a keyboard and a mouse. He think that they exagerate with their considerations, but he wish that other people, one day, would say the same about him. Finally, after more or less 10 years, he had the possibility to discover this world deeper than before; He tried to do my best to have good results and work in this field that has always interested him.",
-                website       : "www.atelier.inf.usi.ch/~vicara/",
+                website       : "atelier.inf.usi.ch/~vicara/",
                 twitter       : "@vicara",
                 picture       : "http://i.imgur.com/NBaWeaq.jpg",
                 email         : "vicara@usi.ch"
@@ -43,59 +44,35 @@ var program = {
     },
     {
       name     : "EZ-Stats",
-        date     : new Date("Thurs Dec 17 2015 14:47:00"),
-        endDate     : new Date("Thurs Dec 17 2015 14:50:30"),
+        date     : new Date("Thurs Dec 17 2015 14:43:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:47:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
       abstract : "The Goal of EZ-Stats has created a collaborative framework for visual and numerical data regarding Basketball. The basic idea is to simplify the submission of data after a match.",
       kind     : "Talk",
       pdf      : ["http://ch.mathworks.com/moler/random.pdf", "http://ch.mathworks.com/moler/random.pdfjaflk"],
         speakers  :[{
-                name        : "Paolo Aurecchia",
-                organisation  : "Web Atelier - Final Project",
-                bio           : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim.\n Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
-                website       : "www.paoloau.ch",
-                twitter       : "@paoloau",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png",
-                email         : "au@usi.ch"
-      },{
             name        : "Luca Scibona",
             organisation  : "Web Atelier - Final Project",
-            bio           : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim.\n Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
-            website       : "www.paoloau.ch",
-            twitter       : "@paoloau",
-            picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png",
-            email         : "au@usi.ch"
-        },
-            {
-                name        : "Victor Mion",
-                organisation  : "Web Atelier - Final Project",
-                bio           : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Maecenas nec neque tempor velit sollicitudin dignissim. Morbi sem velit, finibus et nulla id, tempor hendrerit enim.\n Maecenas sit amet dolor tincidunt, aliquet orci et, bibendum mi. In placerat suscipit risus a dictum. Cras ut tortor mauris. Proin arcu odio, ornare sit amet mattis faucibus, laoreet sed eros. Sed at neque elementum, viverra nunc quis, rutrum massa. Vivamus dictum sollicitudin laoreet. Sed ornare mollis nisl, sit amet porttitor est eleifend eu. Vestibulum pellentesque, dui vel semper eleifend, magna ligula ultrices nunc, in dignissim metus libero ut libero. Vivamus fermentum, ipsum ut tincidunt tristique, ligula sapien efficitur tellus, vitae euismod tellus risus in eros. Curabitur eget purus tincidunt dolor malesuada sagittis. Proin massa urna, pretium et bibendum a, pulvinar sit amet sapien. Nunc fringilla vitae enim non tempus.",
-                website       : "www.paoloau.ch",
-                twitter       : "@paoloau",
-                picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png",
-                email         : "au@usi.ch"
-            }
+            bio           : "He was born in Bologna in 1995. He studied Informatics at USI in the Bachelor course. He currently live in Lugano.His interests are music, football and video games. He also like to play chess and guitar in my free time.",
+            website       : "atelier.inf.usi.ch/~scibol",
+            twitter       : "@scibol",
+            picture       : "http://i.imgur.com/QT5TZ7E.jpg",
+            email         : "scibol@usi.ch"
+        }
         ]
     },
     {
       name     : "ASQ-PDF Import",
-        date     : new Date("Thurs Dec 17 2015 14:50:30"),
-        endDate     : new Date("Thurs Dec 17 2015 14:53:30"),
+        date     : new Date("Thurs Dec 17 2015 14:47:30 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
-        speakers  : [{
-                name          : "Alexander North",
-                organisation  : "Web Atelier - Final Project",
-                bio           : "No Information found",
-                twitter       : "@nortAlexander",
-                picture       : "http://i.imgur.com/qmrWHwI.jpg",
-                email         : "northa@usi.ch"
-      },
+        speakers  : [
             {
                 name          : "Lucas Pennati",
                 organisation  : "USI",
                 bio           : "Pennati Lucas is currently attending the faculty of Informatics at Universita di Lugano. During his studies he achieved an IB Diploma, with a heavy emphasis on scientific subjects, more specifically Physics and Chemistry. After the IB Diploma, he attended an ETH Preparation Course, again with an emphasis on scientific subjects, this time including Biology.\nIn the past years he has worked on numerous projects, which include an entire script of Calculus written in LaTeX, as well as a simulation system to verify the effectiveness of the new PVP system in Lugano. Both of these projects are open source, and available to download.\n His main areas of focus in Informatics are ways to improve Human‐Machine interaction by using well designed GUIs, as well as embedded computing, in order to be able to completely monitor a persons health. ",
-                website       : "www.an.ch",
-                twitter       : "@nortAlexander",
+                website       : "atelier.inf.usi.ch/~pennal",
+                twitter       : "@pennaL",
                 picture       : "http://abs.twimg.com/sticky/default_profile_images/default_profile_3_normal.png",
                 email         : "pennal@usi.ch"
             },
@@ -107,14 +84,14 @@ var program = {
     ,
     {
       name     : "ICWE Mobile Web App",
-        date     : new Date("Thurs Dec 17 2015 14:40:00"),
-        endDate     : new Date("Thurs Dec 17 2015 14:43:30"),
+        date     : new Date("Thurs Dec 17 2015 14:40:00 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 14:43:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Samuele Decarli",
                 organisation  : "Web Atelier - Final Project",
                 bio           : "Born in Switzerland in 1993 he has lived there all his life, he has always been curious about many things: informatics, biology, history, philosophy, geographyInformatics has interested him for a long time, mainly because of video games, which he often spend more time modifying rather than playing, and because he like a good, challenging problem to solve, but also because of more serious reasons. Be it as a tool of research or as a science in its own right I think informatics has the wonderful capacity of changing not only the world, but also the way we see it. For example: without algorithms and programs, the idea of DNA and genes encoding instructions to create living things would probably be utterly alien to us.",
-                website       : "www.atelier.inf.usi.ch/~decars/",
+                website       : "atelier.inf.usi.ch/~decars/",
                 twitter       : "@decars",
                 picture       : "http://i.imgur.com/OFrYDPE.jpg",
                 email         : "decars@usi.ch"
@@ -124,8 +101,8 @@ var program = {
     },
     {
       name     : "Atelier Beats Group Project",
-        date     : new Date("Thurs Dec 17 2015 14:57:00"),
-        endDate     : new Date("Thurs Dec 17 2015 15:00:00"),
+        date     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
+        endDate     : new Date("Thurs Dec 17 2015 15:00:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [{
                 name          : "Davide Cammarata",
@@ -141,8 +118,8 @@ var program = {
     },
       {
           name     : "Introduction",
-          date     : new Date("Thurs Dec 17 2015 14:00:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:05:00"),
+          date     : new Date("Thurs Dec 17 2015 14:00:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               ref: "kai.hormann@usi.ch"
@@ -152,15 +129,15 @@ var program = {
       },
       {
           name     : "Programming Fundamentals I",
-          date     : new Date("Thurs Dec 17 2015 14:05:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:25:00"),
+          date     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:25:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Nate Nystrom",
               organisation  : "USI - Final Projects",
               bio           : "His research interests include programming languages, compilers, tools, and methodologies for constructing safe, secure, and efficient systems.",
               website       : "www.inf.usi.ch/faculty/nystrom",
-              picture       : "http://www.inf.usi.ch/nystrom/images/nate-2011-small.jpg",
+              picture       : "http://i.imgur.com/Rtevr9L.jpg",
               email         : "nate.nystrom@usi.ch"
           }],
           abstract : "PF1 final projects presentations",
@@ -169,8 +146,8 @@ var program = {
       ,
       {
           name     : "Software Atelier I ",
-          date     : new Date("Thurs Dec 17 2015 14:25:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:35:00"),
+          date     : new Date("Thurs Dec 17 2015 14:25:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:35:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name: "Michele Lanza",
@@ -193,8 +170,8 @@ var program = {
       },
       {
           name     : "Software Atelier V",
-          date     : new Date("Thurs Dec 17 2015 15:00:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:10:00"),
+          date     : new Date("Thurs Dec 17 2015 15:00:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:10:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               ref : "michele.lanza@usi.ch"
@@ -213,8 +190,8 @@ var program = {
       },
       {
           name     : "Computer Graphics",
-          date     : new Date("Thurs Dec 17 2015 15:10:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:30:00"),
+          date     : new Date("Thurs Dec 17 2015 15:10:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Kai Hormann",
@@ -230,15 +207,16 @@ var program = {
       ,
       {
           name     : "Human-Computer Interaction Design ",
-          date     : new Date("Thurs Dec 17 2015 15:30:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:50:00"),
+          date     : new Date("Thurs Dec 17 2015 15:30:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Monica Landoni",
               organisation  : "USI - Final Projects",
               bio           : "Dr Monica Landoni is a senior research fellow at the Faculty of Informatics since January 2007. Previously, she was a lecturer in the Department of Computer and Information Sciences of the University of Strathclyde since 1998 and spent 2005 on a sabbatical position at PARC (formerly Xerox Parc) in Palo Alto, USA. She holds a PhD in Information Science, Department of Information Science, University of Strathclyde, 1997 and a Laurea in Scienze dell´Informazione from Università degli Studi of Milan.",
               website       : "http://usi.to/f7f",
-              email         : "monica.landoni@usi.ch"
+              email         : "monica.landoni@usi.ch",
+              picture       : "http://www.ebooklabitalia.com/wp-content/uploads/monica-landoni-100x100.jpg"
           }],
           abstract : "Human-Computer Interaction Design projects presentations",
           kind     : "Intro"
@@ -246,8 +224,8 @@ var program = {
       ,
       {
           name     : "Artificial IntellIgence Cup ",
-          date     : new Date("Thurs Dec 17 2015 15:30:00"),
-          endDate     : new Date("Thurs Dec 17 2015 15:50:00"),
+          date     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 16:00:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Luca Gambardella",
@@ -263,8 +241,8 @@ var program = {
       ,
       {
           name     : "Web Atelier ",
-          date     : new Date("Thurs Dec 17 2015 14:35:00"),
-          endDate     : new Date("Thurs Dec 17 2015 14:40:00"),
+          date     : new Date("Thurs Dec 17 2015 14:35:00 GMT+0100 (CET)"),
+          endDate     : new Date("Thurs Dec 17 2015 14:40:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{
               name          : "Cesare Pautasso",
@@ -358,7 +336,7 @@ var tweets = {
         "textId"    : "12344",
       name          : "Person1",
       username      : "USI",
-      text          : "#ICWE webApp is.UP()",
+      text          : "Our webApp is.UP()",
       profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png'
     },
     {
@@ -376,7 +354,7 @@ var tweets = {
       "textId"      : "12234",
       name          : "Person3",
       username      : "USI",
-      text          : "#ICWE16 love what is doing on!",
+      text          : "#ICWE16 !",
       profile_image : 'http://ecx.images-amazon.com/images/I/5113ZN8zXeL._AC_UL320_SR218,320_.jpg'
     }
   ]
