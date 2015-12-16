@@ -128,7 +128,6 @@
         }
 
         .hours > span {
-            height: 35px;
             border-right: 1px solid darkgray;
             text-align: center;
         }
@@ -142,6 +141,7 @@
             flex: 1;
             -webkit-flex: 1;
             margin-right: 10px;
+            height: 455px;
         }
 
         .otherViewEvent {
@@ -237,7 +237,7 @@
                             <div class="otherViewDate">[[_otherViewDate(day.name)]]</div>
                             <div class="hours">
                                 <template is="dom-repeat" items="{{_computeHour}}" as="hour">
-                                    <span>[[hour]]</span>
+                                    <span style$="height:[[_hourHeight()]]">[[hour]]</span>
                                 </template>
                             </div>
                         </div>
@@ -330,6 +330,10 @@
                         notify: true,
                         value: '',
                         observer: ['_eventFilter']
+                    },
+                    height: {
+                        type: Number,
+                        value: 1300
                     }
                 },
                 observers: ["getDays(events)", 'otherViewObj(events)'],
@@ -481,8 +485,10 @@
                     this.otherView = obj
                 },
                 _computeTop: function (dateString) {
-                    dateString = dateString;
-                    var percentageOfOneHour = 35;
+                    console.log(this.maxHour);
+                    console.log(this.minHour)
+                    var percentageOfOneHour = (this.height)/(this.maxHour-this.minHour+2);
+                    console.log(percentageOfOneHour);
                     var zero = this.minHour;
                     var startingHour = dateString.slice(11, 13);
                     var startingMinute = dateString.slice(14, 16);
@@ -502,6 +508,9 @@
                         html.push(i)
                     }
                     return html
+                },
+                _hourHeight: function(){
+                    return String((this.height)/(this.maxHour-this.minHour+2)) + 'px';
                 }
             });
 
