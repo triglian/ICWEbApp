@@ -31,7 +31,7 @@ var program = {
         endDate     : new Date("Thurs Dec 17 2015 14:57:00 GMT+0100 (CET)"),
       place    : "USI auditorium",
         speakers  : [ {
-                name          : "Andrea Vicari ",
+                name          : "Andrea Vicari",
                 organisation  : "Web Atelier - Final Project",
                 bio           : "Andrea Vicari was born on March 10th 1995 in Enna, which is a small town in the middle of the Sicily, in the Southern part of Italy. He has been living there for 19 years. After having attended the Liceo Classico in Enna, he finally decided to move to Lugano in order to join the faculty of informatics at USI. The Liceo Classico is school with an emphasy on humanities, so he is not used to scientific subjects but he is really motivated in reaching my aims and do all my best. He has been interested in Informatics since 2004, when my parents first bought me a Personal Computer. He used to spent my days trying to figure out how this incredible machine worked and maybe, some day, be able to create programs all by myself. In his family he is regarded as the one who can do everything with a keyboard and a mouse. He think that they exagerate with their considerations, but he wish that other people, one day, would say the same about him. Finally, after more or less 10 years, he had the possibility to discover this world deeper than before; He tried to do my best to have good results and work in this field that has always interested him.",
                 website       : "atelier.inf.usi.ch/~vicara/",
