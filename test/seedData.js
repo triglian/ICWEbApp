@@ -159,7 +159,7 @@ var program = {
               name          : "Nate Nystrom",
               organisation  : "USI - Final Projects",
               bio           : "His research interests include programming languages, compilers, tools, and methodologies for constructing safe, secure, and efficient systems.",
-              website       : "www.inf.usi.ch/faculty/nystrom/",
+              website       : "www.inf.usi.ch/faculty/nystrom",
               picture       : "http://www.inf.usi.ch/nystrom/images/nate-2011-small.jpg",
               email         : "nate.nystrom@usi.ch"
           }],
@@ -184,7 +184,7 @@ var program = {
                   name          : "Andrea Mocci",
                   organisation  : "USI - Final Projects",
                   bio           : "He is a Postdoctoral Researcher in the REVEAL group headed by Prof. Dr. Michele Lanza. His general research interests include software behavioral modeling, testing and analysis, lightweight formal methods, program comprehension, software design and mining software repositories. He got my B.Sc., M.Sc. and PhD at Politecnico di Milano, where he has been advised by Prof. Carlo Ghezzi of deepse group.",
-                  website       : "www.inf.usi.ch/postdoc/mocci/",
+                  website       : "www.inf.usi.ch/postdoc/mocci",
                   picture       : "http://www.inf.usi.ch/postdoc/mocci/images/me-fb.jpg",
                   email         : "andrea.mocci@gmail.com"
               }],
@@ -250,7 +250,7 @@ var program = {
           endDate     : new Date("Thurs Dec 17 2015 15:50:00"),
           place    : "USI auditorium",
           speakers  : [{
-              name          : "Gambardella, Luca",
+              name          : "Luca Gambardella",
               organisation  : "USI - Final Projects",
               bio           : "Luca Maria Gambardella is director of IDSIA, Dalle Molle Institute for Artificial Intelligence in Manno, Lugano. He is Professor at SUPSI and Adjunct Professor at the Informatics Faculty at USI. He teaches the Algorithms course at DTI-SUPSI and the Artificial Intelligence module at the Informatics Faculty at USI. He is responsible of the Intelligent Systems Master Research Unit at SUPSI. His major research interests and publications are in the area of optimisation, simulation, swarm robotics, multi-agent learning, applied to academic and real-world problems. In particular, he has studied and developed influential and frequently cited Ant Colony Optimisation algorithms to solve travelling salesman problems, quadratic assignment problems, sequential ordering problems and vehicle routing problems. In these domains, the best-known solutions for many benchmark instances have been computed. He acts as a guest editor and reviewer for the most important journals in his field. He is leading projects for the Swiss National Science Foundation, Hasler Foundation, Swiss Commission for Technology and Innovation, EU Commission and Industries. He his Chief Scientific Officer of AntOptima, the spin-off company of IDSIA. To date (June 2013) he has published more than 200 publications. According to Google scholar his h-index is 47 and his articles have received more than 22000 citations. Luca Maria Gambardella is president of the Swiss Operations Research Society (SVOR/ASRO) and president of the jury of the Euro Excellence In Practice Award 2015 (EEPA 2015).",
               website       : "http://usi.to/f7f",
@@ -270,7 +270,7 @@ var program = {
               name          : "Cesare Pautasso",
               organisation  : "USI - Final Projects",
               bio           : "Cesare Pautasso is associate professor in the Faculty of Informatics at the University of Lugano, Switzerland. Previously he was a researcher at the IBM Zurich Research Lab and a senior researcher at ETH Zurich, where he was awarded his PhD in 2004. His research focuses on building experimental systems to explore the intersection of model-driven software composition techniques, business process modeling languages, and autonomic/Grid computing. Recently he has developed an interest in Web 2.0 Mashups and Architectural Decision Modeling.He is the lead architect of JOpera (www.jopera.org), a powerful rapid service composition tool for Eclipse. His teaching and training activities both in academia and in industry cover advanced topics related to Web Development, Middleware, Service Oriented Architectures and emerging Web services technologies.He is a reviewer for several international funding agencies, including the EU FET-Open program. He is an active member of the ACM and the IEEE Computer Society where he has served on more than 100 program committees. He served as the general chair of the 9th European Conference on Web Services (ECOWS) hosted at USI in 2011.",
-              website       : "http://www.pautasso.info/",
+              website       : "http://www.pautasso.info",
               email         : "cesare.pautasso@usi.ch",
               picture:      "http://i.imgur.com/itS2UBU.png"
           }],
@@ -347,10 +347,10 @@ var tweets = {
       "_id"         : ObjectId(),
       "tweetId"     : 1234,
       "textId"      : "1234",
-      name          : "icwe16",
-      username      : "USI",
-      text          : "Dummy",
-      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+      name          : "Dart",
+      username      : "@DartV",
+      text          : "#USI is doing the finals project presentations #USI",
+      profile_image : 'http://nst.sky.it/content/dam/static/contentimages/original/sezioni/cinema/news/2014/01/02/darth-vader.jpeg'
     },
     {
       "_id"         : ObjectId(),
@@ -358,17 +358,17 @@ var tweets = {
         "textId"    : "12344",
       name          : "Person1",
       username      : "USI",
-      text          : "Dummy",
-      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+      text          : "#ICWE webApp is.UP()",
+      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png'
     },
     {
       "_id"         : ObjectId(),
       "tweetId"     : 11234,
       "textId"      : "11234",
-      name          : "icwe16",
-      username      : "USI",
-      text          : "Dummy",
-      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+      name          : "Yoda",
+      username      : "Yoda",
+      text          : "Today at #USI we have some nice presentations",
+      profile_image : 'http://www.spore.com/static/avatar/225/857/841/Yoda%20as.jpg'
     },
     {
       "_id"         : ObjectId(),
@@ -376,17 +376,8 @@ var tweets = {
       "textId"      : "12234",
       name          : "Person3",
       username      : "USI",
-      text          : "Dummy",
-      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
-    },
-    {
-      "_id"         : ObjectId(),
-      "tweetId"     : 12324,
-      "textId"      : "12324",
-      name          : "Person4",
-      username      : "USI",
-      text          : "Dummy",
-      profile_image : 'http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png'
+      text          : "#ICWE16 love what is doing on!",
+      profile_image : 'http://ecx.images-amazon.com/images/I/5113ZN8zXeL._AC_UL320_SR218,320_.jpg'
     }
   ]
 };
