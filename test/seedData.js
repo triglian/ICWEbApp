@@ -206,7 +206,7 @@ var program = {
       }
       ,
       {
-          name     : "Artificial IntellIgence Cup ",
+          name     : "Artificial Intelligence Cup ",
           date     : new Date("Thurs Dec 17 2015 15:50:00 GMT+0100 (CET)"),
           endDate     : new Date("Thurs Dec 17 2015 15:59:59 GMT+0100 (CET)"),
           place    : "USI auditorium",
@@ -218,7 +218,7 @@ var program = {
               email         : "luca.gambardella@usi.ch",
               picture:      "http://i.imgur.com/BHQRjsL.png"
           }],
-          abstract : "Artificial IntellIgence Cup projects presentations",
+          abstract : "Artificial Intelligence Cup projects presentations",
           kind     : "Intro"
       }
       ,
