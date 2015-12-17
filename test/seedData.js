@@ -8,7 +8,7 @@ var ObjectId = mongoose.Types.ObjectId;
 var program = {
   events: [
     {
-      name     : "USI Social Web",
+      name     : "USI Social Wall",
         date     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
         endDate     : new Date("Thurs Dec 17 2015 14:53:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
