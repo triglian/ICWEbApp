@@ -101,7 +101,7 @@ var program = {
     },
       {
           name     : "Introduction",
-          date     : new Date("Thurs Dec 17 2015 14:00:00 GMT+0100 (CET)"),
+          date     : new Date(),
           endDate     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
           speakers  : [{

@@ -146,47 +146,47 @@ router.post('/:eventid/feedback', function(req, res, next){
 });
 var idSent = [];
 
-new CronJob('*/10 * * * * *', function() {
-    Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
-        var actualDate = new Date();
-        event.forEach(function(evt) {
-            if(idSent.indexOf(evt.id) == -1){
-                var speaker = evt.speakers;
-                for(var i = 0 ; i < speaker.length;i++) {
-                    if(+actualDate >= +evt.date) {
-                        idSent.push(evt.id)
-                        sendMail(speaker[i].email, [evt.name, evt.id])
-                    }
-                }
-            }
-        })
-    })
-}, null, true);
+//new CronJob('*/10 * * * * *', function() {
+//    Event.find({}, fieldsFilter).populate("speakers", "email picture name organisation").exec(function (err, event) {
+//        var actualDate = new Date();
+//        event.forEach(function(evt) {
+//            if(idSent.indexOf(evt.id) == -1){
+//                var speaker = evt.speakers;
+//                for(var i = 0 ; i < speaker.length;i++) {
+//                    if(+actualDate >= +evt.date) {
+//                        idSent.push(evt.id)
+//                        sendMail(speaker[i].email, [evt.name, evt.id])
+//                    }
+//                }
+//            }
+//        })
+//    })
+//}, null, true);
 
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'icwe16cform@gmail.com',
-        pass: 'atelierbeats'
-    }
-});
-
-function sendMail(receiver,event) {
-    console.log(event)
-    var mailOptions = {
-        from: 'icwe16cform@gmail.com',
-        to: 'icwe16cform@gmail.com',
-        subject: 'Your Feedback for '+ event[0] +' is ready',
-        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b><p> to be forwarded to '+receiver+'</p>'
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-    });
-}
+//var nodemailer = require('nodemailer');
+//
+//var transporter = nodemailer.createTransport({
+//    service: 'Gmail',
+//    auth: {
+//        user: 'icwe16cform@gmail.com',
+//        pass: 'atelierbeats'
+//    }
+//});
+//
+//function sendMail(receiver,event) {
+//    console.log(event)
+//    var mailOptions = {
+//        from: 'icwe16cform@gmail.com',
+//        to: 'icwe16cform@gmail.com',
+//        subject: 'Your Feedback for '+ event[0] +' is ready',
+//        html: '<b>You can find your feedback at http://localhost:3000/#!events/'+event[1]+'/feedback</b><p> to be forwarded to '+receiver+'</p>'
+//    };
+//    transporter.sendMail(mailOptions, function (error, info) {
+//        if (error) {
+//            return console.log(error);
+//        }
+//    });
+//}
 
 
 

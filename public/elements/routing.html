@@ -22,95 +22,97 @@
          */
 
         function home() { webApp.selected = 0; }
-        page('/', nothingDoNext, function() {
+        page('/', function() {
             home();
         });
-        page('', nothingDoNext, function() {
-            home();
-        });
+//        page('', nothingDoNext, function() {
+//            home();
+//        });
 
 
         function social() { webApp.selected = 1; }
         page('/social', nothingDoNext, function() {
             social();
         });
-        page('social', nothingDoNext, function() {
-            social();
-        });
+//        page('social', nothingDoNext, function() {
+//            social();
+//        });
 
 
         function sponsors() { webApp.selected = 2; }
         page('/sponsors', nothingDoNext, function(data) {
             sponsors();
         });
-        page('sponsors', nothingDoNext, function(data) {
-            sponsors();
-        });
+//        page('sponsors', nothingDoNext, function(data) {
+//            sponsors();
+//        });
 
 
         function speakers() { webApp.selected = 3; }
         page('/speakers', nothingDoNext, function() {
             speakers();
         });
-        page('speakers', nothingDoNext, function() {
-            speakers();
-        });
+//        page('speakers', nothingDoNext, function() {
+//            speakers();
+//        });
 
 
         function singleSpeakers(id) { webApp.speakerNameToView = id; webApp.selected = 6; }
         page('/speakers/:id', nothingDoNext, function(data) {
             singleSpeakers(data.params.id);
         });
-        page('speakers/:id', nothingDoNext, function(data) {
-            singleSpeakers(data.params.id);
-        });
+//        page('speakers/:id', nothingDoNext, function(data) {
+//            singleSpeakers(data.params.id);
+//        });
 
 
         function events() { webApp.selected = 4; }
         page('/events', nothingDoNext, function(data) {
             events();
         });
-        page('events', nothingDoNext, function(data) {
-            events();
-        });
+//        page('events', nothingDoNext, function(data) {
+//            events();
+//        });
 
 
         function singleEvent(id) { webApp.eventNameToView = id; webApp.selected = 7; }
         page('/events/:id', nothingDoNext, function(data) {
             singleEvent(data.params.id);
         });
-        page('events/:id', nothingDoNext, function(data) {
-            singleEvent(data.params.id);
-        });
+//        page('events/:id', nothingDoNext, function(data) {
+//            singleEvent(data.params.id);
+//        });
 
 
         function feedback(id) { webApp.$.feedback._id = id; webApp.selected = 8; }
         page('/events/:id/feedback', nothingDoNext, function(data) {
             feedback(data.params.id);
         });
-        page('events/:id/feedback', nothingDoNext, function(data) {
-            feedback(data.params.id);
-        });
+//        page('events/:id/feedback', nothingDoNext, function(data) {
+//            feedback(data.params.id);
+//        });
 
 
         function contacts() { webApp.selected = 5; }
         page('/contacts', nothingDoNext, function(data) {
             contacts();
         });
-        page('contacts', nothingDoNext, function(data) {
-            contacts();
-        });
+//        page('contacts', nothingDoNext, function(data) {
+//            contacts();
+//        });
 
 
-        page('*', function() {
-            webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
-            webApp.$.toast.show();
-        });
+//        page('*', function() {
+//            webApp.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+//            webApp.$.toast.show();
+//        });
 
         // add #! before urls
-        page({
-            hashbang: true
-        });
+//        page({
+//            hashbang: true
+//        });
+
+        page.show(window.location.pathname)
 
     });
 </script>

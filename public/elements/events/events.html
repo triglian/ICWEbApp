@@ -214,14 +214,14 @@
                                 <div class="layout vertical flex-2 center-justified">
                                     <div class="talk"><span
                                             class="hour">[[ _hour(event.date) ]] - [[_hour(event.endDate)]]</span></div>
-                                    <div class="name"><a href="#!events/{{event.linkName}}"
+                                    <div class="name"><a href="/events/{{event.linkName}}"
                                                          class="eventLink">{{event.name}}</a>
                                     </div>
                                     <div class="talk"><span class="radius"
                                                             style$="background-color:[[_colorFilter(event.kind)]]"
                                                             onclick$="_addFilter('[[event.kind]]')">{{event.kind}}</span>
                                         <template is="dom-repeat" items="{{event.speakers}}" as="speaker">
-                                            <span><a class="speaker" href="#!speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
+                                            <span><a class="speaker" href="/speakers/{{speaker.linkName}}">{{speaker.name}}</a></span>
                                         </template>
                                         <span>{{event.place}}</span>
                                     </div>

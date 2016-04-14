@@ -1,3 +1,5 @@
+'use strict';
+
 var config = require('./config');
 var express = require('express');
 var path = require('path');
@@ -49,7 +51,25 @@ app.use(function (req, res, next) {
 });
 
 //Add some routes
+//var routers = require('./routes/routers');
 var routers = require('./routes/routers');
+app.use('*', function(req,res, next){
+    //let routesToServeStatic = ["/contacts", '/twitter', '/sponsors', '/events', '/speakers' ];
+
+    //if(req.accepts('html') && routesToServeStatic.indexOf(req.baseUrl)> -1){
+
+    if(req.accepts('html')){
+        var options = {
+            root: __dirname + '/public/',
+        };
+        return res.sendFile('index.html', options);
+    }else{
+        next();
+    }
+
+
+});
+
 app.use('/contacts', routers.Contacts);
 app.use('/twitter', routers.Twitter);
 app.use('/sponsors', routers.Sponsors);
