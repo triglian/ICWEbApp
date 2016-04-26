@@ -347,51 +347,21 @@ var sponsor = {
   data: [
     {
       "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/NOKIA_LOGO_BLUE.png",
-      company_name  : "NOKIA",
-      website       : "http://www.nokia.com/"
+      logo_url      : "http://gelb-bewegt.post.ch/img/img_logo_die_post-de.png",
+      company_name  : "La Posta Svizzera",
+      website       : "http://www.post.ch/"
     },
     {
       "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/googlelogo.png",
+      logo_url      : "http://www.ffs.ch/content/sbbshop/it/winterthur/07_eg_ag_sbbberatungundverkauf/_jcr_content/shop/logo.spooler.spoolimage.-1.gif/1302690069821/logo_sbb_reisebuero.gif",
+      company_name  : "FFS",
+      website       : "http://www.ffs.ch"
+    },
+    {
+      "_id"         : ObjectId(),
+      logo_url      : "http://www.google.com/images/branding/googlelogo/2x/googlelogo_color_116x41dp.png",
       company_name  : "Google",
       website       : "http://www.google.ch"
-    },
-    {
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/logo_atomikos_text.png",
-      company_name  : "ATOMIKOS",
-      website       : "http://www.atomikos.com/"
-    },
-    {
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/innoq_logo.png",
-      company_name  : "innoQ",
-      website       : "https://www.innoq.com/en/"
-    },    
-    {
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/ated.jpg",
-      company_name  : "ATED",
-      website       : "http://www.ated.ch/"
-    },    
-    {
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/Lastminute_group_logo.png",
-      company_name  : "Lastminute.com",
-      website       : "http://www.lastminute.com/"
-    },    
-    {
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/Springer_Logo.png",
-      company_name  : "Springer",
-      website       : "http://www.springer.com/"
-    }, 
-    {   
-      "_id"         : ObjectId(),
-      logo_url      : "http://icwe2016.inf.unisi.ch/sites/icwe2016/files/sponsors/iswe.jpg",
-      company_name  : "ISWE",
-      website       : "http://www.iswe-ev.de/conferences/icwe/"
     }
   ]
 };
