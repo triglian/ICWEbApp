@@ -16,12 +16,12 @@ module.exports = {
      * ATTENTION: twitterMain and twitterFeeds MUST NOT have same fields
      */
 
-    "name": "Fall Semester Projects Presentations 2015",
-    "websiteTitle": "USI-END15",
+    "name": "16th International Conference on Web Engineering",
+    "websiteTitle": "ICWE2016",
     "email": "frunzl@usi.ch",
-    "description": "USI Informatics is proud to show you all the projects made by students during this Fall Semester 2015",
+    "description": "ICWE aims to bring together researchers and practitioners from industry and academia to tackle emerging and interdisciplinary challenges in the engineering of Web applications using next-generation technologies methods and tools which are becoming every day more critical for our society, education, media and culture.",
     "location": "[46.010782, 8.958109]",
     "twitterMainID": [507663518],
-    "twitterMain": ["@GiggiuxF"],
-    "twitterFeeds": ["@USI_INF", "#USIFALL15", "#USIFALL2015", "@USInews", "#USIPresentation", "#USIFallPresentation", "@lanzamichele", "#WebAtelierPresentation15"]
+    "twitterMain": ["@ICWE16"],
+    "twitterFeeds": ["@USI_INF", "#ICWE2016"]
 };
