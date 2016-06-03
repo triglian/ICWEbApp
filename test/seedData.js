@@ -62,7 +62,7 @@ var program = {
         ]
     },
     {
-      name     : "ASQ-PDF Import",
+      name     : "ASQ-PDF import",
         date     : new Date("Thurs Dec 17 2015 14:47:30 GMT+0100 (CET)"),
         endDate     : new Date("Thurs Dec 17 2015 14:50:30 GMT+0100 (CET)"),
       place    : "USI auditorium",
@@ -100,7 +100,7 @@ var program = {
       kind     : "Talk"
     },
       {
-          name     : "Introduction",
+          name     : "Opening",
           date     : new Date(),
           endDate     : new Date("Thurs Dec 17 2015 14:05:00 GMT+0100 (CET)"),
           place    : "USI auditorium",
